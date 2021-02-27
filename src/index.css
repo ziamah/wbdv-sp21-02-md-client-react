@@ -1,3 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Rubik&subset=latin,latin-ext);
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,69 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Theme Colors */
+:root {
+  --surface: #FAF6EF;
+  --surface-dark: #ECDAC1;
+  --text: #010C14;
+  --text-light: #03233A;
+  --primary: #D07D62;
+  --primary-light: #DEA491;
+  --primary-dark: #AD5234;
+  --secondary: #496F5B;
+  --secondary-light: #A9C7B7;
+  --secondary-dark: #283E32;
+  --accent: #04395E;
+  --danger: #C71A37;
+  --danger-light: #EA5D74;
+}
+
+.container-fluid {
+  background-color: var(--surface);
+}
+
+.h1 {
+  font-family: "Rubik", sans-serif;
+  color: var(--secondary);
+}
+
+.h2 {
+  font-family: "Rubik", sans-serif;
+  color: var(--secondary)
+}
+
+.h3 {
+  font-family: "Rubik", sans-serif;
+  color: var(--text);
+}
+
+.p {
+  font-family: "Roboto", sans-serif;
+  color: var(--text)
+}
+
+.wbdv-link-text {
+  font-family: "Roboto", sans-serif;
+  color: var(--accent);
+  font-style: oblique;
+}
+
+.wbdv-detail-btn {
+  background-color: var(--secondary);
+  font-family: "Roboto", sans-serif;
+  color: var(--surface);
+}
+
+.wbdv-affirmative-btn {
+  background-color: var(--primary);
+  font-family: "Roboto", sans-serif;
+  color: var(--surface);
+}
+
+.wbdv-secondary-btn {
+  background-color: var(--accent);
+  font-family: "Roboto", sans-serif;
+  color: var(--surface);
 }
