@@ -1,5 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto&subset=latin,latin-ext);
-@import url(http://fonts.googleapis.com/css?family=Rubik&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap);
 
 
 body {
@@ -79,4 +79,27 @@ code {
   background-color: var(--accent);
   font-family: "Roboto", sans-serif;
   color: var(--surface);
+}
+
+.wbdv-navigation-bar {
+  padding: 10px;
+  font-weight: bold;
+  font-size: larger;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: var(--primary);
+  color: var(--surface);
+  font-family: "Rubik", sans-serif;
+}
+
+.wbdv-center-in-div {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+}
+
+.container-fluid {
+  padding: 0;
 }
