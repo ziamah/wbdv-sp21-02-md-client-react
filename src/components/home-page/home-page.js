@@ -5,11 +5,15 @@ import FavoritesWidget from "./favorites-widget";
 class HomePage extends React.Component {
     render() {
         return (
-            <>
-                {/*<FeaturedRecipeCard/>*/}
-                <FavoritesWidget/>
-            </>
-            )
+            <div className="row">
+                <div className="col-4 d-none d-lg-block">
+                    <FavoritesWidget/>
+                </div>
+                <div className="col-8">
+                    <FeaturedRecipeCard/>
+                </div>
+            </div>
+        )
     }
 }
 
