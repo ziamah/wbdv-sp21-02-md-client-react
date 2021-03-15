@@ -1,20 +1,60 @@
-@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap);
 
+/*!* rubik-regular - latin *!*/
+/*@font-face {*/
+/*  font-family: 'Rubik';*/
+/*  font-style: normal;*/
+/*  font-weight: 400;*/
+/*  src: url('../wbdv-sp21-02-md-client-react/src/fonts/rubik-v12-latin-regular.ttf');*/
+/*}*/
+/*!* rubik-700 - latin *!*/
+/*@font-face {*/
+/*  font-family: 'Rubik';*/
+/*  font-style: normal;*/
+/*  font-weight: 700;*/
+/*  src: url('../wbdv-sp21-02-md-client-react/src/fonts/rubik-v12-latin-700.ttf');*/
+/*}*/
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Roboto/Roboto-Regular.ttf') format("truetype");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Rubik/static/Rubik-Regular.ttf') format("truetype");
 }
+/*!* roboto-700 - latin *!*/
+/*@font-face {*/
+/*  font-family: 'Roboto';*/
+/*  font-style: normal;*/
+/*  font-weight: 700;*/
+/*  src: url('../wbdv-sp21-02-md-client-react/src/fonts/roboto-v20-latin-700.eot'); !* IE9 Compat Modes *!*/
+/*  src: local(''),*/
+/*  url('../wbdv-sp21-02-md-client-react/src/fonts/roboto-v20-latin-700.eot?#iefix') format('embedded-opentype'), !* IE6-IE8 *!*/
+/*  url('../wbdv-sp21-02-md-client-react/src/fonts/roboto-v20-latin-700.woff2') format('woff2'), !* Super Modern Browsers *!*/
+/*  url('../wbdv-sp21-02-md-client-react/src/fonts/roboto-v20-latin-700.woff') format('woff'), !* Modern Browsers *!*/
+/*  url('../wbdv-sp21-02-md-client-react/src/fonts/roboto-v20-latin-700.ttf') format('truetype'), !* Safari, Android, iOS *!*/
+/*  url('../wbdv-sp21-02-md-client-react/src/fonts/roboto-v20-latin-700.svg#Roboto') format('svg'); !* Legacy iOS *!*/
+/*}*/
+
+/*body {*/
+/*  margin: 0;*/
+/*  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
+/*    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',*/
+/*    sans-serif;*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  -moz-osx-font-smoothing: grayscale;*/
+/*}*/
+
+/*code {*/
+/*  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',*/
+/*    monospace;*/
+/*}*/
 
 /* Theme Colors */
 :root {
@@ -39,7 +79,7 @@ code {
 
 .h1 {
   font-family: "Rubik", sans-serif;
-  color: var(--secondary);
+  color: var(--text);
 }
 
 .h2 {
@@ -127,4 +167,14 @@ code {
   display:block;
   width:100%;
   min-width:1px;
+}
+
+.wbdv-widget-container {
+  background-color: var(--surface-dark);
+}
+
+.wbdv-page-content {
+  padding-top: 72px;
+  padding-left: 36px;
+  padding-right: 36px;
 }

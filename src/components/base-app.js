@@ -8,12 +8,16 @@ class BaseApp extends React.Component {
         return (
             <div className="container-fluid">
                 <NavigationBar></NavigationBar>
-                <Route path="/home" component={HomePage}></Route>
-                <Route path="/profile"></Route>
-                {/*<Route path="/results"></Route>*/}
-                {/*<Route path="details"></Route>*/}
-                <Route path="/login"></Route>
-                <Route path="/register"></Route>
+                <div className="wbdv-page-content">
+                    <Route path="/home">
+                        <HomePage/>
+                    </Route>
+                    <Route path="/profile"></Route>
+                    {/*<Route path="/results"></Route>*/}
+                    {/*<Route path="details"></Route>*/}
+                    <Route path="/login"></Route>
+                    <Route path="/register"></Route>
+                </div>
             </div>
         )
     }
