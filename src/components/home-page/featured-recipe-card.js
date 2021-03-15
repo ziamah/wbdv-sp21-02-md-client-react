@@ -27,6 +27,46 @@ const FeaturedRecipeCard = () => {
                     <span className="sr-only">Next</span>
                 </a>
             </div>
+            <div className="wbdv-widget-interior">
+                <h3 className="h3">
+                    Recipe Name
+                    <div className="wbdv-padded-icon float-right">
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star-half"></i>
+                    </div>
+                </h3>
+                <div className="row">
+                    <p className="wbdv-body-text col-2">
+                        60 minutes
+                    </p>
+                    <p className="wbdv-body-text col-2">
+                        <i className="fas fa-heart wbdv-padded-icon"></i>
+                        16
+                    </p>
+                </div>
+                <hr/>
+
+                <p className="wbdv-body-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae aliquet velit. Mauris massa quam,
+                    rhoncus nec scelerisque a, eleifend at magna. Aenean id pulvinar risus. Sed at ipsum sed odio
+                    commodo gravida. Fusce luctus varius massa, ac vestibulum turpis pharetra at. Aenean diam felis,
+                    luctus sit amet felis et, dapibus gravida libero. Proin feugiat porttitor orci a imperdiet.
+                    Curabitur est lectus, iaculis quis mauris vitae, lobortis maximus magna. Proin efficitur elit ut
+                    eros efficitur accumsan. Nullam viverra ullamcorper erat in rhoncus. In volutpat porttitor dictum.
+                    Ut nec fringilla orci, id eleifend neque. Proin suscipit imperdiet ex eget volutpat. Nam elementum
+                    sem erat, eget lobortis odio fermentum nec.
+                </p>
+                <div className="wbdv-center-in-div">
+                    <button className="btn wbdv-affirmative-btn">
+                        VIEW FULL RECIPE
+                    </button>
+                </div>
+
+
+            </div>
         </div>
     )
 
