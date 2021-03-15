@@ -103,3 +103,28 @@ code {
 .container-fluid {
   padding: 0;
 }
+
+.wbdv-padded-icon {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.wbdv-navbar-btn {
+  background-color: var(--primary);
+  color: var(--surface);
+  font-family: "Rubik", sans-serif;
+}
+
+.wbdv-navbar-btn:hover {
+  background-color: var(--primary-dark);
+  color: var(--surface);
+}
+
+.wbdv-site-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display:block;
+  width:100%;
+  min-width:1px;
+}
