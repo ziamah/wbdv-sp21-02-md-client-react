@@ -13,6 +13,10 @@ class BaseApp extends React.Component {
                 {/*<Route path="details"></Route>*/}
                 <Route path="/login"></Route>
                 <Route path="/register"></Route>
+
+
+
+
             </div>
         )
     }

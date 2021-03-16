@@ -3,6 +3,7 @@
 
 
 body {
+  padding-top: 30px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -102,4 +103,11 @@ code {
 
 .container-fluid {
   padding: 0;
+}
+
+.wbdv-image {
+  /*border-radius: 70%;*/
+  width: 400px;
+  height: 250px;
+  padding: 10px;
 }
