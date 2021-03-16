@@ -5,7 +5,7 @@ export const findAllUsers = () =>
         .then(response => response.json())
 
 export const deleteUser = (userId) =>
-    fetch(`${USERS_URL}/${courseId}`, {
+    fetch(`${USERS_URL}/${userId}`, {
         method: 'DELETE'
     })
         .then(response => response.json())
