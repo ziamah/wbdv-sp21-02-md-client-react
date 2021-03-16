@@ -116,6 +116,7 @@
   background-color: var(--primary);
   color: var(--surface);
   font-family: "Rubik", sans-serif;
+  font-size: medium;
 }
 
 .wbdv-navbar-btn:hover {
