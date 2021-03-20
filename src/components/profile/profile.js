@@ -4,6 +4,7 @@ import PrivateData from './private-data';
 import ProfileItems from './profile-items';
 import './profile.css'
 import AboutMe from './about-me'
+import UserList from './user-list'
 
 const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
                  likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -33,6 +34,16 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
 
         </div>
+
+        </Route>
+
+
+        <Route path="/followers">
+                <div className="body-position">
+                    <UserList users={["user1", "user2", "user3"]} />
+
+
+                </div>
 
         </Route>
 
