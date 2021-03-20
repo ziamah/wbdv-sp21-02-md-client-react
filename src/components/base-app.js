@@ -15,7 +15,8 @@ class BaseApp extends React.Component {
                     </Route>
                     <Route path="/profile"></Route>
                     {/*<Route path="/results"></Route>*/}
-                    <Route path="details">
+                    <Route path="/details">
+                        {/*TODO: Implement details url dependent on recipe id*/}
                         <DetailsPage/>
                     </Route>
                     <Route path="/login"></Route>
