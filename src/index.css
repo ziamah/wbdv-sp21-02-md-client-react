@@ -1,19 +1,16 @@
-@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap);
 
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Roboto/Roboto-Regular.ttf') format("truetype");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Rubik/static/Rubik-Regular.ttf') format("truetype");
 }
 
 /* Theme Colors */
@@ -39,7 +36,8 @@ code {
 
 .h1 {
   font-family: "Rubik", sans-serif;
-  color: var(--secondary);
+  color: var(--text);
+  font-weight: 900;
 }
 
 .h2 {
@@ -49,10 +47,11 @@ code {
 
 .h3 {
   font-family: "Rubik", sans-serif;
-  color: var(--text);
+  color: var(--secondary);
+  font-weight: 700;
 }
 
-.p {
+.wbdv-body-text {
   font-family: "Roboto", sans-serif;
   color: var(--text)
 }
@@ -102,4 +101,55 @@ code {
 
 .container-fluid {
   padding: 0;
+}
+
+.wbdv-padded-icon {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.wbdv-padded-img {
+  padding: 10px
+}
+
+.wbdv-navbar-btn {
+  background-color: var(--primary);
+  color: var(--surface);
+  font-family: "Rubik", sans-serif;
+  font-size: medium;
+}
+
+.wbdv-navbar-btn:hover {
+  background-color: var(--primary-dark);
+  color: var(--surface);
+}
+
+.wbdv-site-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display:block;
+  width:100%;
+  min-width:1px;
+}
+
+.wbdv-widget-container {
+  background-color: var(--surface-dark);
+  margin: 32px 12px;
+}
+
+.wbdv-widget-interior {
+  padding: 12px;
+}
+
+.wbdv-page-content {
+  padding-top: 72px;
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
+.wbdv-contrast-header {
+  background-color: var(--secondary);
+  color: var(--surface);
+  padding: 10px;
 }
