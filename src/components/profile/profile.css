@@ -5,3 +5,32 @@
 .add-padding-right {
     padding-right: 190px;
 }
+
+.profile-image-position {
+    position: absolute;
+    left: 25px;
+    top: 15px;
+    width: 350px;
+    height: 250px;
+}
+
+.items-position {
+    position: absolute;
+    left: 25px;
+    top: 250px;
+    width: 350px;
+
+}
+
+.heading-position {
+    position: absolute;
+    left: 50%;
+
+}
+
+.body-position {
+    position: absolute;
+    top: 150px;
+    left: 35%;
+}
+
