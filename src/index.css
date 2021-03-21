@@ -133,6 +133,13 @@
   display:block;
   width:100%;
   min-width:1px;
+  background-color: var(--primary);
+  color: var(--surface);
+  font-family: "Rubik", sans-serif;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .wbdv-widget-container {

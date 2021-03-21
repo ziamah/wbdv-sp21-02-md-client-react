@@ -1,4 +1,5 @@
 import React from "react";
+import {Link, NavLink} from 'react-router-dom';
 import "../../index.css";
 import NavigationLinks from "./navigation-links";
 
@@ -16,9 +17,16 @@ export default class NavigationBar
                     <div className="col-1 wbdv-center-in-div">
                         <i className="fas fa-2x fa-pepper-hot"></i>
                     </div>
-                    <h3 className="col-3 d-none d-md-block wbdv-site-title">
-                        App Name
-                    </h3>
+
+                        <div className="col-3 d-none d-md-block">
+                            <Link to={"/home"}>
+                            <h3 className="wbdv-site-title">
+                                App Name
+                            </h3>
+                            </Link>
+
+                        </div>
+
                     <div className="col-4">
                         <NavigationLinks props={this.props}></NavigationLinks>
                     </div>
