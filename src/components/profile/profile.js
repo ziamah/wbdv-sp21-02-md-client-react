@@ -5,6 +5,7 @@ import ProfileItems from './profile-items';
 import './profile.css'
 import AboutMe from './about-me'
 import UserList from './user-list'
+import RecipeList from './recipe-list'
 
 const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
                  likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -54,6 +55,24 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
                     heading = "Following Me" />
 
                </div>
+
+        </Route>
+
+        <Route path="/posted/recipes">
+                <div className="body-position">
+
+                     <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}/>
+
+                </div>
+
+        </Route>
+
+        <Route path="/liked/recipes">
+                <div className="body-position">
+
+                     <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]} heading="Recipes I Liked"/>
+
+                </div>
 
         </Route>
 
