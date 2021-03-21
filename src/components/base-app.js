@@ -3,7 +3,7 @@ import {Route, Link} from "react-router-dom";
 import NavigationBar from "./navigation-bar/navigation-bar";
 import HomePage from "./home-page/home-page";
 import DetailsPage from "./details-page/details-page";
-import NewRecipe from "./new-recipe-page";
+import NewRecipe from "./new-recipe-page/new-recipe-page";
 
 class BaseApp extends React.Component {
     render() {

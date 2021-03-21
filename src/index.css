@@ -126,6 +126,10 @@
   color: var(--surface);
 }
 
+.btn-group-margin {
+  margin: 2px
+}
+
 .wbdv-site-title {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -177,6 +181,18 @@ a:hover {
   margin-left: 10px;
   padding-left: 10px;
   border-left: thin solid var(--primary-dark);
+}
+
+.wbdv-label {
+  font-family: "Roboto", sans-serif;
+  color: var(--secondary);
+  padding-right: 10px;
+}
+
+.wbdv-align-right {
+  align-items: center;
+  /*display: flex;*/
+  justify-items: center;
 }
 
 /*Tag Styles*/
