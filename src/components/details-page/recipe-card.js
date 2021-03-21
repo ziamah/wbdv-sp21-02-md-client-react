@@ -64,7 +64,9 @@ const RecipeCard = () => {
                     </div>
                     <div className="row">
                         {/*TODO: map dietTags to diet attribute*/}
-                        <DietTag tagType={"vegan"}/>
+                        <h2>
+                            <DietTag tagType={"vegan"}/>
+                        </h2>
                     </div>
                     <br/>
                     <div className="row">
@@ -74,7 +76,9 @@ const RecipeCard = () => {
                     </div>
                     <div className="row">
                         {/*TODO: map dietTags to ingredient attribute*/}
-                        <DietTag tagType={"treenut"}/>
+                        <h2>
+                            <DietTag tagType={"treenut"}/>
+                        </h2>
                     </div>
                     <br/>
                 </div>
