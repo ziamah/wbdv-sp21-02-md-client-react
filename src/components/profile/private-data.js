@@ -10,37 +10,44 @@ const PrivateData = ({editing}) =>
  const [password, setPassword] = useState("1234")
 
  return (
-    <>
+    <div className="container">
+
         <div className="form-group row">
-             <label for="name" className="col-1">
-                    <h4>Name:</h4>
-             </label>
-             {!editing &&
-             <div id="name">
-                    <h4>{name}</h4>
+            <div class="col-3">
+                <label for="name" className="">
+                    Name
+                </label>
+             </div>
+             { editing &&
+             <div id="name" className="col-9">
+                 <input className = "form-control" onChange = {(event) =>  setNewName(event.target.value)}
+                 value={name}/>
              </div>
              }
-             { editing &&
-                          <div id="name">
-                                 <input onChange = {(event) =>  setNewName(event.target.value)}
-                                 value={name}/>
+
+             { !editing &&
+                          <div id="name" className="">
+                              name
                           </div>
              }
+
         </div>
 
         <div className="form-group row">
-              <label for="email" className="col-1">
-                     <h4>Email:</h4>
+            <div className="col-3">
+              <label for="email" className="">
+                     Email
               </label>
+            </div>
 
               { !editing &&
               <div id="email">
-                    <h4>{email}</h4>
+                    {email}
               </div>
               }
               { editing &&
-                            <div id="email">
-                                  <input onChange = {(event) => setEmail(event.target.value)}
+                            <div id="email" className="col-9">
+                                  <input className = "form-control" onChange = {(event) => setEmail(event.target.value)}
                                   value={email}/>
                             </div>
               }
@@ -48,12 +55,14 @@ const PrivateData = ({editing}) =>
         </div>
 
         <div className="form-group row">
-              <label for="password" className="col-2">
-                      <h4>Password:</h4>
+            <div class="col-3">
+              <label for="password" className="">
+                      Password
               </label>
-              <div id="password">
+            </div>
+              <div id="password" className="col-9">
                       { editing &&
-                        <input onChange = {(event) => setPassword(event.target.value)}
+                        <input className = "form-control" onChange = {(event) => setPassword(event.target.value)}
                                                           value={password} type="password"/>
                       }
               </div>
@@ -61,7 +70,7 @@ const PrivateData = ({editing}) =>
 
 
 
-    </>
+    </div>
     )
 }
 export default PrivateData
