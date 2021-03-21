@@ -144,6 +144,11 @@
   padding: 12px;
 }
 
+.wbdv-review-card {
+  background-color: var(--surface);
+  margin: 5px;
+}
+
 .wbdv-page-content {
   padding-top: 72px;
   padding-left: 36px;

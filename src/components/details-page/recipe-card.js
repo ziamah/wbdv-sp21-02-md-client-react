@@ -27,8 +27,9 @@ const RecipeCard = () => {
                         cheesecake.
                     </p>
                     {/*TODO: Fill recipe details programmatically*/}
-                    <div className="row">
+                    <p className="row">
                         <div className="wbdv-body-text">
+                            {/*TODO: Make toggleable so that user can favorite/unfavorite*/}
                             <i className="fas fa-heart wbdv-padded-icon"></i>
                             16
                         </div>
@@ -39,7 +40,7 @@ const RecipeCard = () => {
                             <i className="fas fa-star"></i>
                             <i className="fas fa-star-half"></i>
                         </div>
-                    </div>
+                    </p>
                     <div className="row">
                         <div className="wbdv-body-text">
                             Serves: 2

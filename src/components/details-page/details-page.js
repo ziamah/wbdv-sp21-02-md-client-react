@@ -4,11 +4,17 @@ import ReviewsWidget from "./reviews-widget";
 
 const DetailsPage = () => {
     return (
+        <>
             <div className="row">
-                    <RecipeCard/>
-                    <ReviewsWidget/>
+                <RecipeCard/>
             </div>
-        )
+            <div className="row">
+                <br/>
+                <ReviewsWidget/>
+            </div>
+
+        </>
+    )
 }
 
 export default DetailsPage
