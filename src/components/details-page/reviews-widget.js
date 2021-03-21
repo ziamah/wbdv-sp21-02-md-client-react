@@ -1,12 +1,8 @@
-import React from "react";
-
-class ReviewsWidget extends React.Component {
-    render() {
-        return (
+const ReviewsWidget = () => {
+    return (
             <div>
             </div>
         )
     }
-}
 
 export default ReviewsWidget
