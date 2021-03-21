@@ -3,6 +3,7 @@ import {Route, Link} from "react-router-dom";
 import NavigationBar from "./navigation-bar/navigation-bar";
 import HomePage from "./home-page/home-page";
 import DetailsPage from "./details-page/details-page";
+import NewRecipe from "./new-recipe-page";
 
 class BaseApp extends React.Component {
     render() {
@@ -14,6 +15,9 @@ class BaseApp extends React.Component {
                         <HomePage/>
                     </Route>
                     <Route path="/profile"></Route>
+                    <Route path="/new-recipe">
+                        <NewRecipe/>
+                    </Route>
                     {/*<Route path="/results"></Route>*/}
                     <Route path="/details">
                         {/*TODO: Implement details url dependent on recipe id*/}
