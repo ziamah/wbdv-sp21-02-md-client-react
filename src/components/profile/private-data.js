@@ -1,16 +1,40 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
-const PrivateData = ({editing}) =>
+const PrivateData = () =>
 
  {
 
- const [name, setNewName] = useState("Full Name")
+ const [name, setNewName] = useState("MManzur Morshed")
  const [email, setEmail] = useState("xyz@abc.com")
  const [password, setPassword] = useState("1234")
+ const [editing, setEditing] = useState(false);
+ const [editingEmail, setEditingEmail] = useState(false);
+ const [editingPassword, setEditingPassword] = useState(false);
 
  return (
+ <>
+        {!editing &&
+        <div className="fixed-top">
+
+            <i onClick={() => setEditing(true)} className="float-right fas fa-2x fa-edit"></i>
+
+
+         </div>
+         }
+
+         {editing &&
+                 <div className="fixed-top">
+
+                     <i onClick={() => setEditing(false)} className="float-right fas fa-2x fa-check"></i>
+
+
+                  </div>
+                  }
     <div className="container">
+
+
+
 
         <div className="form-group row">
             <div class="col-3">
@@ -22,12 +46,14 @@ const PrivateData = ({editing}) =>
              <div id="name" className="col-9">
                  <input className = "form-control" onChange = {(event) =>  setNewName(event.target.value)}
                  value={name}/>
+
              </div>
              }
 
              { !editing &&
-                          <div id="name" className="">
-                              name
+                          <div id="name" className="col-9">
+
+                              {name}
                           </div>
              }
 
@@ -54,6 +80,7 @@ const PrivateData = ({editing}) =>
 
         </div>
 
+        { editing &&
         <div className="form-group row">
             <div class="col-3">
               <label for="password" className="">
@@ -61,16 +88,18 @@ const PrivateData = ({editing}) =>
               </label>
             </div>
               <div id="password" className="col-9">
-                      { editing &&
+
                         <input className = "form-control" onChange = {(event) => setPassword(event.target.value)}
                                                           value={password} type="password"/>
-                      }
+                      
               </div>
         </div>
+        }
 
 
 
     </div>
+    </>
     )
 }
 export default PrivateData
