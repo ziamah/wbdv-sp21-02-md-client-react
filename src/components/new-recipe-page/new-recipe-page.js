@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import DietTagsSelector from "./diet-tags-selection";
 import IngredientTagsSelector from "./ingredient-tags-selection";
 
@@ -74,11 +75,11 @@ const NewRecipe = () => {
                                   placeholder="Write the recipe steps here"/>
                     </p>
                     <div className="row wbdv-center-in-div">
-                        <h1 className="">
+                        <Link to="/details">
                             <button className="btn wbdv-affirmative-btn">
                                 Submit
                             </button>
-                        </h1>
+                        </Link>
                     </div>
 
                 </div>
