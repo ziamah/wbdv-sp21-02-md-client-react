@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 const FavoritesWidget = () => {
     return (
         <div className="wbdv-widget-container">
@@ -13,6 +15,15 @@ const FavoritesWidget = () => {
                 <h5 className="h5 wbdv-center-in-div">Recipe Name</h5>
                 {/*TODO: Should link to recipe detail page*/}
                 <p className="wbdv-body-text">Recipe detail text</p>
+                <div className="wbdv-center-in-div">
+                    {/*TODO: set Link address programmatically*/}
+                    <Link to={"/details"}>
+                        <button className="btn wbdv-affirmative-btn">
+                            VIEW FULL RECIPE
+                        </button>
+                    </Link>
+
+                </div>
             </div>
             <hr/>
             <div>
@@ -22,6 +33,15 @@ const FavoritesWidget = () => {
                 <h5 className="h5 wbdv-center-in-div">Recipe Name</h5>
                 {/*TODO: Should link to recipe detail page*/}
                 <p className="wbdv-body-text">Recipe detail text</p>
+                <div className="wbdv-center-in-div">
+                    {/*TODO: set Link address programmatically*/}
+                    <Link to={"/details"}>
+                        <button className="btn wbdv-affirmative-btn">
+                            VIEW FULL RECIPE
+                        </button>
+                    </Link>
+
+                </div>
             </div>
             <hr/>
             <div>
@@ -32,6 +52,15 @@ const FavoritesWidget = () => {
                 {/*TODO: Should link to recipe detail page*/}
                 <p className="wbdv-body-text">Recipe detail text</p>
             </div>
+                <div className="wbdv-center-in-div">
+                    {/*TODO: set Link address programmatically*/}
+                    <Link to={"/details"}>
+                        <button className="btn wbdv-affirmative-btn">
+                            VIEW FULL RECIPE
+                        </button>
+                    </Link>
+
+                </div>
         </div>
         </div>
 
