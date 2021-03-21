@@ -40,10 +40,20 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
         <Route path="/followers">
                 <div className="body-position">
-                    <UserList users={["user1", "user2", "user3"]} />
 
+                    <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]} />
 
                 </div>
+
+        </Route>
+
+        <Route path="/following">
+               <div className="body-position">
+
+                    <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
+                    heading = "Following Me" />
+
+               </div>
 
         </Route>
 
