@@ -9,7 +9,8 @@ class HomePage extends React.Component {
             <div className="row">
                 <div className="col-4 d-none d-lg-block">
                     {/*TODO: Should choose one of these two widgets depending on whether user is signed in*/}
-                    <SignUpWidget/>
+                    <SignUpWidget title={"Not signed in?"}
+                                  page={"home"}/>
                     <FavoritesWidget/>
                 </div>
                 <div className="col-8">

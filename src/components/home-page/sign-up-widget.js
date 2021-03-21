@@ -1,10 +1,19 @@
 import {Link} from "react-router-dom";
 
-const SignUpWidget = () => {
+const SignUpWidget = ({title, page}) => {
+    let backgroundClassName = ''
+    if (page === "home") {
+        backgroundClassName = "wbdv-widget-container"
+    }
+    if (page ==="detail") {
+        backgroundClassName = "wbdv-widget-container-light"
+    }
     return (
-        <div className="wbdv-widget-container">
+        <div className={`${backgroundClassName}`}>
             <div className="wbdv-contrast-header">
-                <h3 className="wbdv-center-in-div">Not signed in?</h3>
+                <h3 className="wbdv-center-in-div">
+                    {title}
+                </h3>
             </div>
             <div className="wbdv-widget-interior">
                 <div className="row wbdv-center-in-div">

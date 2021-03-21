@@ -140,6 +140,11 @@
   margin: 32px 12px;
 }
 
+.wbdv-widget-container-light {
+  background-color: var(--surface);
+  margin: 32px 12px;
+}
+
 .wbdv-widget-interior {
   padding: 12px;
 }
