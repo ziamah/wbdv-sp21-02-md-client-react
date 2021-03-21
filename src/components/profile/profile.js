@@ -78,7 +78,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
         <Route path="/edit/profile">
                 <div className="body-position">
-                    <PrivateData editing={true}/>
+                    <PrivateData/>
                 </div>
         </Route>
 
