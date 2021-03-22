@@ -146,6 +146,10 @@ a:hover {
   text-decoration: none;
 }
 
+.dropdown-item:active {
+  background-color: var(--accent);
+}
+
 .wbdv-widget-container {
   background-color: var(--surface-dark);
   margin: 32px 12px;

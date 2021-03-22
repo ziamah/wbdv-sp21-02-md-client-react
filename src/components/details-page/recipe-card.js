@@ -11,13 +11,13 @@ const RecipeCard = () => {
             </div>
             <hr/>
             <div className="row wbdv-widget-interior">
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                     {/*TODO: Fill image programmatically*/}
                     <img className="d-block w-100 wbdv-padded-img"
                          src="https://static.onecms.io/wp-content/uploads/sites/9/2020/03/19/birria-tacos-FT-RECIPE0420-1.jpg"
                          alt="birria-img.jpg"></img>
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                     {/*Basic Info Section*/}
                     <p className="row wbdv-body-text">
                         {/*TODO: Get summary programmatically*/}
@@ -85,7 +85,7 @@ const RecipeCard = () => {
             </div>
             <hr/>
             <div className="row wbdv-widget-interior">
-                <div className="col-6">
+                <div className="col-12 col-md-6">
                     {/*Ingredients Section*/}
                     <h3 className="h3">Ingredients:</h3>
                     <ul >
@@ -107,7 +107,7 @@ const RecipeCard = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="col-6 wbdv-body-text">
+                <div className="col-12 col-md-6 wbdv-body-text">
                     {/*Instructions Section*/}
                     <h3 className="h3">Instructions:</h3>
                     Camembert de normandie chalk and cheese fromage frais. Edam mozzarella cream cheese lancashire dolcelatte the big cheese gouda roquefort. Cheesy feet mascarpone dolcelatte fondue bavarian bergkase lancashire dolcelatte cheesecake. Melted cheese feta hard cheese rubber cheese jarlsberg who moved my cheese macaroni cheese edam. Bocconcini fondue roquefort edam.
