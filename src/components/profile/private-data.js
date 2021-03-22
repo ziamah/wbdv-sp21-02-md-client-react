@@ -9,20 +9,38 @@ const PrivateData = () =>
  const [email, setEmail] = useState("xyz@abc.com")
  const [password, setPassword] = useState("1234")
  const [editing, setEditing] = useState(false);
- const [editingEmail, setEditingEmail] = useState(false);
- const [editingPassword, setEditingPassword] = useState(false);
 
  return (
  <>
+        <h1> Private Section
+
+        {!editing &&
+
+
+                    <i onClick={() => setEditing(true)} className="float-right fas fa-edit"></i>
+
+
+
+                 }
+
+        {editing &&
+                    <i onClick={() => setEditing(false)} className="float-right fas fa-check"></i>
+
+        }
+
+        </h1>
+
+        {/*
         {!editing &&
         <div className="fixed-top">
 
-            <i onClick={() => setEditing(true)} className="float-right fas fa-2x fa-edit"></i>
+            <i onClick={() => setEditing(true)} className="float-right fas fa-edit"></i>
 
 
          </div>
          }
-
+         */}
+         {/*
          {editing &&
                  <div className="fixed-top">
 
@@ -31,6 +49,7 @@ const PrivateData = () =>
 
                   </div>
                   }
+         */}
     <div className="container">
 
 
@@ -67,7 +86,7 @@ const PrivateData = () =>
             </div>
 
               { !editing &&
-              <div id="email">
+              <div id="email" className="col-9">
                     {email}
               </div>
               }
@@ -91,7 +110,7 @@ const PrivateData = () =>
 
                         <input className = "form-control" onChange = {(event) => setPassword(event.target.value)}
                                                           value={password} type="password"/>
-                      
+
               </div>
         </div>
         }
