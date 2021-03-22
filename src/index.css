@@ -12,3 +12,318 @@ code {
     monospace;
 }
 
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Roboto/Roboto-Regular.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Rubik/static/Rubik-Regular.ttf') format("truetype");
+}
+/* Theme Colors */
+:root {
+  --surface: #FAF6EF;
+  --surface-dark: #ECDAC1;
+  --text: #010C14;
+  --text-light: #03233A;
+  --primary: #d07d62;
+  --primary-light: #DEA491;
+  --primary-dark: #AD5234;
+  --secondary: #496F5B;
+  --secondary-light: #A9C7B7;
+  --secondary-dark: #283E32;
+  --accent: #04395E;
+  --danger: #C71A37;
+  --danger-light: #EA5D74;
+  --buff: #DAB785;
+  --golden: #EAC435
+}
+
+.container-fluid {
+  background-color: var(--surface);
+}
+
+.h1 {
+  font-family: "Rubik", sans-serif;
+  color: var(--text);
+  font-weight: 900;
+}
+
+.h2 {
+  font-family: "Rubik", sans-serif;
+  color: var(--secondary)
+}
+
+.h3 {
+  font-family: "Rubik", sans-serif;
+  color: var(--secondary);
+  font-weight: 700;
+}
+
+.wbdv-body-text {
+  font-family: "Roboto", sans-serif;
+  color: var(--text)
+}
+
+.wbdv-link-text {
+  font-family: "Roboto", sans-serif;
+  color: var(--accent);
+  font-style: oblique;
+}
+
+.wbdv-detail-btn {
+  background-color: var(--secondary);
+  font-family: "Roboto", sans-serif;
+  color: var(--surface);
+}
+
+.wbdv-affirmative-btn {
+  background-color: var(--primary);
+  font-family: "Roboto", sans-serif;
+  color: var(--surface);
+}
+
+.wbdv-secondary-btn {
+  background-color: var(--accent);
+  font-family: "Roboto", sans-serif;
+  color: var(--surface);
+}
+
+.wbdv-navigation-bar {
+  padding: 10px;
+  font-weight: bold;
+  font-size: larger;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: var(--primary);
+  color: var(--surface);
+  font-family: "Rubik", sans-serif;
+}
+
+.wbdv-center-in-div {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.wbdv-padded-icon {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.wbdv-padded-img {
+  padding: 10px
+}
+
+.wbdv-navbar-btn {
+  background-color: var(--primary);
+  color: var(--surface);
+  font-family: "Rubik", sans-serif;
+  font-size: medium;
+}
+
+.wbdv-navbar-btn:hover {
+  background-color: var(--primary-dark);
+  color: var(--surface);
+}
+
+.btn-group-margin {
+  margin: 2px
+}
+
+.wbdv-site-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display:block;
+  width:100%;
+  min-width:1px;
+  background-color: var(--primary);
+  color: var(--surface);
+  font-family: "Rubik", sans-serif;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.wbdv-widget-container {
+  background-color: var(--surface-dark);
+  margin: 32px 12px;
+}
+
+.wbdv-widget-container-light {
+  background-color: var(--surface);
+  margin: 32px 12px;
+}
+
+.wbdv-widget-interior {
+  padding: 12px;
+}
+
+.wbdv-review-card {
+  background-color: var(--surface);
+  margin: 5px;
+}
+
+.wbdv-page-content {
+  padding-top: 72px;
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
+.wbdv-contrast-header {
+  background-color: var(--secondary);
+  color: var(--surface);
+  padding: 10px;
+}
+
+.wbdv-verticalLine {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: thin solid var(--primary-dark);
+}
+
+.wbdv-label {
+  font-family: "Roboto", sans-serif;
+  color: var(--secondary);
+  padding-right: 10px;
+}
+
+.wbdv-align-right {
+  align-items: center;
+  /*display: flex;*/
+  justify-items: center;
+}
+
+/*Tag Styles*/
+.wbdv-gf-tag {
+  background-color: var(--primary-light);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-keto-tag {
+  background-color: var(--primary-dark);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-veg-tag {
+  background-color: var(--secondary);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-vegan-tag {
+  background-color: var(--secondary-dark);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-pesc-tag {
+  background-color: var(--accent);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+ }
+
+.wbdv-paleo-tag {
+  background-color: var(--buff);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-primal-tag {
+  background-color: var(--danger-light);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-whole30-tag {
+  background-color: var(--golden);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-dairy-tag {
+  background-color: var(--accent);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+.wbdv-egg-tag {
+  background-color: var(--surface);
+  color: var(--text);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-gluten-tag {
+  background-color: var(--primary-light);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-grain-tag {
+  background-color: var(--buff);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-peanut-tag {
+  background-color: var(--primary);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-seafood-tag {
+  background-color: var(--text-light);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-sesame-tag {
+  background-color: var(--secondary);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-shellfish-tag {
+  background-color: var(--secondary-dark);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-soy-tag {
+  background-color: var(--secondary-light);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-sulfite-tag {
+  background-color: var(--danger-light);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-treenut-tag {
+  background-color: var(--primary-dark);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+
+.wbdv-wheat-tag {
+  background-color: var(--golden);
+  color: var(--surface);
+  font-family: "Roboto", sans-serif;
+}
+

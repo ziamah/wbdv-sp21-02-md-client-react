@@ -4,7 +4,7 @@ import Profile from './components/profile/profile'
 
 function App() {
   return (
-    <div className="container-fluid">
+    <div className="">
       <Profile/>
     </div>
   );
