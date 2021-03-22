@@ -21,6 +21,12 @@
 
 }
 
+
+.profile-image-size {
+    width: 300px;
+
+}
+
 .profile-card{
     flex-direction: row;
     position:absolute;
@@ -130,4 +136,16 @@ hr {
 
 .card-body-color {
     background-color: #ECDAC1;
+}
+
+.profile-items-border {
+    border-style: solid;
+}
+
+.profile-italic {
+    font-weight: bold;
+}
+
+.color-me-tomato {
+    color: tomato;
 }

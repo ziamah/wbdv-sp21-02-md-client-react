@@ -6,9 +6,9 @@ const UserList = ({users = [], heading = "My Followers"}) => {
 
     return (
         <>
-        <h1> {heading} </h1>
-        <br/>
-        <ul>
+        <h1 className="profile-items-border"> {heading} </h1>
+
+        <ul className="">
         {
             users.map(user => <li>{user}</li>)
         }

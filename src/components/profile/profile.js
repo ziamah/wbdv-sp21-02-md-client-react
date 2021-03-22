@@ -15,6 +15,10 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
     return(
     <BrowserRouter>
+    <div className="fixed-top">
+                  <i
+                  className="fa fa-plus fa-2x color-me-tomato float-right"></i>
+                  </div>
     <div className="background-liked">
 
             <div className="row container background-liked">
@@ -25,11 +29,11 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
             <div className="card col-lg-4 profile-card2 background-liked">
 
                     <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png"
-                        className="card-image-top" alt="..."/>
+                        className="card-image-top profile-image-size" alt="..."/>
 
 
-                <div class="card-body card-body-color">
-                    <h3 className="card-title color-green">MManzur Morshed<br/><small className="color-blue">10 reviews!</small></h3>
+                <div class="card-body card-body-color profile-image-size">
+                    <h3 className="card-title color-green profile-italic">MManzur Morshed<br/><small className="color-blue">10 reviews!</small></h3>
 
                     <p className="card-text">I am a food lover. Like to explore different recipes!</p>
 
