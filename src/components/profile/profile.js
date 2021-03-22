@@ -81,12 +81,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
             </div>
 
-            <div className="h2 background-followers">
-
-               <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
-                                heading = "Following" />
-
-            </div>
+            
 
             <div className="h1 background-followers">
 
