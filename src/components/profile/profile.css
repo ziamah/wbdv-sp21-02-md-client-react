@@ -6,6 +6,11 @@
     padding-right: 190px;
 }
 
+.add-margin-top {
+    position: relative;
+    top: 60px;
+}
+
 .profile-image-position {
     position: absolute;
     left: 25%;

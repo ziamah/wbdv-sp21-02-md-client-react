@@ -6,6 +6,7 @@ import './profile.css'
 import AboutMe from './about-me'
 import UserList from './user-list'
 import RecipeList from './recipe-list'
+import NavigationBar from './navigation-bar'
 
 const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
                  likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -15,11 +16,14 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
     return(
     <BrowserRouter>
+    <div>
+        <NavigationBar/>
+    </div>
     <div className="fixed-top">
                   <i
                   className="fa fa-plus fa-2x color-me-tomato float-right"></i>
-                  </div>
-    <div className="background-liked">
+    </div>
+    <div className="background-liked add-margin-top">
 
             <div className="row container background-liked">
 
@@ -81,7 +85,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
             </div>
 
-            
+
 
             <div className="h1 background-followers">
 
