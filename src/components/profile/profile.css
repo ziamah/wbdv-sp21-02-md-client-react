@@ -58,7 +58,8 @@
 .body-position {
     position: absolute;
     top: 450px;
-    left:;
+
+    background-color: #FAF6EF;
 
 
 
@@ -109,7 +110,7 @@ hr {
 }
 
 .background-followers {
-    background-color: #FAF6EF;
+    background-color: #ECDAC1;
     position: relative;
     margin-top: 70px;
 }
@@ -125,4 +126,8 @@ hr {
 .horizontal-scroll {
     overflow-x:hidden;
     max-width: 100%;
+}
+
+.card-body-color {
+    background-color: #ECDAC1;
 }

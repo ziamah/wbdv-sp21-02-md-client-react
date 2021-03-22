@@ -15,20 +15,20 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
     return(
     <BrowserRouter>
-    <div className="">
+    <div className="background-liked">
 
-            <div className="row container">
+            <div className="row container background-liked">
 
-            <div className="col-lg-5">
+            <div className="col-lg-5 background-liked">
 
             </div>
-            <div className="card col-lg-4 profile-card2">
+            <div className="card col-lg-4 profile-card2 background-liked">
 
                     <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png"
                         className="card-image-top" alt="..."/>
 
 
-                <div class="card-body">
+                <div class="card-body card-body-color">
                     <h3 className="card-title color-green">MManzur Morshed<br/><small className="color-blue">10 reviews!</small></h3>
 
                     <p className="card-text">I am a food lover. Like to explore different recipes!</p>
@@ -38,22 +38,26 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
             </div>
 
+            <div className="col-lg-3 background-liked">
+
+            </div>
+
             </div>
 
 
         {/*<div className="line">
         </div>*/}
 
-        <div className="body-position row container">
+        <div className="row container background-liked">
 
-        <div className="col-lg-3">
+        <div className="col-lg-3 background-liked">
 
         </div>
 
-        <div className="col-lg-9">
+        <div className="col-lg-9 background-liked">
 
 
-            <div className="h2 background-liked">
+            <div className="h2 background-followers">
              <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}
              heading="My Favorite Recipes"/>
             </div>
