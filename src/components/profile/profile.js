@@ -17,7 +17,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
     <BrowserRouter>
     <div className="">
 
-            <div className="card col-lg-3 profile-card2">
+            <div className="card col-lg-4 profile-card2">
 
                     <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png"
                         className="card-image-top" alt="..."/>
