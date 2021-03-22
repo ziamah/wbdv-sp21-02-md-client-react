@@ -17,6 +17,11 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
     <BrowserRouter>
     <div className="">
 
+            <div className="row container">
+
+            <div className="col-lg-5">
+
+            </div>
             <div className="card col-lg-4 profile-card2">
 
                     <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png"
@@ -33,11 +38,19 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
             </div>
 
+            </div>
+
 
         {/*<div className="line">
         </div>*/}
 
-        <div className="container body-position">
+        <div className="body-position row container">
+
+        <div className="col-lg-3">
+
+        </div>
+
+        <div className="col-lg-9">
 
 
             <div className="h2 background-liked">
@@ -77,6 +90,8 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
             <div className="h3 background-followers">
                <PrivateData/>
             </div>
+
+        </div>
 
         </div>
 
