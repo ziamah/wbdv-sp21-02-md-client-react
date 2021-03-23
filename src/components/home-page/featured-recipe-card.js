@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 const FeaturedRecipeCard = () => {
     return (
         <div className="wbdv-widget-container wbdv-widget-interior">
@@ -7,6 +9,7 @@ const FeaturedRecipeCard = () => {
             <div className="carousel slide wbdv-padded-img" data-ride="carousel">
                 {/*TODO: Fill in these values programmatically*/}
                 <ol className="carousel-indicators">
+                    {/*TODO: Indicators float over nav bar, need to fix*/}
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
@@ -60,9 +63,13 @@ const FeaturedRecipeCard = () => {
                     sem erat, eget lobortis odio fermentum nec.
                 </p>
                 <div className="wbdv-center-in-div">
-                    <button className="btn wbdv-affirmative-btn">
-                        VIEW FULL RECIPE
-                    </button>
+                    {/*TODO: set Link address programmatically*/}
+                    <Link to={"/details"}>
+                        <button className="btn wbdv-affirmative-btn">
+                            VIEW FULL RECIPE
+                        </button>
+                    </Link>
+
                 </div>
 
 
