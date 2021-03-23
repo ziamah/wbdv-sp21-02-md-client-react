@@ -18,7 +18,7 @@ const SignUpWidget = ({title, page}) => {
             <div className="wbdv-widget-interior">
                 <div className="row wbdv-center-in-div">
                     {/*TODO: set Link address to sign in page*/}
-                    <Link to={"#"}>
+                    <Link to={"/login"}>
                         <button className="btn wbdv-affirmative-btn">
                             SIGN IN
                         </button>
