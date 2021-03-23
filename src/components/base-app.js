@@ -4,6 +4,8 @@ import NavigationBar from "./navigation-bar/navigation-bar";
 import HomePage from "./home-page/home-page";
 import DetailsPage from "./details-page/details-page";
 import NewRecipe from "./new-recipe-page/new-recipe-page";
+import Login from "./login/login";
+import SearchGrid from "./search-grid/search-grid";
 
 class BaseApp extends React.Component {
     render() {
@@ -23,8 +25,13 @@ class BaseApp extends React.Component {
                         {/*TODO: Implement details url dependent on recipe id*/}
                         <DetailsPage/>
                     </Route>
-                    <Route path="/login"></Route>
+                    <Route path="/login">
+                        <Login/>
+                    </Route>
                     <Route path="/register"></Route>
+                    <Route path="/search-results">
+                        <SearchGrid/>
+                    </Route>
                 </div>
             </div>
         )
