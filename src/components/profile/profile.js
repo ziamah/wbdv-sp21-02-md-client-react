@@ -36,9 +36,9 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
 
                 <div class="card-body profile-image-size">
-                    <h3 className="card-title color-green profile-italic">MManzur Morshed<br/><small className="color-black">10 reviews!</small></h3>
+                    <h3 className="card-title color-green profile-italic">MManzur Morshed<br/><small className="color-black review-numbers-font-size">10 reviews!</small></h3>
 
-                    <p className="card-text color-red col-lg-7">I am a food lover. Like to explore different recipes!</p>
+                    <p className="card-text color-brown col-lg-9">I am a food lover. Like to explore different recipes!</p>
 
                 </div>
 
