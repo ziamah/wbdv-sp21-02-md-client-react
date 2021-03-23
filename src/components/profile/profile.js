@@ -32,7 +32,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
             <div className="card col-lg-8 profile-card2 background-liked profile-card3">
 
                     <img src="https://i.ibb.co/T8hppc1/anna-pelzer-IGf-IGP5-ONV0-unsplash.jpg"
-                        className="card-image-top profile-image-size" alt="..."/>
+                        className="card-image-top profile-image-size rounded-circle" alt="..."/>
 
 
                 <div class="card-body profile-image-size">
