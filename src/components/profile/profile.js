@@ -20,33 +20,32 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
         <NavigationBar/>
     </div>
     <div className="fixed-top">
-                  <i
-                  className="fa fa-plus fa-2x color-me-tomato float-right"></i>
+                  <i className="fa fa-plus fa-2x color-me-tomato float-right"></i>
     </div>
     <div className="background-liked add-margin-top">
 
             <div className="row container background-liked">
 
-            <div className="col-lg-5 background-liked">
+            <div className="col-lg-4 background-liked">
 
             </div>
-            <div className="card col-lg-4 profile-card2 background-liked">
+            <div className="card col-lg-8 profile-card2 background-liked profile-card3">
 
-                    <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png"
+                    <img src="https://i.ibb.co/T8hppc1/anna-pelzer-IGf-IGP5-ONV0-unsplash.jpg"
                         className="card-image-top profile-image-size" alt="..."/>
 
 
-                <div class="card-body card-body-color profile-image-size">
-                    <h3 className="card-title color-green profile-italic">MManzur Morshed<br/><small className="color-blue">10 reviews!</small></h3>
+                <div class="card-body profile-image-size">
+                    <h3 className="card-title color-green profile-italic">MManzur Morshed<br/><small className="color-black">10 reviews!</small></h3>
 
-                    <p className="card-text">I am a food lover. Like to explore different recipes!</p>
+                    <p className="card-text color-red col-lg-7">I am a food lover. Like to explore different recipes!</p>
 
-                  </div>
+                </div>
 
 
             </div>
 
-            <div className="col-lg-3 background-liked">
+            <div className="background-liked">
 
             </div>
 

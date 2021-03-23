@@ -8,7 +8,7 @@
 
 .add-margin-top {
     position: relative;
-    top: 60px;
+    top: 62px;
 }
 
 .profile-image-position {
@@ -49,6 +49,11 @@
     position:relative;
     top: 20px;
 
+
+}
+
+.profile-card3 {
+    flex-direction: row;
 
 }
 
@@ -130,8 +135,8 @@ hr {
     color:green;
 }
 
-.color-blue{
-    color:blue;
+.color-black{
+    color:black;
 }
 
 .horizontal-scroll {
@@ -153,4 +158,8 @@ hr {
 
 .color-me-tomato {
     color: tomato;
+}
+
+.color-red {
+    color: red;
 }
