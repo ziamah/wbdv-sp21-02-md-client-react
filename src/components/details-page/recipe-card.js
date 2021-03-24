@@ -10,6 +10,12 @@ const RecipeCard = () => {
                 <a className="wbdv-link-text wbdv-center-in-div" href="#">From Spoonacular</a>
             </div>
             <hr/>
+            <div className="row wbdv-widget-interior wbdv-center-in-div">
+                {/*TODO: This button's visibility should only toggle on for the recpie author and admin users*/}
+                <button className="btn wbdv-danger-btn">
+                    DELETE RECIPE
+                </button>
+            </div>
             <div className="row wbdv-widget-interior">
                 <div className="col-12 col-sm-6">
                     {/*TODO: Fill image programmatically*/}
