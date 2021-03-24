@@ -82,6 +82,12 @@
   color: var(--surface);
 }
 
+.wbdv-danger-btn {
+  background-color: var(--danger);
+  font-family: "Roboto", sans-serif;
+  color: var(--surface);
+}
+
 .wbdv-navigation-bar {
   padding: 10px;
   font-weight: bold;
@@ -185,6 +191,14 @@ a:hover {
   margin-left: 10px;
   padding-left: 10px;
   border-left: thin solid var(--primary-dark);
+}
+
+.wbdv-vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .wbdv-label {
