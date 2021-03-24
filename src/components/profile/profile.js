@@ -19,17 +19,17 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
     <div>
         <NavigationBar/>
     </div>
-    <div className="fixed-top">
+    {/*<div className="fixed-top">
                   <i className="fa fa-plus fa-2x color-me-tomato float-right"></i>
-    </div>
+    </div>*/}
     <div className="background-liked add-margin-top">
 
             <div className="row container background-liked">
 
-            <div className="col-lg-4 background-liked">
+            <div className="col-lg-5 background-liked">
 
             </div>
-            <div className="card col-lg-8 profile-card2 background-liked profile-card3">
+            <div className="card col-lg-7 profile-card2 background-liked profile-card3">
 
                     <img src="https://i.ibb.co/T8hppc1/anna-pelzer-IGf-IGP5-ONV0-unsplash.jpg"
                         className="card-image-top profile-image-size rounded-circle" alt="..."/>
@@ -53,87 +53,63 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
             </div>
 
 
-        {/*<div className="line">
-        </div>*/}
+        <div className="margin-after-top container background-liked">
 
-        <div className="row container background-liked">
+            {/*<div className="col-lg-3 background-liked">
 
-        <div className="col-lg-3 background-liked">
+            </div>*/}
+
+
+
+            {/*<div className="col- background-liked">*/}
+
+               <div className="row">
+
+                    <div className="h1 background-followers col-5">
+
+                        <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]} />
+
+                   </div>
+
+                   <div className="col-2">
+
+                   </div>
+
+                    <div className="h3 background-followers col-5">
+
+                        <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
+                                       heading = "Following" />
+
+                    </div>
+
+               </div>
+
+               <div className="row">
+
+                    <div className="h2 background-followers col-5">
+                        <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}
+                        heading="My Favorite Recipes"/>
+                    </div>
+
+                    <div className="col-2">
+
+                    </div>
+
+                    <div className="h1 background-followers col-5">
+
+                        <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}/>
+
+                    </div>
+
+               </div>
+
+                <div className="h3 background-followers">
+                    <PrivateData/>
+                </div>
+
+        {/*</div>*/}
 
         </div>
-
-        <div className="col-lg-9 background-liked">
-
-
-            <div className="h2 background-followers">
-             <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}
-             heading="My Favorite Recipes"/>
-            </div>
-
-
-
-            <div className="h1 background-followers">
-
-              <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]} />
-
-            </div>
-
-            <div className="h3 background-followers">
-
-               <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
-                                heading = "Following" />
-
-            </div>
-
-
-
-            <div className="h1 background-followers">
-
-               <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}/>
-
-            </div>
-
-
-            <div className="h3 background-followers">
-               <PrivateData/>
-            </div>
-
-        </div>
-
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {/*<div className="items-position">
-            <ProfileItems/>
-        </div>*/}
     </div>
     </BrowserRouter>
     )

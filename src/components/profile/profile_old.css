@@ -121,10 +121,6 @@ hr {
 
 }
 
-.margin-after-top {
-    margin-top: 70px;
-}
-
 .background-liked {
     background-color: #FAF6EF;
 }
@@ -132,7 +128,7 @@ hr {
 .background-followers {
     background-color: #ECDAC1;
     position: relative;
-
+    margin-top: 70px;
 }
 
 .color-green{
