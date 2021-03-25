@@ -29,7 +29,7 @@ class BaseApp extends React.Component {
                         <Login/>
                     </Route>
                     <Route path="/register"></Route>
-                    <Route path="/search-results">
+                    <Route path="/searchresults">
                         <SearchGrid/>
                     </Route>
                 </div>
@@ -39,3 +39,4 @@ class BaseApp extends React.Component {
 }
 
 export default BaseApp
+

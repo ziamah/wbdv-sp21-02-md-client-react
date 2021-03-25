@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
 import recipeService from '../../services/recipe-service'
-//import SearchCard from "./search-card";
+import SearchCard from "./search-card";
 //TODO: import recipe service after it's made
 
 const SearchGrid = () => {
@@ -22,7 +22,8 @@ const SearchGrid = () => {
     }
     return(
         <div>
-            <h2>Search Results</h2>
+            <h2>Search Results {results.length}</h2>
+            {/*<button onClick={()=>{history.goBack()}}>Back</button>*/}
             <div className="row">
                 <div className="col-9">
                     <input value={searchTitle}
@@ -47,9 +48,7 @@ const SearchGrid = () => {
                     results && results.Search && results.Search.map((movie) => {
                         return(
                             <li className="list-group-item">
-                                <Link to={`/search-card/${movie.imdbID}`}>
-                                    {movie.Title}
-                                </Link>
+                                <SearchCard movieTitle={movie.title}/>
                             </li>
                         )
                     })
