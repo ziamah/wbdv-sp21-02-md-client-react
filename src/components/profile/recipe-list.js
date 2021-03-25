@@ -1,18 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
 import {useParams, Link} from "react-router-dom";
+import {Button, Collapse} from 'react-bootstrap';
 
 const RecipeList = ({recipes = [], heading = "My Posted Recipes"}) => {
+const [openCollapse, setOpenCollapse] = useState(false);
 
     return (
         <div className="background-followers">
-        <h1 className="fill-background"> {heading} </h1>
 
-        <ul>
-        {
-            recipes.map(recipe => <li>{recipe}</li>)
-        }
-        </ul>
+        <div className="" onClick={() => setOpenCollapse(!openCollapse)}>
+              <h1 className="fill-background"> {heading} </h1>
+        </div>
+
+            <Collapse in={openCollapse}>
+
+                <ul>
+                    {
+                        recipes.map(recipe => <li>{recipe}</li>)
+                    }
+                </ul>
+            </Collapse>
         </div>
 
 
