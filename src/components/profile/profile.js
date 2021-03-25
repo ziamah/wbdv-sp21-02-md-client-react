@@ -65,7 +65,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
                {/*<div className="row">*/}
 
-                    <div className="h3 add-padding col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 
 
@@ -80,7 +80,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
                    </div>*/}
 
-                    <div className="h3 add-padding col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
                                        heading = "Following" />
@@ -91,7 +91,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
                {/*<div className="row">*/}
 
-                    <div className="h3 add-padding col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 
 
@@ -105,7 +105,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
                     </div>*/}
 
-                    <div className="h3 add-padding col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}/>
 
