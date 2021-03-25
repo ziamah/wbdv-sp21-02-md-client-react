@@ -5,15 +5,15 @@ import {useParams, Link} from "react-router-dom";
 const RecipeList = ({recipes = [], heading = "My Posted Recipes"}) => {
 
     return (
-        <>
-        <h1 className="profile-items-border"> {heading} </h1>
+        <div className="background-followers">
+        <h1 className="fill-background"> {heading} </h1>
 
         <ul>
         {
             recipes.map(recipe => <li>{recipe}</li>)
         }
         </ul>
-        </>
+        </div>
 
 
     )
