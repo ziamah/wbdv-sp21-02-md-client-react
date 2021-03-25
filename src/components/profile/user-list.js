@@ -5,15 +5,15 @@ import {useParams, Link} from "react-router-dom";
 const UserList = ({users = [], heading = "My Followers"}) => {
 
     return (
-        <>
-        <h1 className="profile-items-border"> {heading} </h1>
+        <div className="background-followers">
+        <h1 className="fill-background"> {heading} </h1>
 
         <ul className="">
         {
             users.map(user => <li>{user}</li>)
         }
         </ul>
-        </>
+        </div>
 
 
     )

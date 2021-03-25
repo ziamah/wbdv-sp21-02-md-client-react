@@ -131,7 +131,7 @@ hr {
 
 .background-followers {
     background-color: #ECDAC1;
-    position: relative;
+
 
 }
 
@@ -174,4 +174,22 @@ hr {
 
 .review-numbers-font-size {
     font-size: 12px;
+}
+
+.add-padding {
+    padding-lef: 60px;
+    margin-top: 50px;
+}
+
+.add-margin {
+    margin: 62px 0px 0px 80px;
+}
+
+.add-padding-pic {
+    padding-top: 20px;
+    padding-left: 60px;
+}
+
+.fill-background {
+    background-color: #86796C;
 }

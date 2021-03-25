@@ -26,16 +26,16 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
             <div className="row container background-liked">
 
-            <div className="col-lg-5 background-liked">
+            <div className="col-lg-4 background-liked">
 
             </div>
-            <div className="card col-lg-7 profile-card2 background-liked profile-card3">
+            <div className="card col-lg-8 add-padding-pic profile-card2 background-liked profile-card3">
 
                     <img src="https://i.ibb.co/T8hppc1/anna-pelzer-IGf-IGP5-ONV0-unsplash.jpg"
                         className="card-image-top profile-image-size rounded-circle" alt="..."/>
 
 
-                <div class="card-body profile-image-size col-5">
+                <div class="card-body profile-image-size col-6">
 
                     <div><h3 className="card-title color-green profile-bold">MManzur Morshed</h3></div>
                     <div className="color-black review-numbers-font-size">10 reviews!</div>
@@ -53,7 +53,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
             </div>
 
 
-        <div className="margin-after-top container background-liked">
+        <div className="row container">
 
             {/*<div className="col-lg-3 background-liked">
 
@@ -63,49 +63,63 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
             {/*<div className="col- background-liked">*/}
 
-               <div className="row">
+               {/*<div className="row">*/}
 
-                    <div className="h1 background-followers col-5">
+                    <div className="h3 add-padding col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+
+
 
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]} />
 
-                   </div>
 
-                   <div className="col-2">
 
                    </div>
 
-                    <div className="h3 background-followers col-5">
+                   {/*<div className="col-2">
+
+                   </div>*/}
+
+                    <div className="h3 add-padding col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
                                        heading = "Following" />
 
                     </div>
 
-               </div>
+               {/*</div>*/}
 
-               <div className="row">
+               {/*<div className="row">*/}
 
-                    <div className="h2 background-followers col-5">
+                    <div className="h3 add-padding col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+
+
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}
                         heading="My Favorite Recipes"/>
-                    </div>
 
-                    <div className="col-2">
 
                     </div>
 
-                    <div className="h1 background-followers col-5">
+                    {/*<div className="col-2">
+
+                    </div>*/}
+
+                    <div className="h3 add-padding col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}/>
 
                     </div>
 
-               </div>
+               {/*</div>*/}
 
-                <div className="h3 background-followers">
-                    <PrivateData/>
-                </div>
+
+
+                    <div className="h3 add-padding col-12">
+                        <PrivateData/>
+                    </div>
+
+
 
         {/*</div>*/}
 
