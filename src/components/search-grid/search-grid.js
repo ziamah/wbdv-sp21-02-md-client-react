@@ -35,6 +35,7 @@ const SearchGrid = () => {
                 <div className="col-3">
                     <button
                         onClick={() => {
+                            console.log(searchTitle)
                             findMoviesByTitle(searchTitle)
                         }}
                         className="btn btn-primary btn-block">
@@ -47,9 +48,9 @@ const SearchGrid = () => {
                 {
                     results && results.Search && results.Search.map((movie) => {
                         return(
-                            <li className="list-group-item">
+                            <ul>
                                 <SearchCard movieTitle={movie.title}/>
-                            </li>
+                            </ul>
                         )
                     })
                 }

@@ -29,7 +29,7 @@ class BaseApp extends React.Component {
                         <Login/>
                     </Route>
                     <Route path="/register"></Route>
-                    <Route path="/searchresults">
+                    <Route path="/results">
                         <SearchGrid/>
                     </Route>
                 </div>
