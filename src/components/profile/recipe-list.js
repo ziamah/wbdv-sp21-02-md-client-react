@@ -6,6 +6,7 @@ import {Button, Collapse} from 'react-bootstrap';
 const RecipeList = ({recipes = [], heading = "My Posted Recipes"}) => {
 const [openCollapse, setOpenCollapse] = useState(false);
 
+
     return (
         <div className="background-followers">
 
@@ -17,7 +18,7 @@ const [openCollapse, setOpenCollapse] = useState(false);
 
                 <ul>
                     {
-                        recipes.map(recipe => <li>{recipe}</li>)
+                        recipes.map((recipe, index) => <li>{recipe}</li>)
                     }
                 </ul>
             </Collapse>
