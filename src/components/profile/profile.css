@@ -177,7 +177,7 @@ hr {
 }
 
 .add-padding {
-    padding-lef: 60px;
+    padding-left: 80px;
     margin-top: 50px;
 }
 
@@ -192,4 +192,8 @@ hr {
 
 .fill-background {
     background-color: #86796C;
+}
+
+.fill-heading-background {
+    background-color: #d07d62;
 }
