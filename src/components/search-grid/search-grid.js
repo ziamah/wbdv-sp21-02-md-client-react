@@ -4,18 +4,23 @@ import recipeService from '../../services/recipe-service'
 import SearchCard from "./search-card";
 //TODO: import recipe service after it's made
 
-const SearchGrid = () => {
+const SearchGrid = (
+    key,
+    id,
+    title,
+    image
+) => {
     const history = useHistory()
-    const {title} = useParams()
+    // const {title} = useParams(title)
     const [searchTitle, setSearchTitle] = useState(title)
     const [results, setResults] = useState({Search: []})
     useEffect(() => {
         setSearchTitle(title)
-        findMoviesByTitle(title)
+        findRecipesByTitle(title)
     }, [])
-    const findMoviesByTitle = (title) => {
+    const findRecipesByTitle = (title) => {
         history.push(title)
-        recipeService.findMoviesByTitle(title)
+        recipeService.findRecipesByTitle(title)
             .then((results) => {
                 setResults(results)
             })
@@ -36,7 +41,7 @@ const SearchGrid = () => {
                     <button
                         onClick={() => {
                             console.log(searchTitle)
-                            findMoviesByTitle(searchTitle)
+                            findRecipesByTitle(searchTitle)
                         }}
                         className="btn btn-primary btn-block">
                         Search
@@ -46,10 +51,10 @@ const SearchGrid = () => {
             <br/>
             <ul className="list-group">
                 {
-                    results && results.Search && results.Search.map((movie) => {
+                    results && results.Search && results.Search.map((recipe) => {
                         return(
                             <ul>
-                                <SearchCard movieTitle={movie.title}/>
+                                <SearchCard movieTitle={recipe.title}/>
                             </ul>
                         )
                     })

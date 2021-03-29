@@ -20,8 +20,7 @@ class BaseApp extends React.Component {
                     <Route path="/new-recipe">
                         <NewRecipe/>
                     </Route>
-                    {/*<Route path="/results"></Route>*/}
-                    <Route path="/details">
+                    <Route exact path={["/details", "/details/:id"]}>
                         {/*TODO: Implement details url dependent on recipe id*/}
                         <DetailsPage/>
                     </Route>
@@ -29,7 +28,7 @@ class BaseApp extends React.Component {
                         <Login/>
                     </Route>
                     <Route path="/register"></Route>
-                    <Route path="/results">
+                    <Route path="/search">
                         <SearchGrid/>
                     </Route>
                 </div>
