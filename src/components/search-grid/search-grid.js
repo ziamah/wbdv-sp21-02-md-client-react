@@ -1,65 +1,42 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useParams, useHistory} from "react-router-dom";
-import recipeService from '../../services/recipe-service'
+import {useParams} from "react-router-dom";
 import SearchCard from "./search-card";
+import API_KEY_const from "../../api";
 //TODO: import recipe service after it's made
 
-const SearchGrid = (
-    key,
-    id,
-    title,
-    image
-) => {
-    const history = useHistory()
-    // const {title} = useParams(title)
-    const [searchTitle, setSearchTitle] = useState(title)
-    const [results, setResults] = useState({Search: []})
+const SearchGrid = () => {
+    const API_KEY = API_KEY_const
+
+    const [recipes, setRecipes] = useState([]);
+
+    const {term} = useParams()
     useEffect(() => {
-        setSearchTitle(title)
-        findRecipesByTitle(title)
-    }, [])
-    const findRecipesByTitle = (title) => {
-        history.push(title)
-        recipeService.findRecipesByTitle(title)
-            .then((results) => {
-                setResults(results)
-            })
-    }
+        const getRecipes = async () => {
+            const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${term}`);
+            const data = await response.json();
+            setRecipes(data.results);
+            console.log(data);
+        };
+        const timer = setTimeout(async () => {
+            await getRecipes()
+        }, 100);
+        return () => clearTimeout(timer)
+    }, [term]);
+
+
     return(
         <div>
-            <h2>Search Results {results.length}</h2>
-            {/*<button onClick={()=>{history.goBack()}}>Back</button>*/}
-            <div className="row">
-                <div className="col-9">
-                    <input value={searchTitle}
-                           onChange={(event) => {
-                               setSearchTitle(event.target.value)
-                           }}
-                           className="form-control"/>
-                </div>
-                <div className="col-3">
-                    <button
-                        onClick={() => {
-                            console.log(searchTitle)
-                            findRecipesByTitle(searchTitle)
-                        }}
-                        className="btn btn-primary btn-block">
-                        Search
-                    </button>
-                </div>
-            </div>
+            <h2 className="h2">Search Results</h2>
             <br/>
-            <ul className="list-group">
-                {
-                    results && results.Search && results.Search.map((recipe) => {
-                        return(
-                            <ul>
-                                <SearchCard movieTitle={recipe.title}/>
-                            </ul>
-                        )
-                    })
-                }
-            </ul>
+                {recipes && recipes.map((recipe) =>
+                    <SearchCard
+                        key={recipe.id}
+                        id={recipe.id}
+                        title={recipe.title}
+                        image={recipe.image}
+                    />
+                )}
+
         </div>
     )
 }

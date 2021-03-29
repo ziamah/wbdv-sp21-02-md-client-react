@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from "react";
-import {Link, NavLink, Route} from 'react-router-dom';
+import {Link, NavLink, Route, Redirect} from 'react-router-dom';
 import "../../index.css";
 import NavigationLinks from "./navigation-links";
 import SearchCard from "../search-grid/search-card";
@@ -8,51 +8,20 @@ import API_KEY from "../../api";
 import API_KEY_const from "../../api";
 
 
-// !! using functional components makes useState a lot easier !!
 const NavigationBar = () => {
-// export default class NavigationBar
-//     extends React.Component {
-//
-//     constructor(props) {
-//         super(props);
-//     }
-//
-//     render() {
-
-    //api only fetches a few times a minute.
-    // const API_KEY = "2035160971a84992bf575d5ea1a437e6";
-    // const API_KEY = "12c27a2cfa054cdf967fba97c37c9f95";
-    // const API_KEY = "f630a3e76c4b4c2d8470fcc6aa7bbf86";
-    const API_KEY = API_KEY_const
-
-    const [recipes, setRecipes] = useState([]);
-    const [search, setSearch] = useState('');
-    const [query, setQuery] = useState('dummydatatoclearpage');
-
-    useEffect(() => {
-        getRecipes();
-    }, [query]);
-
-    const getRecipes = async () => {
-        const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${query}`);
-        const data = await response.json();
-        setRecipes(data.results);
-        console.log(data);
-    };
-
+    const [searchTerm, setSearchTerm] = useState('');
+    const [query, setQuery] = useState('testing');
 
     const updateSearch = e => {
-        setSearch(e.target.value);
-        console.log(search);
+        setSearchTerm(e.target.value);
+        console.log(searchTerm);
     }
 
     const getSearch = e => {
         e.preventDefault();
-        setQuery(search);
-        setSearch("");
-        // window.location.href = search;
-
-
+        setQuery(searchTerm);
+        setSearchTerm("");
+        window.location.href = `/search/${searchTerm}`;
     }
 
         return (
@@ -73,12 +42,11 @@ const NavigationBar = () => {
                         </div>
 
                         <div className="col-4 d-none d-md-block">
-                            {/*<NavigationLinks props={this.props}></NavigationLinks>*/}
                             <NavigationLinks/>
                         </div>
                         <form onSubmit={getSearch} className="col-md-4 col-8">
                             <input className="form-control wbdv-center-in-div"
-                                   value={search}
+                                   value={searchTerm}
                                    onChange={updateSearch}
                                    placeholder="Search"/>
                         </form>
@@ -102,18 +70,8 @@ const NavigationBar = () => {
                         </div>
                     </div>
                 </div>
-                <body className="mt-5">
-                {recipes && recipes.map(recipe => (
-                    <SearchCard
-                        key={recipe.id}
-                        id={recipe.id}
-                        title={recipe.title}
-                        image={recipe.image}
-                    />))}
-                </body>
             </>
         )
-    // }
 }
 
 export default NavigationBar;
