@@ -2,6 +2,7 @@ import React from "react";
 import FeaturedRecipeCard from "./featured-recipe-card";
 import FavoritesWidget from "./favorites-widget";
 import SignUpWidget from "./sign-up-widget";
+import SearchGrid from "../search-grid/search-grid";
 
 class HomePage extends React.Component {
     render() {
