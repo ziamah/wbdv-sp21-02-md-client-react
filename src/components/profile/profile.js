@@ -20,9 +20,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
     <div>
         <NavigationBar/>
     </div>
-    {/*<div className="fixed-top">
-                  <i className="fa fa-plus fa-2x color-me-tomato float-right"></i>
-    </div>*/}
+
     <div className="background-liked add-margin-top">
 
             <div className="row container background-liked">
@@ -56,15 +54,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
         <div className="row container">
 
-            {/*<div className="col-lg-3 background-liked">
 
-            </div>*/}
-
-
-
-            {/*<div className="col- background-liked">*/}
-
-               {/*<div className="row">*/}
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
@@ -77,9 +67,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
                    </div>
 
-                   {/*<div className="col-2">
 
-                   </div>*/}
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
@@ -88,9 +76,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
                     </div>
 
-               {/*</div>*/}
 
-               {/*<div className="row">*/}
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
@@ -102,9 +88,7 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
                     </div>
 
-                    {/*<div className="col-2">
 
-                    </div>*/}
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
@@ -112,17 +96,25 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
                     </div>
 
-               {/*</div>*/}
+                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
+                        <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}/>
 
-
-                    <div className="h3 add-padding col-12">
-                        <PrivateData/>
                     </div>
 
 
 
-        {/*</div>*/}
+                    {/*<div className="h3 add-padding col-12">
+                        <PrivateData/>
+                    </div>*/}
+
+                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                         <PrivateData/>
+                    </div>
+
+
+
+
 
         </div>
     </div>
