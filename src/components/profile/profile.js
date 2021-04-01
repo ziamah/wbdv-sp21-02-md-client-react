@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {BrowserRouter,Link,Route} from 'react-router-dom';
 import PrivateData from './private-data';
-//import ProfileItems from './profile-items';
 import './profile.css'
-import AboutMe from './about-me'
 import UserList from './user-list'
 import RecipeList from './recipe-list'
 import NavigationBar from './navigation-bar'
