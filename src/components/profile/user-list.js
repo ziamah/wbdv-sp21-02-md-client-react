@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {useParams, Link} from "react-router-dom";
 import {Button, Collapse} from 'react-bootstrap';
 
-const UserList = ({users = [], users2 = ["user4 profile link", "user5 profile link", "user6 profile link"], heading = "My Followers"}) => {
+const UserList = ({users = [], users2 = ["user4 profile link", "user5 profile link", "user6 profile link"], heading = "Followers"}) => {
 const [openCollapse, setOpenCollapse] = useState(false);
     return (
         <div className="background-followers">

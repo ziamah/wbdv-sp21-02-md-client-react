@@ -56,13 +56,13 @@ const PrivateData = () =>
 
 
         <div className="form-group row">
-            <div class="col-4">
+            <div class="col-5">
                 <label for="name" className="">
                     Name
                 </label>
              </div>
              { editing &&
-             <div id="name" className="col-8">
+             <div id="name" className="col-7">
                  <input className = "form-control" onChange = {(event) =>  setNewName(event.target.value)}
                  value={name}/>
 
@@ -70,7 +70,7 @@ const PrivateData = () =>
              }
 
              { !editing &&
-                          <div id="name" className="col-8">
+                          <div id="name" className="col-7">
 
                               {name}
                           </div>
@@ -79,19 +79,19 @@ const PrivateData = () =>
         </div>
 
         <div className="form-group row">
-            <div className="col-4">
+            <div className="col-5">
               <label for="email" className="">
                      Email
               </label>
             </div>
 
               { !editing &&
-              <div id="email" className="col-8">
+              <div id="email" className="col-7">
                     {email}
               </div>
               }
               { editing &&
-                            <div id="email" className="col-8">
+                            <div id="email" className="col-7">
                                   <input className = "form-control" onChange = {(event) => setEmail(event.target.value)}
                                   value={email}/>
                             </div>
@@ -101,12 +101,12 @@ const PrivateData = () =>
 
         { editing &&
         <div className="form-group row">
-            <div class="col-4">
+            <div class="col-5">
               <label for="password" className="">
                       Password
               </label>
             </div>
-              <div id="password" className="col-8">
+              <div id="password" className="col-7">
 
                         <input className = "form-control" onChange = {(event) => setPassword(event.target.value)}
                                                           value={password} type="password"/>
