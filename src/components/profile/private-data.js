@@ -19,8 +19,6 @@ const PrivateData = () =>
 
                     <i onClick={() => setEditing(true)} className="float-right fas fa-edit"></i>
 
-
-
                  }
 
         {editing &&
@@ -30,26 +28,8 @@ const PrivateData = () =>
 
         </h1>
 
-        {/*
-        {!editing &&
-        <div className="fixed-top">
-
-            <i onClick={() => setEditing(true)} className="float-right fas fa-edit"></i>
 
 
-         </div>
-         }
-         */}
-         {/*
-         {editing &&
-                 <div className="fixed-top">
-
-                     <i onClick={() => setEditing(false)} className="float-right fas fa-2x fa-check"></i>
-
-
-                  </div>
-                  }
-         */}
     <div className="container">
 
 
