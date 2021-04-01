@@ -98,15 +98,10 @@ const Profile = ({userid="superman", following="ab,cd,ef", followers="ab,cd,ef",
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
-                        <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}/>
+                        <RecipeList recipes={["recipe1 description link", "recipe2 description link", "recipe3 description link"]}
+                        heading="My Reviewed Recipes"/>
 
                     </div>
-
-
-
-                    {/*<div className="h3 add-padding col-12">
-                        <PrivateData/>
-                    </div>*/}
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
                          <PrivateData/>
