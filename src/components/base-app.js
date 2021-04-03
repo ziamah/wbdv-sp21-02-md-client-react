@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Link} from "react-router-dom";
+import {Route} from "react-router-dom";
 import NavigationBar from "./navigation-bar/navigation-bar";
 import HomePage from "./home-page/home-page";
 import DetailsPage from "./details-page/details-page";
@@ -20,8 +20,7 @@ class BaseApp extends React.Component {
                     <Route path="/new-recipe">
                         <NewRecipe/>
                     </Route>
-                    {/*<Route path="/results"></Route>*/}
-                    <Route path="/details">
+                    <Route exact path={["/details", "/details/:id"]}>
                         {/*TODO: Implement details url dependent on recipe id*/}
                         <DetailsPage/>
                     </Route>
@@ -29,7 +28,7 @@ class BaseApp extends React.Component {
                         <Login/>
                     </Route>
                     <Route path="/register"></Route>
-                    <Route path="/search">
+                    <Route exact path={["/search", "/search/:term"]}>
                         <SearchGrid/>
                     </Route>
                 </div>
