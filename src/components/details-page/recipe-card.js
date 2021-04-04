@@ -27,7 +27,7 @@ const RecipeCard = () => {
         <div className="col-12 wbdv-widget-container wbdv-widget-interior">
             <div className="col-12">
                 <h1 className="h1 wbdv-center-in-div"> {recipeDetails.title} </h1>
-                <a className="wbdv-link-text wbdv-center-in-div" href={recipeDetails.sourceUrl}>From Spoonacular</a>
+                <a className="wbdv-link-text wbdv-center-in-div" href={recipeDetails.sourceUrl}>From {recipeDetails.sourceName}</a>
             </div>
             <hr/>
             <div className="row wbdv-widget-interior wbdv-center-in-div">
@@ -85,22 +85,76 @@ const RecipeCard = () => {
                     </div>
                     <div className="row">
                         {/*TODO: map dietTags to diet attribute*/}
-                        <h2>
-                            <DietTag tagType={"vegan"}/>
-                        </h2>
+                        {
+                            recipeDetails.glutenFree === true &&
+                            <h2>
+                                <DietTag tagType={"gf"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.ketogenic === true &&
+                            <h2>
+                                <DietTag tagType={"keto"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.diets && recipeDetails.diets.includes("pescatarian") &&
+                            <h2>
+                                <DietTag tagType={"pescatarian"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.diets && recipeDetails.diets.includes("paleolithic") &&
+                            <h2>
+                                <DietTag tagType={"paleo"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.diets && recipeDetails.diets.includes("primal") &&
+                            <h2>
+                                <DietTag tagType={"primal"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.vegetarian === true &&
+                            <h2>
+                                <DietTag tagType={"vegetarian"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.vegan === true &&
+                            <h2>
+                                <DietTag tagType={"vegan"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.whole30 === true &&
+                            <h2>
+                                <DietTag tagType={"whole30"}/>
+                            </h2>
+                        }
+
                     </div>
                     <br/>
-                    <div className="row">
-                        <div className="wbdv-body-text">
-                            Contains:
-                        </div>
-                    </div>
-                    <div className="row">
-                        {/*TODO: map dietTags to ingredient attribute*/}
-                        <h2>
-                            <DietTag tagType={"treenut"}/>
-                        </h2>
-                    </div>
+                    {/*<div className="row">*/}
+                    {/*    <div className="wbdv-body-text">*/}
+                    {/*        Contains:*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="row">*/}
+                    {/*    {*/}
+                    {/*        recipeDetails.dairyFree === false &&*/}
+                    {/*        <h2>*/}
+                    {/*            <DietTag tagType={"dairy"}/>*/}
+                    {/*        </h2>*/}
+                    {/*    }*/}
+                    {/*    {*/}
+                    {/*        recipeDetails.glutenFree === false &&*/}
+                    {/*        <h2>*/}
+                    {/*            <DietTag tagType={"gluten"}/>*/}
+                    {/*        </h2>*/}
+                    {/*    }*/}
+                    {/*</div>*/}
                     <br/>
                 </div>
             </div>
