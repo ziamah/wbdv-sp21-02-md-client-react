@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
-const PrivateData = () =>
+const PrivateData = ({userName, setUserName, updateUser, userId, user}) =>
 
  {
 
- const [name, setNewName] = useState("MManzur Morshed")
+ {/*const [newName, setNewName] = useState(userName)*/}
  const [email, setEmail] = useState("xyz@abc.com")
  const [password, setPassword] = useState("1234")
  const [editing, setEditing] = useState(false);
@@ -22,7 +22,9 @@ const PrivateData = () =>
                  }
 
         {editing &&
-                    <i onClick={() => setEditing(false)} className="float-right fas fa-check"></i>
+                    <i onClick={() => {setEditing(false);
+                       updateUser(userId, {...user, userName:userName});
+                       }} className="float-right fas fa-check"></i>
 
         }
 
@@ -43,8 +45,8 @@ const PrivateData = () =>
              </div>
              { editing &&
              <div id="name" className="col-7">
-                 <input className = "form-control" onChange = {(event) =>  setNewName(event.target.value)}
-                 value={name}/>
+                 <input className = "form-control" onChange = {(event) =>  setUserName(event.target.value)}
+                 value={userName}/>
 
              </div>
              }
@@ -52,7 +54,7 @@ const PrivateData = () =>
              { !editing &&
                           <div id="name" className="col-7">
 
-                              {name}
+                              {userName}
                           </div>
              }
 
