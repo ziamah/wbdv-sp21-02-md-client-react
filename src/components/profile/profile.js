@@ -4,7 +4,7 @@ import PrivateData from './private-data';
 import './profile.css'
 import UserList from './user-list'
 import RecipeList from './recipe-list'
-import NavigationBar from './navigation-bar'
+//import NavigationBar from './navigation-bar'
 import userService from "../profile-services/user-service";
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
@@ -12,11 +12,13 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
     const [privatemode, setPrivateMode] = useState(true);
     const [editing, setEditing] = useState(false);
-    const [userName, setUserName] = useState(" ")
-    const [profileImage, setProfileImage] = useState(" ")
-    const [userBio, setUserBio] = useState(" ")
+    const [userName, setUserName] = useState("Manzur")
+    const [profileImage, setProfileImage] = useState("https://i.ibb.co/T8hppc1/anna-pelzer-IGf-IGP5-ONV0-unsplash.jpg")
+    const [userBio, setUserBio] = useState("Food Lover!")
     const [user, setUser] = useState()
-    const [userPassword, setUserPassword] = useState()
+    const [userPassword, setUserPassword] = useState("123")
+    const [userFollowing, setUserFollowing] = useState()
+    const [userFollowed, setUserFollowed] = useState()
     const {userId} = useParams();
     console.log({userId});
 
@@ -28,6 +30,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                    setUserBio(user.userBio);
                                    setUser(user);
                                    setUserPassword(user.userPW);
+                                   setUserFollowing(user.userFollowing);
+                                   setUserFollowed(user.userFollowed);
                                    })
 
         }, [userId])
@@ -36,13 +40,15 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log(profileImage)
     console.log(userBio)
     console.log(userPassword)
+    console.log(userFollowing)
+    console.log(userFollowed)
 
 
     return(
     <div>
     {/*<Route path="/profile/user/:userId" exact={true}>*/}
     <div>
-        <NavigationBar/>
+        {/*<NavigationBar/>*/}
     </div>
 
     <div className="background-liked add-margin-top">
