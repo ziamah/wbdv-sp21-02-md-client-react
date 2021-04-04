@@ -9,9 +9,9 @@ import 'bootstrap/dist/js/bootstrap.js';
 import Popper from 'popper.js';
 
 ReactDOM.render(
-
-    <App />,
-
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
   document.getElementById('root')
 );
 
