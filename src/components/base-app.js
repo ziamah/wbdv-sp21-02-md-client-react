@@ -5,6 +5,7 @@ import HomePage from "./home-page/home-page";
 import DetailsPage from "./details-page/details-page";
 import NewRecipe from "./new-recipe-page/new-recipe-page";
 import Login from "./login/login";
+import Profile from "./profile/profile"
 import SearchGrid from "./search-grid/search-grid";
 
 class BaseApp extends React.Component {
@@ -16,7 +17,9 @@ class BaseApp extends React.Component {
                     <Route path="/home">
                         <HomePage/>
                     </Route>
-                    <Route path="/profile"></Route>
+                    <Route path="/profile">
+                        <Profile/>
+                    </Route>
                     <Route path="/new-recipe">
                         <NewRecipe/>
                     </Route>
