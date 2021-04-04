@@ -4,7 +4,8 @@ import {Link} from "react-router-dom";
 const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("")
+    const [username, setUsername] = useState("");
+    const [role, setRole] = useState("");
 
     return (
         <div className="container-fluid">
@@ -31,9 +32,25 @@ const Register = () => {
                 <div className="container-sm">
                     <input type="email"
                            placeholder="Email"
-                           title="Please type your username"
+                           title="Please type your email"
                            className="form-control"
-                           id="username"/>
+                           id="email"/>
+                </div>
+            </div>
+
+            <div className="mb-4 row">
+                <div className="container-sm">
+                    <select value={role} className="form-control">
+                        <option value={1}>Basic User</option>
+                        <option value={2}>Recipe Author</option>
+                        <option value={3}>Staff</option>
+                    </select>
+
+                {/*    <select id="role"*/}
+                {/*           placeholder="Role"*/}
+                {/*           title="Please select your role"*/}
+                {/*           className="form-control"*/}
+                {/*</select>*/}
                 </div>
             </div>
 
@@ -41,9 +58,9 @@ const Register = () => {
                 <div className="container-sm">
                     <input type="password"
                            placeholder="Password"
-                           title="Please type your username"
+                           title="Please type your password"
                            className="form-control"
-                           id="username"/>
+                           id="password"/>
                 </div>
             </div>
             <div className="mb-4 row">
