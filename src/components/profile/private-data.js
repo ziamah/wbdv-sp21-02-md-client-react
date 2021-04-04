@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
-const PrivateData = ({userName, setUserName, updateUser, userId, user}) =>
+const PrivateData = ({userName, setUserName, userPassword, setUserPassword, updateUser, userId, user}) =>
 
  {
 
@@ -23,7 +23,7 @@ const PrivateData = ({userName, setUserName, updateUser, userId, user}) =>
 
         {editing &&
                     <i onClick={() => {setEditing(false);
-                       updateUser(userId, {...user, userName:userName});
+                       updateUser(userId, {...user, userName:userName, userPW:userPassword});
                        }} className="float-right fas fa-check"></i>
 
         }
@@ -90,8 +90,9 @@ const PrivateData = ({userName, setUserName, updateUser, userId, user}) =>
             </div>
               <div id="password" className="col-7">
 
-                        <input className = "form-control" onChange = {(event) => setPassword(event.target.value)}
-                                                          value={password} type="password"/>
+                        <input className = "form-control" onChange = {(event) => {setUserPassword(event.target.value);
+                                                                        }}
+                                                          value={userPassword} type="password"/>
 
               </div>
         </div>

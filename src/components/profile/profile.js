@@ -16,6 +16,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [profileImage, setProfileImage] = useState(" ")
     const [userBio, setUserBio] = useState(" ")
     const [user, setUser] = useState()
+    const [userPassword, setUserPassword] = useState()
     const {userId} = useParams();
     console.log({userId});
 
@@ -26,6 +27,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                    setProfileImage(user.userPicUrl);
                                    setUserBio(user.userBio);
                                    setUser(user);
+                                   setUserPassword(user.userPW);
                                    })
 
         }, [userId])
@@ -33,6 +35,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log(userName)
     console.log(profileImage)
     console.log(userBio)
+    console.log(userPassword)
 
 
     return(
@@ -132,6 +135,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                       setUserName = {setUserName}
                                       updateUser = {userService.updateUser}
                                       userId = {userId}
+                                      userPassword = {userPassword}
+                                      setUserPassword = {setUserPassword}
                                       user = {user}
                                       />
                     </div>
