@@ -22,6 +22,31 @@ const RecipeCard = () => {
         console.log(data);
     };
 
+    const removeTags = (str) => {
+        if ((str===null) || (str==='') || (str===undefined))
+            return false;
+        else
+            str = str.toString();
+        // Regular expression to identify HTML tags in
+        // the input string. Replacing the identified
+        // HTML tag with a null string.
+        // Source: https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
+        return str.replace( /(<([^>]+)>)/ig, '');
+    }
+
+    function truncate(str, num_sentences) {
+        if ((str===null) || (str==='') || (str===undefined))
+            return false;
+        else {
+            str = str.toString();
+            return str.split(".").splice(0,num_sentences).join(".").concat(".");
+        }
+    }
+
+
+    // const summary = recipeDetails.summary.replace(/['"]+/g, '')
+    let summary = removeTags(recipeDetails.summary)
+    summary = truncate(summary, 4)
 
     return (
         <div className="col-12 wbdv-widget-container wbdv-widget-interior">
@@ -45,7 +70,8 @@ const RecipeCard = () => {
                 </div>
                 <div className="col-12 col-sm-6">
                     {/*Basic Info Section*/}
-                    <p className="row wbdv-body-text" dangerouslySetInnerHTML={{__html : recipeDetails.summary}}>
+                    <p className="row wbdv-body-text">
+                        {summary}
                     </p>
                     {/*TODO: Fill recipe details programmatically*/}
                     <p className="row">
