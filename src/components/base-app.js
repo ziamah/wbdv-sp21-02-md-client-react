@@ -7,6 +7,7 @@ import NewRecipe from "./new-recipe-page/new-recipe-page";
 import Login from "./login/login";
 import SearchGrid from "./search-grid/search-grid";
 import Register from "./login/register";
+import Profile from "./profile/profile";
 
 class BaseApp extends React.Component {
     render() {
@@ -17,7 +18,9 @@ class BaseApp extends React.Component {
                     <Route path="/home">
                         <HomePage/>
                     </Route>
-                    <Route path="/profile"></Route>
+                    <Route path="/profile">
+                        <Profile/>
+                    </Route>
                     <Route path="/new-recipe">
                         <NewRecipe/>
                     </Route>
