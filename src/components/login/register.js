@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
 const Register = () => {
+    //TODO onClick use props to route to homwpage with authorization
+    //Pass props to homepage
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");

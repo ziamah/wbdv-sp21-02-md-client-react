@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 
 const Login = () => {
+    //TODO onClick use props to route to homwpage with authorization
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
