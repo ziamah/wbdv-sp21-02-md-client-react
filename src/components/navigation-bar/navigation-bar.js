@@ -1,18 +1,32 @@
-import React from "react";
-import {Link, NavLink} from 'react-router-dom';
+import {React, useState, useEffect} from "react";
+import {Link, NavLink, Route, Redirect} from 'react-router-dom';
 import "../../index.css";
 import NavigationLinks from "./navigation-links";
+import SearchCard from "../search-grid/search-card";
+import SearchGrid from "../search-grid/search-grid";
+import API_KEY from "../../api";
+import API_KEY_const from "../../api";
 
-export default class NavigationBar
-    extends React.Component {
 
-    constructor(props) {
-        super(props);
+const NavigationBar = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [query, setQuery] = useState('testing');
+
+    const updateSearch = e => {
+        setSearchTerm(e.target.value);
+        console.log(searchTerm);
     }
 
-    render() {
-        return (
-            <div className="wbdv-navigation-bar">
+    const getSearch = e => {
+        e.preventDefault();
+        setQuery(searchTerm);
+        setSearchTerm("");
+        window.location.href = `/search/${searchTerm}`;
+    }
+
+    return (
+        <>
+            <div className="wbdv-navigation-bar sticky-top">
                 <div className="row">
                     <div className="col-1 wbdv-center-in-div">
                         <i className="fas fa-2x fa-pepper-hot"></i>
@@ -28,12 +42,14 @@ export default class NavigationBar
                     </div>
 
                     <div className="col-4 d-none d-md-block">
-                        <NavigationLinks props={this.props}></NavigationLinks>
+                        <NavigationLinks/>
                     </div>
-                    <div className="col-md-4 col-8">
+                    <form onSubmit={getSearch} className="col-md-4 col-8">
                         <input className="form-control wbdv-center-in-div"
+                               value={searchTerm}
+                               onChange={updateSearch}
                                placeholder="Search"/>
-                    </div>
+                    </form>
                     <div className="col-1 ">
                         <div className="dropdown d-block d-sm-block d-md-none">
                             <a className="btn wbdv-navbar-btn dropdown-toggle"
@@ -47,14 +63,15 @@ export default class NavigationBar
 
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a className="dropdown-item wbdv-body-text" href="/home">home</a>
-                                <a className="dropdown-item wbdv-body-text" href="#">profile</a>
+                                <a className="dropdown-item wbdv-body-text" href="/profile">profile</a>
                                 <a className="dropdown-item wbdv-body-text" href="/new-recipe">new recipe</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        )
-    }
+        </>
+    )
 }
 
+export default NavigationBar;

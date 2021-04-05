@@ -1,30 +1,77 @@
 import DietTag from "./diet-tag";
+import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {render} from "@testing-library/react";
+import API_KEY_const from "../../api";
 
 const RecipeCard = () => {
+    const{id} = useParams()
+
+    const API_KEY = API_KEY_const
+
+    useEffect(() => {
+        getDetails();
+    }, []);
+
+    const [recipeDetails, setRecipeDetails] = useState({});
+
+    const getDetails = async () => {
+        const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
+        const data = await response.json();
+        setRecipeDetails(data);
+        console.log(data);
+    };
+
+    const removeTags = (str) => {
+        if ((str===null) || (str==='') || (str===undefined))
+            return false;
+        else
+            str = str.toString();
+        // Regular expression to identify HTML tags in
+        // the input string. Replacing the identified
+        // HTML tag with a null string.
+        // Source: https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
+        return str.replace( /(<([^>]+)>)/ig, '');
+    }
+
+    function truncate(str, num_sentences) {
+        if ((str===null) || (str==='') || (str===undefined))
+            return false;
+        else {
+            str = str.toString();
+            return str.split(".").splice(0,num_sentences).join(".").concat(".");
+        }
+    }
+
+
+    // const summary = recipeDetails.summary.replace(/['"]+/g, '')
+    let summary = removeTags(recipeDetails.summary)
+    summary = truncate(summary, 4)
+
     return (
         <div className="col-12 wbdv-widget-container wbdv-widget-interior">
             <div className="col-12">
-                {/*TODO: Fill Recipe Title programmatically*/}
-                <h1 className="h1 wbdv-center-in-div"> Recipe Title</h1>
-                {/*TODO: add link to recipe sourceName (sourceUrl) or author user profile*/}
-                <a className="wbdv-link-text wbdv-center-in-div" href="#">From Spoonacular</a>
+                <h1 className="h1 wbdv-center-in-div"> {recipeDetails.title} </h1>
+                <a className="wbdv-link-text wbdv-center-in-div" href={recipeDetails.sourceUrl}>From {recipeDetails.sourceName}</a>
             </div>
             <hr/>
+            <div className="row wbdv-widget-interior wbdv-center-in-div">
+                {/*TODO: This button's visibility should only toggle on for the recpie author and admin users*/}
+                <button className="btn wbdv-danger-btn">
+                    DELETE RECIPE
+                </button>
+            </div>
             <div className="row wbdv-widget-interior">
                 <div className="col-12 col-sm-6">
                     {/*TODO: Fill image programmatically*/}
                     <img className="d-block w-100 wbdv-padded-img"
-                         src="https://static.onecms.io/wp-content/uploads/sites/9/2020/03/19/birria-tacos-FT-RECIPE0420-1.jpg"
+                         src={recipeDetails.image}
                          alt="birria-img.jpg"></img>
                 </div>
                 <div className="col-12 col-sm-6">
                     {/*Basic Info Section*/}
                     <p className="row wbdv-body-text">
-                        {/*TODO: Get summary programmatically*/}
-                        Summary text Camembert de normandie chalk and cheese fromage frais.
-                        Edam mozzarella cream cheese lancashire dolcelatte the big cheese gouda roquefort.
-                        Cheesy feet mascarpone dolcelatte fondue bavarian bergkase lancashire dolcelatte
-                        cheesecake.
+                        {summary}
                     </p>
                     {/*TODO: Fill recipe details programmatically*/}
                     <p className="row">
@@ -43,17 +90,17 @@ const RecipeCard = () => {
                     </p>
                     <div className="row">
                         <div className="wbdv-body-text">
-                            Serves: 2
+                            Servings: {recipeDetails.servings}
                         </div>
                     </div>
                     <div className="row">
                         <div className="wbdv-body-text">
-                            Cook Time: 45 minutes
+                            Cook Time: {recipeDetails.readyInMinutes} minutes
                         </div>
                     </div>
                     <div className="row">
                         <div className="wbdv-body-text">
-                            Cuisine: Mexican
+                            Cuisine: {recipeDetails.cuisines}
                         </div>
                     </div>
                     <br/>
@@ -64,22 +111,76 @@ const RecipeCard = () => {
                     </div>
                     <div className="row">
                         {/*TODO: map dietTags to diet attribute*/}
-                        <h2>
-                            <DietTag tagType={"vegan"}/>
-                        </h2>
+                        {
+                            recipeDetails.glutenFree === true &&
+                            <h2>
+                                <DietTag tagType={"gf"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.ketogenic === true &&
+                            <h2>
+                                <DietTag tagType={"keto"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.diets && recipeDetails.diets.includes("pescatarian") &&
+                            <h2>
+                                <DietTag tagType={"pescatarian"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.diets && recipeDetails.diets.includes("paleolithic") &&
+                            <h2>
+                                <DietTag tagType={"paleo"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.diets && recipeDetails.diets.includes("primal") &&
+                            <h2>
+                                <DietTag tagType={"primal"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.vegetarian === true &&
+                            <h2>
+                                <DietTag tagType={"vegetarian"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.vegan === true &&
+                            <h2>
+                                <DietTag tagType={"vegan"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.whole30 === true &&
+                            <h2>
+                                <DietTag tagType={"whole30"}/>
+                            </h2>
+                        }
+
                     </div>
                     <br/>
-                    <div className="row">
-                        <div className="wbdv-body-text">
-                            Contains:
-                        </div>
-                    </div>
-                    <div className="row">
-                        {/*TODO: map dietTags to ingredient attribute*/}
-                        <h2>
-                            <DietTag tagType={"treenut"}/>
-                        </h2>
-                    </div>
+                    {/*<div className="row">*/}
+                    {/*    <div className="wbdv-body-text">*/}
+                    {/*        Contains:*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="row">*/}
+                    {/*    {*/}
+                    {/*        recipeDetails.dairyFree === false &&*/}
+                    {/*        <h2>*/}
+                    {/*            <DietTag tagType={"dairy"}/>*/}
+                    {/*        </h2>*/}
+                    {/*    }*/}
+                    {/*    {*/}
+                    {/*        recipeDetails.glutenFree === false &&*/}
+                    {/*        <h2>*/}
+                    {/*            <DietTag tagType={"gluten"}/>*/}
+                    {/*        </h2>*/}
+                    {/*    }*/}
+                    {/*</div>*/}
                     <br/>
                 </div>
             </div>
@@ -88,31 +189,23 @@ const RecipeCard = () => {
                 <div className="col-12 col-md-6">
                     {/*Ingredients Section*/}
                     <h3 className="h3">Ingredients:</h3>
-                    <ul >
+                    <ul>
                         {/*TODO: Map ingredients to list items*/}
-                        <li>
-                            Camembert de normandie chalk and cheese fromage frais.
-                        </li>
-                        <li>
-                            Camembert de normandie chalk and cheese fromage frais.
-                        </li>
-                        <li>
-                            Camembert de normandie chalk and cheese fromage frais.
-                        </li>
-                        <li>
-                            Camembert de normandie chalk and cheese fromage frais.
-                        </li>
-                        <li>
-                            Camembert de normandie chalk and cheese fromage frais.
-                        </li>
+                        {recipeDetails.extendedIngredients && recipeDetails.extendedIngredients.map(
+                            (ingredient) => {
+                                return(
+                                    <li>{ingredient.original}</li>
+                                )
+                            })}
+
+
                     </ul>
                 </div>
                 <div className="col-12 col-md-6 wbdv-body-text">
                     {/*Instructions Section*/}
                     <h3 className="h3">Instructions:</h3>
-                    Camembert de normandie chalk and cheese fromage frais. Edam mozzarella cream cheese lancashire dolcelatte the big cheese gouda roquefort. Cheesy feet mascarpone dolcelatte fondue bavarian bergkase lancashire dolcelatte cheesecake. Melted cheese feta hard cheese rubber cheese jarlsberg who moved my cheese macaroni cheese edam. Bocconcini fondue roquefort edam.
+                    <p dangerouslySetInnerHTML={{__html : recipeDetails.instructions}}/>
 
-                    Fromage frais queso who moved my cheese. Cheese strings swiss mascarpone babybel gouda babybel parmesan goat. Queso who moved my cheese croque monsieur croque monsieur queso cheese slices goat bavarian bergkase. Cream cheese paneer macaroni cheese fromage frais pecorino red leicester cheese slices cheesy grin. Everyone loves cut the cheese.
                 </div>
             </div>
         </div>

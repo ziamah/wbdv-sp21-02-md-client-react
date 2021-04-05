@@ -63,7 +63,7 @@ const DietTag = ({tagType}) => {
         //     className = "wbdv-wheat-tag"
         // }
     return (
-        <span className={`badge ${className}`}>
+        <span className={`badge ${className} btn-group-margin`}>
         {/*Tag Type Name here*/}
         {/*TODO: Can add search capability to onClick if we want*/}
         {tagType}
