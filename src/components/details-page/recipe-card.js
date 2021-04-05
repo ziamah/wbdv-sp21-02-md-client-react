@@ -22,14 +22,45 @@ const RecipeCard = () => {
         console.log(data);
     };
 
+    const removeTags = (str) => {
+        if ((str===null) || (str==='') || (str===undefined))
+            return false;
+        else
+            str = str.toString();
+        // Regular expression to identify HTML tags in
+        // the input string. Replacing the identified
+        // HTML tag with a null string.
+        // Source: https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
+        return str.replace( /(<([^>]+)>)/ig, '');
+    }
+
+    function truncate(str, num_sentences) {
+        if ((str===null) || (str==='') || (str===undefined))
+            return false;
+        else {
+            str = str.toString();
+            return str.split(".").splice(0,num_sentences).join(".").concat(".");
+        }
+    }
+
+
+    // const summary = recipeDetails.summary.replace(/['"]+/g, '')
+    let summary = removeTags(recipeDetails.summary)
+    summary = truncate(summary, 4)
 
     return (
         <div className="col-12 wbdv-widget-container wbdv-widget-interior">
             <div className="col-12">
                 <h1 className="h1 wbdv-center-in-div"> {recipeDetails.title} </h1>
-                <a className="wbdv-link-text wbdv-center-in-div" href={recipeDetails.sourceUrl}>From Spoonacular</a>
+                <a className="wbdv-link-text wbdv-center-in-div" href={recipeDetails.sourceUrl}>From {recipeDetails.sourceName}</a>
             </div>
             <hr/>
+            <div className="row wbdv-widget-interior wbdv-center-in-div">
+                {/*TODO: This button's visibility should only toggle on for the recpie author and admin users*/}
+                <button className="btn wbdv-danger-btn">
+                    DELETE RECIPE
+                </button>
+            </div>
             <div className="row wbdv-widget-interior">
                 <div className="col-12 col-sm-6">
                     {/*TODO: Fill image programmatically*/}
@@ -39,7 +70,8 @@ const RecipeCard = () => {
                 </div>
                 <div className="col-12 col-sm-6">
                     {/*Basic Info Section*/}
-                    <p className="row wbdv-body-text" dangerouslySetInnerHTML={{__html : recipeDetails.summary}}>
+                    <p className="row wbdv-body-text">
+                        {summary}
                     </p>
                     {/*TODO: Fill recipe details programmatically*/}
                     <p className="row">
@@ -79,22 +111,76 @@ const RecipeCard = () => {
                     </div>
                     <div className="row">
                         {/*TODO: map dietTags to diet attribute*/}
-                        <h2>
-                            <DietTag tagType={"vegan"}/>
-                        </h2>
+                        {
+                            recipeDetails.glutenFree === true &&
+                            <h2>
+                                <DietTag tagType={"gf"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.ketogenic === true &&
+                            <h2>
+                                <DietTag tagType={"keto"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.diets && recipeDetails.diets.includes("pescatarian") &&
+                            <h2>
+                                <DietTag tagType={"pescatarian"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.diets && recipeDetails.diets.includes("paleolithic") &&
+                            <h2>
+                                <DietTag tagType={"paleo"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.diets && recipeDetails.diets.includes("primal") &&
+                            <h2>
+                                <DietTag tagType={"primal"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.vegetarian === true &&
+                            <h2>
+                                <DietTag tagType={"vegetarian"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.vegan === true &&
+                            <h2>
+                                <DietTag tagType={"vegan"}/>
+                            </h2>
+                        }
+                        {
+                            recipeDetails.whole30 === true &&
+                            <h2>
+                                <DietTag tagType={"whole30"}/>
+                            </h2>
+                        }
+
                     </div>
                     <br/>
-                    <div className="row">
-                        <div className="wbdv-body-text">
-                            Contains:
-                        </div>
-                    </div>
-                    <div className="row">
-                        {/*TODO: map dietTags to ingredient attribute*/}
-                        <h2>
-                            <DietTag tagType={"treenut"}/>
-                        </h2>
-                    </div>
+                    {/*<div className="row">*/}
+                    {/*    <div className="wbdv-body-text">*/}
+                    {/*        Contains:*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="row">*/}
+                    {/*    {*/}
+                    {/*        recipeDetails.dairyFree === false &&*/}
+                    {/*        <h2>*/}
+                    {/*            <DietTag tagType={"dairy"}/>*/}
+                    {/*        </h2>*/}
+                    {/*    }*/}
+                    {/*    {*/}
+                    {/*        recipeDetails.glutenFree === false &&*/}
+                    {/*        <h2>*/}
+                    {/*            <DietTag tagType={"gluten"}/>*/}
+                    {/*        </h2>*/}
+                    {/*    }*/}
+                    {/*</div>*/}
                     <br/>
                 </div>
             </div>

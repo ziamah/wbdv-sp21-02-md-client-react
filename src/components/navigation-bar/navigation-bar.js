@@ -63,7 +63,7 @@ const NavigationBar = () => {
 
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a className="dropdown-item wbdv-body-text" href="/home">home</a>
-                                    <a className="dropdown-item wbdv-body-text" href="#">profile</a>
+                                    <a className="dropdown-item wbdv-body-text" href="/profile">profile</a>
                                     <a className="dropdown-item wbdv-body-text" href="/new-recipe">new recipe</a>
                                 </div>
                             </div>
