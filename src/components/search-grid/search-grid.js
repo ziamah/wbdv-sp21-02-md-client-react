@@ -36,7 +36,6 @@ const SearchGrid = () => {
                         image={recipe.image}
                     />
                 )}
-
         </div>
     )
 }

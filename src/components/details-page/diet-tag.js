@@ -14,7 +14,7 @@ const DietTag = ({tagType}) => {
             className = "wbdv-vegan-tag"
         }
         if (tagType === "pescatarian") {
-            className = "wbdv-pesc-tag"
+            className = "wbdv-pescatarian-tag"
         }
         if (tagType === "paleo") {
             className = "wbdv-paleo-tag"

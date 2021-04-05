@@ -5,8 +5,9 @@ import HomePage from "./home-page/home-page";
 import DetailsPage from "./details-page/details-page";
 import NewRecipe from "./new-recipe-page/new-recipe-page";
 import Login from "./login/login";
-import Profile from "./profile/profile"
 import SearchGrid from "./search-grid/search-grid";
+import Register from "./login/register";
+import Profile from "./profile/profile";
 
 class BaseApp extends React.Component {
     render() {
@@ -30,7 +31,9 @@ class BaseApp extends React.Component {
                     <Route path="/login">
                         <Login/>
                     </Route>
-                    <Route path="/register"></Route>
+                    <Route path="/register">
+                        <Register/>
+                    </Route>
                     <Route exact path={["/search", "/search/:term"]}>
                         <SearchGrid/>
                     </Route>

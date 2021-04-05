@@ -29,7 +29,7 @@ const SignUpWidget = ({title, page}) => {
                 </div>
                 <div className="row wbdv-center-in-div">
                     {/*TODO: set Link address to sign up page*/}
-                    <Link to={"#"}>
+                    <Link to={"/register"}>
                         <button className="btn wbdv-affirmative-btn">
                             CREATE AN ACCOUNT
                         </button>

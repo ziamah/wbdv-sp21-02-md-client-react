@@ -38,4 +38,4 @@ const SearchCard = (
 }
 export default SearchCard
 
-
+// {recipeDetails.slice(0,10)}
