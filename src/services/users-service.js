@@ -11,8 +11,18 @@ export const findUserById = (userId) =>
         .then(response => response.json())
 
 /* Returns a user object if credentials are valid or null if invalid */
-export const loginUser = (email, password) =>
-    fetch(`${baseUrl}/register/${email}/${password}`)
+export const loginUser = (username, password) =>
+    fetch(`${baseUrl}/login/${username}/${password}`)
+        .then(response => response.json())
+
+/* Returns a new user object */
+export const registerUser = (username, password) =>
+    fetch(`${baseUrl}/register/${username}/${password}`)
+        .then(response => response.json())
+
+/* Returns user object for current user */
+export const getCurrentUser = () =>
+    fetch(`${baseUrl}/profile`)
         .then(response => response.json())
 
 /* Permanently removes a user object from the database */
