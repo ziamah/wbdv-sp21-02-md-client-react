@@ -1,21 +1,30 @@
 const baseUrl = process.env.REACT_APP_USERS_URL;
 
+/* Returns a list of all user objects in the database */
 export const findAllUsers = () =>
-    fetch(`${baseUrl}`)
+    fetch(`${baseUrl}/users`)
         .then(response => response.json())
 
+/* Returns a user object corresponding to the supplied userId */
 export const findUserById = (userId) =>
-    fetch(`${baseUrl}/${userId}`)
+    fetch(`${baseUrl}/users/${userId}`)
         .then(response => response.json())
 
+/* Returns a user object if credentials are valid or null if invalid */
+export const loginUser = (email, password) =>
+    fetch(`${baseUrl}/register/${email}/${password}`)
+        .then(response => response.json())
+
+/* Permanently removes a user object from the database */
 export const deleteUser = (userId) =>
-    fetch(`${baseUrl}/${userId}`, {
+    fetch(`${baseUrl}/users/${userId}`, {
         method: 'DELETE'
     })
         .then(response => response.json())
 
+/* Adds a new user object from the database */
 export const createUser = (user) =>
-    fetch(baseUrl, {
+    fetch(`${baseUrl}/users`, {
         method: 'POST',
         body: JSON.stringify(user),
         headers: {
@@ -24,8 +33,9 @@ export const createUser = (user) =>
     })
         .then(response => response.json())
 
+/* Updates the data for an existing user object from the database */
 export const updateUser = (userId, user) =>
-    fetch(`${baseUrl}/${userId}`, {
+    fetch(`${baseUrl}/users/${userId}`, {
         method: 'PUT',
         body: JSON.stringify(user),
         headers: {
@@ -39,7 +49,8 @@ const api = {
     deleteUser,
     createUser,
     updateUser,
-    findUserById
+    findUserById,
+    loginUser
 }
 
 export default api
