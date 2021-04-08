@@ -20,6 +20,11 @@ export const loginUser = (email, password) =>
 //     fetch(`${baseUrl}/login/${username}/${password}`)
 //         .then(response => response.json())
 
+
+/* Returns user object for current user */
+export const getCurrentUser = () =>
+    fetch(`${baseUrl}/profile`)
+
 /* Permanently removes a user object from the database */
 export const deleteUser = (userId) =>
     fetch(`${baseUrl}/users/${userId}`, {
