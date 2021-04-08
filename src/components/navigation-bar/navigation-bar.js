@@ -2,10 +2,6 @@ import {React, useState, useEffect} from "react";
 import {Link, NavLink, Route, Redirect} from 'react-router-dom';
 import "../../index.css";
 import NavigationLinks from "./navigation-links";
-import SearchCard from "../search-grid/search-card";
-import SearchGrid from "../search-grid/search-grid";
-import API_KEY from "../../api";
-import API_KEY_const from "../../api";
 
 
 const NavigationBar = () => {

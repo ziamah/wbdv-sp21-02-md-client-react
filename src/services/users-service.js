@@ -1,21 +1,21 @@
-const USERS_URL = "https://wbdv-generic-server.herokuapp.com/api/md/users";
+const baseUrl = process.env.REACT_APP_USERS_URL;
 
 export const findAllUsers = () =>
-    fetch(USERS_URL)
+    fetch(`${baseUrl}`)
+        .then(response => response.json())
+
+export const findUserById = (userId) =>
+    fetch(`${baseUrl}/${userId}`)
         .then(response => response.json())
 
 export const deleteUser = (userId) =>
-    fetch(`${USERS_URL}/${userId}`, {
+    fetch(`${baseUrl}/${userId}`, {
         method: 'DELETE'
     })
         .then(response => response.json())
 
-export const findUserById = (userId) =>
-    fetch(`${USERS_URL}/${userId}`)
-        .then(response => response.json())
-
 export const createUser = (user) =>
-    fetch(USERS_URL, {
+    fetch(baseUrl, {
         method: 'POST',
         body: JSON.stringify(user),
         headers: {
@@ -25,7 +25,7 @@ export const createUser = (user) =>
         .then(response => response.json())
 
 export const updateUser = (userId, user) =>
-    fetch(`${USERS_URL}/${userId}`, {
+    fetch(`${baseUrl}/${userId}`, {
         method: 'PUT',
         body: JSON.stringify(user),
         headers: {
@@ -34,10 +34,12 @@ export const updateUser = (userId, user) =>
     })
         .then(response => response.json())
 
-export default {
+const api = {
     findAllUsers,
-    deleteUser: deleteUser(),
+    deleteUser,
     createUser,
-    updateUser: updateUser,
+    updateUser,
     findUserById
 }
+
+export default api
