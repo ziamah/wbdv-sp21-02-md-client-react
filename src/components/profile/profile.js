@@ -18,10 +18,11 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userBio, setUserBio] = useState("Food Lover!")
     const [user, setUser] = useState()
     const [userPassword, setUserPassword] = useState("123")
-    const [userFollowing, setUserFollowing] = useState([1])
-    const [userFollowed, setUserFollowed] = useState()
+    const [userFollowing, setUserFollowing] = useState([-1])
+    const [userFollowed, setUserFollowed] = useState([-1])
     const {userId} = useParams();
     const [folllowerUsers, setFollowerUsers] = useState();
+    const [folllowedUsers, setFollowedUsers] = useState();
     console.log({userId});
 
     useEffect(() => {
@@ -50,8 +51,13 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                         .then(users => {
                                           setFollowerUsers(users)
                                        })
+            userService.findUserListById(userFollowed)
+                                    .then(users => {
+                                                      setFollowedUsers(users)
+                                                   })
 
-        }, [userFollowing])
+
+        }, [userFollowing, userFollowed])
 
     console.log(userName)
     console.log(profileImage)
@@ -123,7 +129,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
-                                       heading = "Following" listOfID={userFollowed}  listOfUsers={folllowerUsers}/>
+                                       heading = "Following" listOfID={userFollowed}  listOfUsers={folllowedUsers}/>
 
                     </div>
 

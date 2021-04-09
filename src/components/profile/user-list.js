@@ -42,13 +42,15 @@ console.log(userObjects)
 
             <Collapse in={openCollapse}>
 
+
                   <ul>
-                       {
+                        {
                            //listOfID.map(user => <li><Link to={`/profile/user/${user}`}>{user}</Link></li>)
                              listOfUsers.map(user => <li><Link to={`/profile/user/${user.userID}`}>{user.userName}</Link></li>)
                        }
 
                   </ul>
+
             </Collapse>
 
         </div>
