@@ -100,7 +100,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
-                        usersId={userFollowing} />
+                                  listOfID={userFollowing}/>
 
 
 
@@ -111,7 +111,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
-                                       heading = "Following" />
+                                       heading = "Following" listOfID={userFollowed}/>
 
                     </div>
 
