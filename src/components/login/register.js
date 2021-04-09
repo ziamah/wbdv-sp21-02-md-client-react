@@ -48,7 +48,7 @@ const Register = (
                            className="form-control"
                            id="username"
                            onChange = {(event) =>  setUsername(event.target.value)}
-                           value={password}/>
+                           value={userName}/>
                 </div>
             </div>
             <div className="mb-4 row">
