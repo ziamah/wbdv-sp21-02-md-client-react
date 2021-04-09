@@ -19,6 +19,12 @@ export const findUserById = (UserId) =>
     })
         .then(response => response.json())
 
+export const findUserListById = (UserId) =>
+    fetch(`${USERS_URL}/list/${UserId}`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+
 export const createUser = (User) =>
     fetch(USERS_URL, {
         method: 'POST',
@@ -44,7 +50,8 @@ export default {
     deleteUser: deleteUser,
     createUser,
     updateUser: updateUser,
-    findUserById
+    findUserById,
+    findUserListById
 }
 
 
