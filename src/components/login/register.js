@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux'
-import userService from '../../services/user-service'
+import userService from '../../services/users-service'
 import Login from "./login";
 
 const Register = (
     {
-        register: [],
+        currentUser = {},
         createUser,
         attemptUserLogin
     }
@@ -109,8 +109,8 @@ const Register = (
             <div className="row wbdv-center-in-div">
                 {/*TODO: set Link address to sign up page*/}
                 <Link to={"#"}>
-                    <button className="btn wbdv-affirmative-btn">
-                        onClick = {() => {validateForm && handleSubmit()}}
+                    <button className="btn wbdv-affirmative-btn"
+                        onClick = {() => {validateForm && handleSubmit()}}>
                         REGISTER ACCOUNT
                     </button>
                 </Link>
@@ -132,7 +132,7 @@ const Register = (
 }
 
 const stpm = (state) => ({
-    register: state.registrationUser.register
+    currentUser: state.userReducer.currentUser
 })
 
 const dtpm = (dispatch) => ({

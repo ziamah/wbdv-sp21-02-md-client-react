@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux'
-import userService from '../../services/user-service'
+//import userService from '../../services/user-service'
+import userService from '../../services/users-service'
 
 
 const Login = (
     {
-        loginStatus = [],
+        currentUser = {},
         attemptUserLogin
     }
 ) => {
@@ -110,7 +111,7 @@ const Login = (
 }
 
 const stpm = (state) => ({
-    loginStatus: state.userReducer.login
+    currentUser: state.userReducer.currentUser
 })
 
 const dtpm = (dispatch) => ({
