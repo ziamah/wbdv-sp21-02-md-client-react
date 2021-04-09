@@ -10,7 +10,9 @@ const NavigationLinks = () => {
                     home
                 </button>
             </Link>
+            <Link to="/profile/user/2">
             <button className="btn wbdv-navbar-btn">profile</button>
+            </Link>
             <Link to="/new-recipe">
             <button className="btn wbdv-navbar-btn">
                 <i className="fas fa-plus-circle"></i>

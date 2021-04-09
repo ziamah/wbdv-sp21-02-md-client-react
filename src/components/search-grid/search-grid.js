@@ -12,7 +12,10 @@ const SearchGrid = () => {
     const {term} = useParams()
     useEffect(() => {
         const getRecipes = async () => {
-            const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${term}`);
+            //const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${term}`);
+            const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${term}`,
+            { "method": "GET", "headers": { "x-rapidapi-key": "ef8515bcc5mshdfc5d8787c105bap1a81c6jsn5914ba83781d",
+            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com" } });
             const data = await response.json();
             setRecipes(data.results);
             console.log(data);
@@ -36,7 +39,6 @@ const SearchGrid = () => {
                         image={recipe.image}
                     />
                 )}
-
         </div>
     )
 }

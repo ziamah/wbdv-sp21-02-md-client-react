@@ -6,6 +6,7 @@ import UserList from './user-list'
 import RecipeList from './recipe-list'
 //import NavigationBar from './navigation-bar'
 import userService from "../profile-services/user-service";
+import followerService from "../profile-services/follower-service";
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                  likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -30,9 +31,16 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                    setUserBio(user.userBio);
                                    setUser(user);
                                    setUserPassword(user.userPW);
-                                   setUserFollowing(user.userFollowing);
-                                   setUserFollowed(user.userFollowed);
+                                   //setUserFollowing(user.userFollowing);
+                                   //setUserFollowed(user.userFollowed);
                                    })
+
+        followerService.findFollowerById(userId)
+                    .then(user =>  {
+                                    setUserFollowing(user.userFollowing);
+                                    setUserFollowed(user.userFollowed);
+
+                                    })
 
         }, [userId])
 
@@ -141,6 +149,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                       setUserName = {setUserName}
                                       updateUser = {userService.updateUser}
                                       userId = {userId}
+                                      userBio = {userBio}
+                                      setUserBio = {setUserBio}
                                       userPassword = {userPassword}
                                       setUserPassword = {setUserPassword}
                                       user = {user}

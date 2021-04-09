@@ -84,7 +84,7 @@
 .body-position-followers {
     position: absolute;
     top: 500px;
-    left:;
+    left:1px;
     background-color: #FAF6EF;
 }
 
