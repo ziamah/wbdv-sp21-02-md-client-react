@@ -99,7 +99,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
 
-                        <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]} />
+                        <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
+                        usersId={userFollowing} />
 
 
 

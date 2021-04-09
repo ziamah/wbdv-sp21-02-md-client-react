@@ -2,8 +2,9 @@ import React, {useEffect,useState} from 'react';
 import {connect} from 'react-redux';
 import {useParams, Link} from "react-router-dom";
 import {Button, Collapse} from 'react-bootstrap';
+import userService from "../profile-services/user-service";
 
-const UserList = ({users = [], users2 = ["user4 profile link", "user5 profile link", "user6 profile link"], heading = "Followers"}) => {
+const UserList = ({users = [], usersId = [], heading = "Followers"}) => {
 const [openCollapse, setOpenCollapse] = useState(false);
     return (
         <div className="background-followers">
@@ -16,7 +17,7 @@ const [openCollapse, setOpenCollapse] = useState(false);
 
                   <ul>
                        {
-                           users.map(user => <li>{user}</li>)
+                           usersId.map(user => <li><Link to={`/profile/user/${user}`}>{user}</Link></li>)
                        }
 
                   </ul>
