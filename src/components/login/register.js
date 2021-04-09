@@ -1,13 +1,32 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {connect} from 'react-redux'
+import userService from '../../services/user-service'
+import Login from "./login";
 
-const Register = () => {
+const Register = (
+    {
+        register: [],
+        createUser,
+        attemptUserLogin
+    }
+) => {
     //TODO onClick use props to route to homwpage with authorization
     //Pass props to homepage
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
+    const [userName, setUsername] = useState("");
     const [role, setRole] = useState("");
+    // const [user, setUser] = useState({});
+
+    const validateForm = () => email.length > 0 && password.length > 0 && userName.length > 0;
+    // const handleSubmit = () => registerUser(user);
+    const handleSubmit = async () => {
+        const newUser = {userName: userName, userPW: password, userRole: role, userEmail: email}
+        // setUser(newUser)
+        await createUser(newUser)
+        await attemptUserLogin(userName, password)
+    }
 
     return (
         <div className="container-fluid">
@@ -27,7 +46,9 @@ const Register = () => {
                            placeholder="Username"
                            title="Please type your username"
                            className="form-control"
-                           id="username"/>
+                           id="username"
+                           onChange = {(event) =>  setUsername(event.target.value)}
+                           value={password}/>
                 </div>
             </div>
             <div className="mb-4 row">
@@ -36,13 +57,16 @@ const Register = () => {
                            placeholder="Email"
                            title="Please type your email"
                            className="form-control"
-                           id="email"/>
+                           id="email"
+                           onChange = {(event) =>  setEmail(event.target.value)}
+                           value={email}/>
                 </div>
             </div>
 
             <div className="mb-4 row">
                 <div className="container-sm">
-                    <select value={role} className="form-control">
+                    <select onChange={(e) => setRole(e.target.value)}
+                        value={role} className="form-control">
                         <option value={1}>Basic User</option>
                         <option value={2}>Recipe Author</option>
                         <option value={3}>Staff</option>
@@ -62,7 +86,9 @@ const Register = () => {
                            placeholder="Password"
                            title="Please type your password"
                            className="form-control"
-                           id="password"/>
+                           id="password"
+                           onChange = {(event) =>  setPassword(event.target.value)}
+                           value={password}/>
                 </div>
             </div>
             <div className="mb-4 row">
@@ -84,6 +110,7 @@ const Register = () => {
                 {/*TODO: set Link address to sign up page*/}
                 <Link to={"#"}>
                     <button className="btn wbdv-affirmative-btn">
+                        onClick = {() => {validateForm && handleSubmit()}}
                         REGISTER ACCOUNT
                     </button>
                 </Link>
@@ -104,4 +131,32 @@ const Register = () => {
     );
 }
 
-export default Register
+const stpm = (state) => ({
+    register: state.registrationUser.register
+})
+
+const dtpm = (dispatch) => ({
+
+    createUser: (user) =>
+        userService.createUser(user) //removed _id widget._id
+            .then(status => dispatch({
+                                         type: "CREATE_USER",
+                                         user: user
+                                     })),
+
+    attemptUserLogin: (username, password) =>
+        userService.loginUser(username, password) //removed _id widget._id
+    .then(status => dispatch({
+                                 type: "LOGIN_USER",
+                                 username,
+                                 password
+                             }))
+})
+
+export default (connect(
+        stpm,
+        dtpm)
+    (Register)
+)
+
+// export default Register
