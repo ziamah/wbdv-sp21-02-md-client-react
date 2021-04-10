@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {useParams, Link} from "react-router-dom";
 import {Button, Collapse} from 'react-bootstrap';
 
-const RecipeList = ({recipes = [], heading = "My Posted Recipes"}) => {
+const RecipeList = ({recipes = [], heading = "My Posted Recipes", favId=[]}) => {
 const [openCollapse, setOpenCollapse] = useState(false);
 
 
@@ -18,7 +18,8 @@ const [openCollapse, setOpenCollapse] = useState(false);
 
                 <ul>
                     {
-                        recipes.map((recipe, index) => <li>{recipe}</li>)
+                        //recipes.map((recipe, index) => <li>{recipe}</li>)
+                        favId.map(id => <li><Link to={`/profile/user/${id}`}>{id}</Link></li>)
                     }
                 </ul>
             </Collapse>

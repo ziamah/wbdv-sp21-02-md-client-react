@@ -7,6 +7,7 @@ import RecipeList from './recipe-list'
 //import NavigationBar from './navigation-bar'
 import userService from "../profile-services/user-service";
 import followerService from "../profile-services/follower-service";
+import favoriteService from "../profile-services/favorite-service";
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                  likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -23,6 +24,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const {userId} = useParams();
     const [folllowerUsers, setFollowerUsers] = useState([]);
     const [folllowedUsers, setFollowedUsers] = useState([]);
+    const [favoriteRecipeId, setFavoriteRecipeId] = useState([]);
     console.log({userId});
 
     useEffect(() => {
@@ -41,6 +43,11 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                     setUserFollowing(user.userFollowing);
                                     setUserFollowed(user.userFollowed);
                                     })
+
+        favoriteService.findFavoritesByUserId(userId)
+                        .then(recipes => {
+                            setFavoriteRecipeId(recipes)
+                        })
 
         }, [userId])
 
@@ -65,8 +72,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log(userPassword)
     console.log(userFollowing)
     console.log(userFollowed)
-
-    console.log(folllowerUsers.length)
+    console.log(favoriteRecipeId)
 
 
 
@@ -141,7 +147,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link",
-                        "recipe3 description link"]}
+                        "recipe3 description link"]} favId={favoriteRecipeId}
                         heading="My Favorite Recipes"/>
 
 
