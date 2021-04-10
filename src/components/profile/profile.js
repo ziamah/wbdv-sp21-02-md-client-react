@@ -21,8 +21,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userFollowing, setUserFollowing] = useState([-1])
     const [userFollowed, setUserFollowed] = useState([-1])
     const {userId} = useParams();
-    const [folllowerUsers, setFollowerUsers] = useState();
-    const [folllowedUsers, setFollowedUsers] = useState();
+    const [folllowerUsers, setFollowerUsers] = useState([]);
+    const [folllowedUsers, setFollowedUsers] = useState([]);
     console.log({userId});
 
     useEffect(() => {
@@ -66,7 +66,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log(userFollowing)
     console.log(userFollowed)
 
-    console.log(folllowerUsers)
+    console.log(folllowerUsers.length)
 
 
 
@@ -116,11 +116,11 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
 
-
+                        {folllowerUsers.length != undefined &&
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
                                   listOfID={userFollowing} listOfUsers={folllowerUsers}/>
 
-
+                        }
 
                    </div>
 
@@ -128,9 +128,10 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
+                        {folllowedUsers.length != undefined &&
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
                                        heading = "Following" listOfID={userFollowed}  listOfUsers={folllowedUsers}/>
-
+                        }
                     </div>
 
 
