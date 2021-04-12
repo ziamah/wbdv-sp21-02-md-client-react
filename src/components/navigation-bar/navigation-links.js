@@ -7,6 +7,7 @@ const NavigationLinks = (
     getCurrentUser,
     logoutUser
 ) => {
+    currentUser = getCurrentUser();
     return (
         <>
             {/*TODO: The links that are visible should depend on the current page and user type*/}
@@ -22,7 +23,7 @@ const NavigationLinks = (
             <Link to="/home">
                 <button className="btn wbdv-navbar-btn"
                         onClick={() => logoutUser()}>
-                    logout
+                    {currentUser.username ? currentUser.userName : "not fetching"}
                 </button>
             </Link>
             <Link to="/new-recipe">
@@ -42,8 +43,13 @@ const stpm = (state) => ({
 const dtpm = (dispatch) => ({
     logoutUser: () =>
         userService.logoutUser()
-            .then(user => dispatch({
+            .then(status => dispatch({
                 type: "LOGOUT_USER"
+            })),
+    getCurrentUser: () =>
+        userService.getCurrentUser()
+            .then(user => dispatch({
+                type: "CURRENT_USER"
             }))
 })
 

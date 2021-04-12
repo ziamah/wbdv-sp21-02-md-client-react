@@ -56,6 +56,7 @@ export const getCurrentUser = () =>
 /* Logs the current user out by invalidating the session */
 export const logoutUser = () =>
     fetch(`${baseUrl}/logout`)
+        .then(response => response.json())
 
 
 

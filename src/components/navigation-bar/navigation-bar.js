@@ -2,6 +2,7 @@ import {React, useState, useEffect} from "react";
 import {Link, NavLink, Route, Redirect} from 'react-router-dom';
 import "../../index.css";
 import NavigationLinks from "./navigation-links";
+import {getCurrentUser} from "../../services/users-service";
 
 
 const NavigationBar = () => {
