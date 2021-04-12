@@ -2,16 +2,12 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux'
 import userService from '../../services/users-service'
-import Login from "./login";
-
 const Register = (
     {
         createUser,
-        attemptUserLogin
+        registerUser,
     }
 ) => {
-    //TODO onClick use props to route to homwpage with authorization
-    //Pass props to homepage
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [userName, setUsername] = useState("");
@@ -21,7 +17,7 @@ const Register = (
     const handleSubmit = async () => {
         const newUser = {userName: userName, userPW: password, userRole: role, userEmail: email}
         await createUser(newUser)
-        await attemptUserLogin(userName, password)
+        await registerUser(newUser)
     }
 
     return (
@@ -43,7 +39,7 @@ const Register = (
                            title="Please type your username"
                            className="form-control"
                            id="username"
-                           onChange = {(event) =>  setUsername(event.target.value)}
+                           onChange={(event) => setUsername(event.target.value)}
                            value={userName}/>
                 </div>
             </div>
@@ -54,7 +50,7 @@ const Register = (
                            title="Please type your email"
                            className="form-control"
                            id="email"
-                           onChange = {(event) =>  setEmail(event.target.value)}
+                           onChange={(event) => setEmail(event.target.value)}
                            value={email}/>
                 </div>
             </div>
@@ -62,7 +58,7 @@ const Register = (
             <div className="mb-4 row">
                 <div className="container-sm">
                     <select onChange={(e) => setRole(e.target.value)}
-                        value={role} className="form-control">
+                            value={role} className="form-control">
                         <option value={1}>Basic User</option>
                         <option value={2}>Recipe Author</option>
                         <option value={3}>Staff</option>
@@ -77,7 +73,7 @@ const Register = (
                            title="Please type your password"
                            className="form-control"
                            id="password"
-                           onChange = {(event) =>  setPassword(event.target.value)}
+                           onChange={(event) => setPassword(event.target.value)}
                            value={password}/>
                 </div>
             </div>
@@ -99,7 +95,9 @@ const Register = (
             <div className="row wbdv-center-in-div">
                 <Link to="/home">
                     <button className="btn wbdv-affirmative-btn"
-                        onClick = {() => {validateForm && handleSubmit()}}>
+                            onClick={() => {
+                                validateForm && handleSubmit()
+                            }}>
                         REGISTER ACCOUNT
                     </button>
                 </Link>
@@ -126,19 +124,32 @@ const stpm = (state) => ({
 const dtpm = (dispatch) => ({
 
     createUser: (user) =>
-        userService.createUser(user) //removed _id widget._id
-            .then(status => dispatch({
-                                         type: "CREATE_USER",
-                                         user: user
-                                     })),
+        userService.createUser(user)
+            .then(user => dispatch({
+                type: "CREATE_USER",
+                user: user
+            })),
 
     attemptUserLogin: (username, password) =>
-        userService.loginUser(username, password) //removed _id widget._id
-    .then(status => dispatch({
-                                 type: "LOGIN_USER",
-                                 username,
-                                 password
-                             }))
+        userService.loginUser(username, password)
+            .then(user => dispatch({
+                type: "LOGIN_USER",
+                user: user
+            })),
+
+    registerUser: (user) =>
+        userService.registerUser(user)
+            .then(user => dispatch({
+                type: "REGISTER_USER",
+                user: user
+            })),
+
+    getCurrentUser: () =>
+        userService.getCurrentUser()
+            .then(user => dispatch({
+                type: "CURRENT_USER",
+                user: user
+            }))
 })
 
 export default (connect(
@@ -146,5 +157,3 @@ export default (connect(
         dtpm)
     (Register)
 )
-
-// export default Register

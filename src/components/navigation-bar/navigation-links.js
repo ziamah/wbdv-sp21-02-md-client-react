@@ -4,10 +4,9 @@ import {connect} from "react-redux";
 
 const NavigationLinks = (
     currentUser = {},
-    getCurrentUser,
     logoutUser
 ) => {
-    currentUser = getCurrentUser();
+    currentUser = userService.getCurrentUser();
     return (
         <>
             {/*TODO: The links that are visible should depend on the current page and user type*/}
@@ -49,7 +48,8 @@ const dtpm = (dispatch) => ({
     getCurrentUser: () =>
         userService.getCurrentUser()
             .then(user => dispatch({
-                type: "CURRENT_USER"
+                type: "CURRENT_USER",
+                user: user
             }))
 })
 

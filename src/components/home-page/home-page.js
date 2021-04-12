@@ -2,7 +2,6 @@ import React from "react";
 import FeaturedRecipeCard from "./featured-recipe-card";
 import FavoritesWidget from "./favorites-widget";
 import SignUpWidget from "./sign-up-widget";
-import SearchGrid from "../search-grid/search-grid";
 
 class HomePage extends React.Component {
     render() {
@@ -17,10 +16,6 @@ class HomePage extends React.Component {
                 <div className="col-12 col-md-8">
                     <FeaturedRecipeCard/>
                 </div>
-                {/*//TODO:Get rid of this from here once connected to navbar*/}
-                {/*<div className="col-12 col-md-8">*/}
-                {/*    <SearchGrid/>*/}
-                {/*</div>*/}
             </div>
         )
     }

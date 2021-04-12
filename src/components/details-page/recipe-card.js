@@ -56,14 +56,13 @@ const RecipeCard = () => {
             </div>
             <hr/>
             <div className="row wbdv-widget-interior wbdv-center-in-div">
-                {/*TODO: This button's visibility should only toggle on for the recpie author and admin users*/}
+                {/*TODO: This button's visibility should only toggle on for the recipe author and admin users*/}
                 <button className="btn wbdv-danger-btn">
                     DELETE RECIPE
                 </button>
             </div>
             <div className="row wbdv-widget-interior">
                 <div className="col-12 col-sm-6">
-                    {/*TODO: Fill image programmatically*/}
                     <img className="d-block w-100 wbdv-padded-img"
                          src={recipeDetails.image}
                          alt="birria-img.jpg"></img>
@@ -73,7 +72,6 @@ const RecipeCard = () => {
                     <p className="row wbdv-body-text">
                         {summary}
                     </p>
-                    {/*TODO: Fill recipe details programmatically*/}
                     <p className="row">
                         <div className="wbdv-body-text">
                             {/*TODO: Make toggleable so that user can favorite/unfavorite*/}
@@ -110,7 +108,6 @@ const RecipeCard = () => {
                         </div>
                     </div>
                     <div className="row">
-                        {/*TODO: map dietTags to diet attribute*/}
                         {
                             recipeDetails.glutenFree === true &&
                             <h2>
@@ -162,25 +159,6 @@ const RecipeCard = () => {
 
                     </div>
                     <br/>
-                    {/*<div className="row">*/}
-                    {/*    <div className="wbdv-body-text">*/}
-                    {/*        Contains:*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*<div className="row">*/}
-                    {/*    {*/}
-                    {/*        recipeDetails.dairyFree === false &&*/}
-                    {/*        <h2>*/}
-                    {/*            <DietTag tagType={"dairy"}/>*/}
-                    {/*        </h2>*/}
-                    {/*    }*/}
-                    {/*    {*/}
-                    {/*        recipeDetails.glutenFree === false &&*/}
-                    {/*        <h2>*/}
-                    {/*            <DietTag tagType={"gluten"}/>*/}
-                    {/*        </h2>*/}
-                    {/*    }*/}
-                    {/*</div>*/}
                     <br/>
                 </div>
             </div>
@@ -190,7 +168,6 @@ const RecipeCard = () => {
                     {/*Ingredients Section*/}
                     <h3 className="h3">Ingredients:</h3>
                     <ul>
-                        {/*TODO: Map ingredients to list items*/}
                         {recipeDetails.extendedIngredients && recipeDetails.extendedIngredients.map(
                             (ingredient) => {
                                 return(

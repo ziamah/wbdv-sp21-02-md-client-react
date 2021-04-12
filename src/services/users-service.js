@@ -44,8 +44,19 @@ export const findUserById = (userId) =>
 /* User auth operations */
 
 /* Returns a user object if credentials are valid or null if invalid */
-export const loginUser = (email, password) =>
-    fetch(`${baseUrl}/login/${email}/${password}`)
+export const loginUser = (username, password) =>
+    fetch(`${baseUrl}/login/${username}/${password}`)
+        .then(response => response.json())
+
+export const registerUser = (user) =>
+    fetch(`${baseUrl}/register`, {
+        method: "POST",
+        body: JSON.stringify(user),
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
         .then(response => response.json())
 
 /* Returns user object for current user */
@@ -67,6 +78,7 @@ const api = {
     updateUser,
     findUserById,
     loginUser,
+    registerUser,
     getCurrentUser,
     logoutUser
 }

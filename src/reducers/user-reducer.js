@@ -14,13 +14,18 @@ const userReducer = (state=initialState, action) => {
             return {
                 currentUser: action.user
             }
+        case "REGISTER_USER":
+            return {
+                currentUser: action.user
+            }
         case "LOGOUT_USER":
             return {
                 currentUser: {}
             }
         case "CURRENT_USER":
             return {
-                state
+                ...state,
+                currentUser: action.user
             }
 
         default:

@@ -36,7 +36,6 @@ class BaseApp extends React.Component {
                             <NewRecipe/>
                         </Route>
                         <Route exact path={["/details", "/details/:id"]}>
-                            {/*TODO: Implement details url dependent on recipe id*/}
                             <DetailsPage/>
                         </Route>
                         <Route path="/login">

@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux'
-//import userService from '../../services/user-service'
 import userService from '../../services/users-service'
 
 
@@ -107,12 +106,11 @@ const stpm = (state) => ({
 const dtpm = (dispatch) => ({
 
     attemptUserLogin: (username, password) =>
-        userService.loginUser(username, password) //removed _id widget._id
-            .then(status => dispatch({
-                                         type: "LOGIN_USER",
-                                         username,
-                                         password
-                                     }))
+        userService.loginUser(username, password)
+            .then(user => dispatch({
+                type: "LOGIN_USER",
+                user: user
+            })),
 })
 
 
@@ -121,8 +119,6 @@ export default (connect(
         dtpm)
     (Login)
 )
-
-// export default Login
 
 
 
