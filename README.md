@@ -1,3 +1,5 @@
+![recipe hero banner](./images/recipe-hero-banner.png)
+
 ## RecipeHero
 
 **The Problem**:
@@ -7,13 +9,13 @@ The internet is home to thousands of recipe sites, but few allow users to review
 **The User Base**:
 
 Our users include casual cooks who want to find new recipes, as well as more experienced cooks who have their own recipes to share with others.
-* Our Basic users:
+* Our Basic Users:
   * Will be able to find new recipes to try based on search criteria like cuisine, ingredients, and health considerations.
   * Will be able to review recipes they’ve tried and save their favorite recipes to view again later.
-* Our contributing users:
+* Our Recipe Authors:
   * Will be able to post their own recipes to the site to be tried and reviewed by other users.
   * Will be able to build a following of other users who want to read more recipes from them in the future.
-* Admin:
+* Staff:
   * Can delete a recipe posted by users if a duplicate recipe found or recipe is not authentic.
 
 **Our Strategy**:
