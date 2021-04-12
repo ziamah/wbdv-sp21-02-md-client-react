@@ -8,22 +8,20 @@ const userReducer = (state=initialState, action) => {
     switch (action.type) {
         case "LOGIN_USER":
             return {
-                currentUser: state.currentUser.map(user => {
-                    if(user.id === action.user.id) {
-                        // console.log("action.widget:", action.user)
-                        return action.user
-                    } else {
-                        // console.log("widget:", user)
-                        return user
-                    }
-                })
+                currentUser: action.user
             }
         case "CREATE_USER":
-            return state
-            // return {
-            //     ...state,
-            //     currentUser: action.user
-            // };
+            return {
+                currentUser: action.user
+            }
+        case "LOGOUT_USER":
+            return {
+                currentUser: {}
+            }
+        case "CURRENT_USER":
+            return {
+                state
+            }
 
         default:
             return state
