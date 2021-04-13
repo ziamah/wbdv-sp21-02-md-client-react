@@ -1,21 +1,17 @@
-const USERS_URL = "https://wbdv-generic-server.herokuapp.com/api/md/users";
+const baseUrl = process.env.REACT_APP_USERS_URL;
 
-export const findAllUsers = () =>
-    fetch(USERS_URL)
-        .then(response => response.json())
+/* CRUD operations */
 
+/* Permanently removes a user object from the database */
 export const deleteUser = (userId) =>
-    fetch(`${USERS_URL}/${userId}`, {
+    fetch(`${baseUrl}/users/${userId}`, {
         method: 'DELETE'
     })
         .then(response => response.json())
 
-export const findUserById = (userId) =>
-    fetch(`${USERS_URL}/${userId}`)
-        .then(response => response.json())
-
+/* Adds a new user object from the database */
 export const createUser = (user) =>
-    fetch(USERS_URL, {
+    fetch(`${baseUrl}/users`, {
         method: 'POST',
         body: JSON.stringify(user),
         headers: {
@@ -24,8 +20,9 @@ export const createUser = (user) =>
     })
         .then(response => response.json())
 
+/* Updates the data for an existing user object from the database */
 export const updateUser = (userId, user) =>
-    fetch(`${USERS_URL}/${userId}`, {
+    fetch(`${baseUrl}/users/${userId}`, {
         method: 'PUT',
         body: JSON.stringify(user),
         headers: {
@@ -34,10 +31,56 @@ export const updateUser = (userId, user) =>
     })
         .then(response => response.json())
 
-export default {
+/* Returns a list of all user objects in the database */
+export const findAllUsers = () =>
+    fetch(`${baseUrl}/users`)
+        .then(response => response.json())
+
+/* Returns a user object corresponding to the supplied userId */
+export const findUserById = (userId) =>
+    fetch(`${baseUrl}/users/${userId}`)
+        .then(response => response.json())
+
+/* User auth operations */
+
+/* Returns a user object if credentials are valid or null if invalid */
+export const loginUser = (username, password) =>
+    fetch(`${baseUrl}/login/${username}/${password}`)
+        .then(response => response.json())
+
+export const registerUser = (user) =>
+    fetch(`${baseUrl}/register`, {
+        method: "POST",
+        body: JSON.stringify(user),
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+
+/* Returns user object for current user */
+export const getCurrentUser = () =>
+    fetch(`${baseUrl}/profile`)
+        .then(response => response.json())
+
+/* Logs the current user out by invalidating the session */
+export const logoutUser = () =>
+    fetch(`${baseUrl}/logout`)
+        .then(response => response.json())
+
+
+
+const api = {
     findAllUsers,
-    deleteUser: deleteUser(),
+    deleteUser,
     createUser,
-    updateUser: updateUser,
-    findUserById
+    updateUser,
+    findUserById,
+    loginUser,
+    registerUser,
+    getCurrentUser,
+    logoutUser
 }
+
+export default api

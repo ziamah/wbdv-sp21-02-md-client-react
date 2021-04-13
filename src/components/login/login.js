@@ -1,19 +1,27 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
+import {connect} from 'react-redux'
+import userService from '../../services/users-service'
 
-const Login = () => {
-    //TODO onClick use props to route to homwpage with authorization
 
-    const [email, setEmail] = useState("");
+const Login = (
+    {
+        currentUser = {},
+        attemptUserLogin
+    }
+) => {
+    //TODO onClick use props to route to homepage with authorization
+    const [userName, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    function validateForm() {
-        return email.length > 0 && password.length > 0;
-    }
+    const validateForm = () => userName.length > 0 && password.length > 0;
 
-    function handleSubmit(event) {
-        event.preventDefault();
-    }
+    const handleSubmit = () => {
+        const user = attemptUserLogin(userName, password);
+        console.log(userName)
+        console.log(password)
+        console.log(user)
+    };
 
     return (
         <div className="container-fluid">
@@ -23,26 +31,32 @@ const Login = () => {
                 </div>
             </div>
             <div className="wbdv-padded-img">
-            <h1 className="h1 wbdv-center-in-div">
-                Sign In
-            </h1> </div>
+                <h1 className="h1 wbdv-center-in-div">
+                    Sign In
+                </h1> </div>
 
             <div className="mb-4 row">
                 <div className="container-sm">
-                {/*<div>*/}
+                    {/*<div>*/}
                     <input type="text"
                            placeholder="Username"
                            title="Please type your username"
                            className="form-control"
-                           id="username"/>
+                           id="username"
+                           onChange = {(event) =>  setUsername(event.target.value)}
+                           value={userName}/>
                 </div>
+
+
             </div>
             <div className="mb-4 row">
                 <div className="container-sm">
                     <input type="password"
                            placeholder="Password"
                            className="form-control"
-                           id="inputPassword"/>
+                           id="inputPassword"
+                           onChange = {(event) =>  setPassword(event.target.value)}
+                           value={password}/>
 
                     <div className="wbdv-padded-img">
                         <Link className="wbdv-link-text" to={"#"}>
@@ -55,9 +69,12 @@ const Login = () => {
                 </div>
             </div>
             <div className="row wbdv-center-in-div">
-                {/*TODO: set Link address to sign up page*/}
-                <Link to={"#"}>
-                    <button className="btn wbdv-affirmative-btn">
+                <Link to="/home">
+                    <button className="btn wbdv-affirmative-btn"
+                            onClick = {() => {
+                                validateForm();
+                                handleSubmit()
+                            }}>
                         SIGN IN
                     </button>
                 </Link>
@@ -65,9 +82,7 @@ const Login = () => {
             <div className="wbdv-center-in-div wbdv-widget-interior">
                 or
             </div>
-            <div className="row wbdv-center-in-div">
-                {/*TODO: set Link address to sign up page*/}
-                <Link to={"/register"}>
+            <div className="row wbdv-center-in-div"><Link to={"/register"}>
                     <button className="btn wbdv-affirmative-btn">
                         CREATE AN ACCOUNT
                     </button>
@@ -84,7 +99,26 @@ const Login = () => {
     );
 }
 
-export default Login
+const stpm = (state) => ({
+    currentUser: state.userReducer.currentUser
+})
+
+const dtpm = (dispatch) => ({
+
+    attemptUserLogin: (username, password) =>
+        userService.loginUser(username, password)
+            .then(user => dispatch({
+                type: "LOGIN_USER",
+                user: user
+            })),
+})
+
+
+export default (connect(
+        stpm,
+        dtpm)
+    (Login)
+)
 
 
 

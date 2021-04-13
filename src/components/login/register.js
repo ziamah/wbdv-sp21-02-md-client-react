@@ -1,13 +1,24 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-
-const Register = () => {
-    //TODO onClick use props to route to homwpage with authorization
-    //Pass props to homepage
+import {connect} from 'react-redux'
+import userService from '../../services/users-service'
+const Register = (
+    {
+        createUser,
+        registerUser,
+    }
+) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
+    const [userName, setUsername] = useState("");
     const [role, setRole] = useState("");
+
+    const validateForm = () => email.length > 0 && password.length > 0 && userName.length > 0;
+    const handleSubmit = async () => {
+        const newUser = {userName: userName, userPW: password, userRole: role, userEmail: email}
+        await createUser(newUser)
+        await registerUser(newUser)
+    }
 
     return (
         <div className="container-fluid">
@@ -27,7 +38,9 @@ const Register = () => {
                            placeholder="Username"
                            title="Please type your username"
                            className="form-control"
-                           id="username"/>
+                           id="username"
+                           onChange={(event) => setUsername(event.target.value)}
+                           value={userName}/>
                 </div>
             </div>
             <div className="mb-4 row">
@@ -36,23 +49,20 @@ const Register = () => {
                            placeholder="Email"
                            title="Please type your email"
                            className="form-control"
-                           id="email"/>
+                           id="email"
+                           onChange={(event) => setEmail(event.target.value)}
+                           value={email}/>
                 </div>
             </div>
 
             <div className="mb-4 row">
                 <div className="container-sm">
-                    <select value={role} className="form-control">
+                    <select onChange={(e) => setRole(e.target.value)}
+                            value={role} className="form-control">
                         <option value={1}>Basic User</option>
                         <option value={2}>Recipe Author</option>
                         <option value={3}>Staff</option>
                     </select>
-
-                {/*    <select id="role"*/}
-                {/*           placeholder="Role"*/}
-                {/*           title="Please select your role"*/}
-                {/*           className="form-control"*/}
-                {/*</select>*/}
                 </div>
             </div>
 
@@ -62,7 +72,9 @@ const Register = () => {
                            placeholder="Password"
                            title="Please type your password"
                            className="form-control"
-                           id="password"/>
+                           id="password"
+                           onChange={(event) => setPassword(event.target.value)}
+                           value={password}/>
                 </div>
             </div>
             <div className="mb-4 row">
@@ -81,9 +93,11 @@ const Register = () => {
             </div>
 
             <div className="row wbdv-center-in-div">
-                {/*TODO: set Link address to sign up page*/}
-                <Link to={"#"}>
-                    <button className="btn wbdv-affirmative-btn">
+                <Link to="/home">
+                    <button className="btn wbdv-affirmative-btn"
+                            onClick={() => {
+                                validateForm && handleSubmit()
+                            }}>
                         REGISTER ACCOUNT
                     </button>
                 </Link>
@@ -92,8 +106,7 @@ const Register = () => {
                 or
             </div>
             <div className="row wbdv-center-in-div">
-                {/*TODO: set Link address to sign up page*/}
-                <Link to={"#"}>
+                <Link to="/home">
                     <Link className="wbdv-link-text" to={"/home"}>
                         Continue as Guest
                     </Link>
@@ -104,4 +117,43 @@ const Register = () => {
     );
 }
 
-export default Register
+const stpm = (state) => ({
+    currentUser: state.userReducer.currentUser
+})
+
+const dtpm = (dispatch) => ({
+
+    createUser: (user) =>
+        userService.createUser(user)
+            .then(user => dispatch({
+                type: "CREATE_USER",
+                user: user
+            })),
+
+    attemptUserLogin: (username, password) =>
+        userService.loginUser(username, password)
+            .then(user => dispatch({
+                type: "LOGIN_USER",
+                user: user
+            })),
+
+    registerUser: (user) =>
+        userService.registerUser(user)
+            .then(user => dispatch({
+                type: "REGISTER_USER",
+                user: user
+            })),
+
+    getCurrentUser: () =>
+        userService.getCurrentUser()
+            .then(user => dispatch({
+                type: "CURRENT_USER",
+                user: user
+            }))
+})
+
+export default (connect(
+        stpm,
+        dtpm)
+    (Register)
+)
