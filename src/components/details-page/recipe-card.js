@@ -1,13 +1,12 @@
 import DietTag from "./diet-tag";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {render} from "@testing-library/react";
-import API_KEY_const from "../../api";
+import RAPID_API_KEY_const from "../../api";
 
 const RecipeCard = () => {
     const{id} = useParams()
 
-    const API_KEY = API_KEY_const
+    const RAPID_API_KEY = RAPID_API_KEY_const
 
     useEffect(() => {
         getDetails();
@@ -16,7 +15,13 @@ const RecipeCard = () => {
     const [recipeDetails, setRecipeDetails] = useState({});
 
     const getDetails = async () => {
-        const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
+        const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": `${RAPID_API_KEY}`,
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
+        });
         const data = await response.json();
         setRecipeDetails(data);
         console.log(data);
