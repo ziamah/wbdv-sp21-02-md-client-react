@@ -7,6 +7,7 @@ const NavigationLinks = (
     logoutUser
 ) => {
     currentUser = userService.getCurrentUser();
+    console.log(currentUser.username)
     return (
         <>
             {/*TODO: The links that are visible should depend on the current page and user type*/}
