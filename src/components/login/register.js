@@ -59,9 +59,9 @@ const Register = (
                 <div className="container-sm">
                     <select onChange={(e) => setRole(e.target.value)}
                             value={role} className="form-control">
-                        <option value={1}>Basic User</option>
-                        <option value={2}>Recipe Author</option>
-                        <option value={3}>Staff</option>
+                        <option value={"1"}>Basic User</option>
+                        <option value={"2"}>Recipe Author</option>
+                        <option value={"3"}>Staff</option>
                     </select>
                 </div>
             </div>
