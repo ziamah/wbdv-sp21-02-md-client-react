@@ -7,7 +7,7 @@ const NavigationLinks = (
     logoutUser
 ) => {
     currentUser = userService.getCurrentUser();
-    console.log(currentUser.username)
+    console.log(currentUser.userName)
     return (
         <>
             {/*TODO: The links that are visible should depend on the current page and user type*/}
@@ -23,7 +23,7 @@ const NavigationLinks = (
             <Link to="/home">
                 <button className="btn wbdv-navbar-btn"
                         onClick={() => logoutUser()}>
-                    {currentUser.username ? currentUser.userName : "not fetching"}
+                    logout
                 </button>
             </Link>
             <Link to="/new-recipe">
