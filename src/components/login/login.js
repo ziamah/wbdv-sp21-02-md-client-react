@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux'
 import userService from '../../services/users-service'
@@ -7,20 +7,23 @@ import userService from '../../services/users-service'
 const Login = (
     {
         currentUser = {},
-        attemptUserLogin
+        attemptUserLogin,
+        getCurrentUser
     }
 ) => {
-    //TODO onClick use props to route to homepage with authorization
     const [userName, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    // const [current, setCurrent] = useState({});
+
+    // useEffect (() => {
+    //     const user = getCurrentUser();
+    //     setCurrent(user);
+    // }, [getCurrentUser])
 
     const validateForm = () => userName.length > 0 && password.length > 0;
 
-    const handleSubmit = () => {
-        const user = attemptUserLogin(userName, password);
-        console.log(userName)
-        console.log(password)
-        console.log(user)
+    const handleSubmit = async () => {
+        await attemptUserLogin(userName, password);
     };
 
     return (
@@ -34,7 +37,7 @@ const Login = (
                 <h1 className="h1 wbdv-center-in-div">
                     Sign In
                 </h1> </div>
-
+            {/*{current ? typeof current.userName : current === {} ?  "{}" : "not fetching"}*/}
             <div className="mb-4 row">
                 <div className="container-sm">
                     {/*<div>*/}
@@ -71,9 +74,9 @@ const Login = (
             <div className="row wbdv-center-in-div">
                 <Link to="/home">
                     <button className="btn wbdv-affirmative-btn"
-                            onClick = {() => {
+                            onClick = {async () => {
                                 validateForm();
-                                handleSubmit()
+                                await handleSubmit()
                             }}>
                         SIGN IN
                     </button>
@@ -111,14 +114,20 @@ const dtpm = (dispatch) => ({
                 type: "LOGIN_USER",
                 user: user
             })),
+    getCurrentUser: () =>
+        userService.getCurrentUser()
+            .then(user => dispatch({
+                type: "CURRENT_USER",
+                user: user
+            }))
 })
 
 
-export default (connect(
+export default connect(
         stpm,
         dtpm)
     (Login)
-)
+
 
 
 
