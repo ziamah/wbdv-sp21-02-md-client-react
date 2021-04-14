@@ -150,10 +150,8 @@ const dtpm = (dispatch) => ({
                 type: "CURRENT_USER",
                 user: user
             }))
-})
-
-export default (connect(
-        stpm,
-        dtpm)
-    (Register)
+}
 )
+
+export default connect(stpm, dtpm)
+(Register)

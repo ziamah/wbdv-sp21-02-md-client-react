@@ -20,7 +20,7 @@ const userReducer = (state=initialState, action) => {
             }
         case "LOGOUT_USER":
             return {
-                currentUser: {}
+                currentUser: initialState.currentUser
             }
         case "CURRENT_USER":
             return {

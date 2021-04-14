@@ -22,7 +22,7 @@ const NavigationLinks = (
             </Link>
             <Link to="/home">
                 <button className="btn wbdv-navbar-btn"
-                        onClick={() => logoutUser()}>
+                        onClick={() => userService.logoutUser()}>
                     logout
                 </button>
             </Link>
@@ -59,7 +59,5 @@ const dtpm = (dispatch) => ({
             }))
 })
 
-export default (connect(
-    stpm,
-    dtpm)
-(NavigationLinks))
+export default connect(stpm, dtpm)
+(NavigationLinks)

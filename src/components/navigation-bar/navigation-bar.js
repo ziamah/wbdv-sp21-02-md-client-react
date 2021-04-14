@@ -2,7 +2,7 @@ import {React, useState, useEffect} from "react";
 import {Link, NavLink, Route, Redirect} from 'react-router-dom';
 import "../../index.css";
 import NavigationLinks from "./navigation-links";
-import {getCurrentUser, loginUser, logoutUser} from "../../services/users-service";
+import userService, {getCurrentUser, loginUser, logoutUser} from "../../services/users-service";
 
 
 const NavigationBar = () => {
@@ -63,7 +63,7 @@ const NavigationBar = () => {
                                 <a className="dropdown-item wbdv-body-text" href="/profile">profile</a>
                                 <a className="dropdown-item wbdv-body-text" href="/new-recipe">new recipe</a>
                                 <a className="dropdown-item wbdv-body-text" href="/login">sign in</a>
-                                <a className="dropdown-item wbdv-body-text" onClick={() => logoutUser()}>logout</a>
+                                <a className="dropdown-item wbdv-body-text" onClick={() => userService.logoutUser()}>logout</a>
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ const Login = (
 ) => {
     const [userName, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [current, setCurrent] = useState({});
+    // const [current, setCurrent] = useState({});
 
     // useEffect (() => {
     //     const user = getCurrentUser();
@@ -74,9 +74,9 @@ const Login = (
             <div className="row wbdv-center-in-div">
                 <Link to="/home">
                     <button className="btn wbdv-affirmative-btn"
-                            onClick = {() => {
+                            onClick = {async () => {
                                 validateForm();
-                                handleSubmit()
+                                await handleSubmit()
                             }}>
                         SIGN IN
                     </button>
@@ -123,11 +123,11 @@ const dtpm = (dispatch) => ({
 })
 
 
-export default (connect(
+export default connect(
         stpm,
         dtpm)
     (Login)
-)
+
 
 
 
