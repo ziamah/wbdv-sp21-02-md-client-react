@@ -26,6 +26,11 @@ const NavigationLinks = (
                     logout
                 </button>
             </Link>
+            <Link to="/login">
+                <button className="btn wbdv-navbar-btn">
+                    sign in
+                </button>
+            </Link>
             <Link to="/new-recipe">
                 <button className="btn wbdv-navbar-btn">
                     <i className="fas fa-plus-circle"></i>
