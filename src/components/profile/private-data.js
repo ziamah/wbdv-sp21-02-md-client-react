@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
 const PrivateData = ({userName, setUserName, userPassword, setUserPassword, updateUser, userId, user,
-userBio, setUserBio}) =>
+userBio, setUserBio, profileImage, setProfileImage}) =>
 
  {
 
@@ -24,7 +24,8 @@ userBio, setUserBio}) =>
 
         {editing &&
                     <i onClick={() => {setEditing(false);
-                       updateUser(userId, {...user, userName:userName, userPW:userPassword, userBio:userBio});
+                       updateUser(userId, {...user, userName:userName, userPW:userPassword, userBio:userBio,
+                       userPicUrl:profileImage});
                        }} className="float-right fas fa-check"></i>
 
         }
@@ -114,6 +115,24 @@ userBio, setUserBio}) =>
 
                       </div>
                 </div>
+        }
+
+
+        { editing &&
+            <div className="form-group row">
+               <div class="col-5">
+                      <label for="pImage" className="">
+                              PIC
+                      </label>
+               </div>
+               <div id="pImage" className="col-7">
+
+                 <input className = "form-control" onChange = {(event) => {setProfileImage(event.target.value);
+                                                                                }}
+                                      value={profileImage}/>
+
+               </div>
+            </div>
         }
 
 

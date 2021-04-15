@@ -196,6 +196,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                       setUserBio = {setUserBio}
                                       userPassword = {userPassword}
                                       setUserPassword = {setUserPassword}
+                                      profileImage = {profileImage}
+                                      setProfileImage = {setProfileImage}
                                       user = {user}
                                       />
                     </div>
