@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 
 const SignUpWidget = ({title, page}) => {
     let backgroundClassName = ''
-    if (page === "home") {
+    if (page === "home" || page === "new-recipe") {
         backgroundClassName = "wbdv-widget-container"
     }
     if (page ==="detail") {

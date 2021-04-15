@@ -2,11 +2,20 @@ import DietTag from "./diet-tag";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import RAPID_API_KEY_const from "../../api";
+import userService from '../../services/users-service'
 
 const RecipeCard = () => {
     const{id} = useParams()
 
     const RAPID_API_KEY = RAPID_API_KEY_const
+
+    const currentUser = userService.getCurrentUser();
+
+    // TODO: Uncomment function to use for delete recipe button
+    // // Returns a boolean value determining whether recipe is user submitted or not
+    // const isUserRecipe = () => {
+    //     return recipe.recipeID.toString().includes("hero_");
+    // }
 
     useEffect(() => {
         getDetails();
@@ -61,10 +70,14 @@ const RecipeCard = () => {
             </div>
             <hr/>
             <div className="row wbdv-widget-interior wbdv-center-in-div">
-                {/*TODO: This button's visibility should only toggle on for the recipe author and admin users*/}
-                <button className="btn wbdv-danger-btn">
-                    DELETE RECIPE
-                </button>
+                {/* TODO: Delete button should also be visible if recipe is user-submitted and currentUser.userID === recipe.userID */}
+                {
+                    currentUser.userRole === "3" &&
+                    <button className="btn wbdv-danger-btn">
+                        {/* TODO: delete recipe onClick -- should we add an "are your sure?" modal? */}
+                        DELETE RECIPE
+                    </button>
+                }
             </div>
             <div className="row wbdv-widget-interior">
                 <div className="col-12 col-sm-6">

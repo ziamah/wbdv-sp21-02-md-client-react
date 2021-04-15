@@ -1,8 +1,10 @@
 import WriteAReview from "./write-a-review-form";
 import ReviewCard from "./review-card";
 import SignUpWidget from "../home-page/sign-up-widget";
+import userService from '../../services/users-service'
 
 const ReviewsWidget = () => {
+    const currentUser = userService.getCurrentUser()
     return (
             <div className="col-12 wbdv-widget-container wbdv-widget-interior">
                 <div className="col-12">
@@ -11,10 +13,15 @@ const ReviewsWidget = () => {
             </div>
                 <div className="row">
                     <div className="col-12 col-md-4">
-                        {/*TODO: display one or the other of these widgets depending on whether the user is signed in*/}
-                        <SignUpWidget title={"Sign in to leave a review"}
-                                      page={"detail"}/>
-                        <WriteAReview/>
+                        {
+                            currentUser.userName !== undefined &&
+                            <WriteAReview/>
+                        }
+                        {
+                            currentUser.userName === undefined &&
+                            <SignUpWidget title={"Sign in to leave a review"}
+                                          page={"detail"}/>
+                        }
                     </div>
                     <div className="col-12 col-md-8">
                         {/*TODO: Map reviews to reviewCards*/}
