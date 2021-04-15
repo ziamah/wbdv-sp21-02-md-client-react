@@ -6,6 +6,7 @@ import UserList from './user-list'
 import RecipeList from './recipe-list'
 //import NavigationBar from './navigation-bar'
 import userService from "../profile-services/user-service";
+import mainUserService from '../../services/users-service'
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                  likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -21,6 +22,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userFollowed, setUserFollowed] = useState()
     const {userId} = useParams();
     console.log({userId});
+
+    const currentUser = mainUserService.getCurrentUser()
 
     useEffect(() => {
         userService.findUserById(userId)
@@ -137,14 +140,17 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     </div>
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                         <PrivateData userName = {userName}
-                                      setUserName = {setUserName}
-                                      updateUser = {userService.updateUser}
-                                      userId = {userId}
-                                      userPassword = {userPassword}
-                                      setUserPassword = {setUserPassword}
-                                      user = {user}
-                                      />
+                        {
+                            currentUser.userName !== undefined &&
+                            <PrivateData userName = {userName}
+                                         setUserName = {setUserName}
+                                         updateUser = {userService.updateUser}
+                                         userId = {userId}
+                                         userPassword = {userPassword}
+                                         setUserPassword = {setUserPassword}
+                                         user = {user}
+                            />
+                        }
                     </div>
 
 
