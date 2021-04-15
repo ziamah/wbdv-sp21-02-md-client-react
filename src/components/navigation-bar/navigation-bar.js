@@ -3,11 +3,19 @@ import {Link, NavLink, Route, Redirect} from 'react-router-dom';
 import "../../index.css";
 import NavigationLinks from "./navigation-links";
 import userService, {getCurrentUser, loginUser, logoutUser} from "../../services/users-service";
+import {connect} from "react-redux";
 
 
-const NavigationBar = () => {
+const NavigationBar = (
+    {
+        currentUser,
+        getCurrentUser
+    }
+) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [query, setQuery] = useState('testing');
+
+    currentUser = userService.getCurrentUser();
 
     const updateSearch = e => {
         setSearchTerm(e.target.value);
@@ -60,10 +68,21 @@ const NavigationBar = () => {
 
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a className="dropdown-item wbdv-body-text" href="/home">home</a>
-                                <a className="dropdown-item wbdv-body-text" href="/profile">profile</a>
-                                <a className="dropdown-item wbdv-body-text" href="/new-recipe">new recipe</a>
-                                <a className="dropdown-item wbdv-body-text" href="/login">sign in</a>
-                                <a className="dropdown-item wbdv-body-text" onClick={() => userService.logoutUser()}>logout</a>
+                                {
+                                    currentUser.userName !== undefined && currentUser.userRole !== "1" &&
+                                    <a className="dropdown-item wbdv-body-text" href="/new-recipe">new recipe</a>
+                                }
+                                {
+                                    currentUser.userName !== undefined &&
+                                        <>
+                                            <a className="dropdown-item wbdv-body-text" href="/profile">profile</a>
+                                            <a className="dropdown-item wbdv-body-text" onClick={() => userService.logoutUser()}>logout</a>
+                                        </>
+                                }
+                                {
+                                    currentUser.userName === undefined &&
+                                    <a className="dropdown-item wbdv-body-text" href="/login">sign in</a>
+                                }
                             </div>
                         </div>
                     </div>
@@ -73,4 +92,21 @@ const NavigationBar = () => {
     )
 }
 
-export default NavigationBar;
+const stpm = (state) => ({
+    currentUser: state.userReducer.currentUser
+})
+
+const dtpm = (dispatch) => ({
+    getCurrentUser: () =>
+        userService.getCurrentUser()
+            .then(user => dispatch({
+                type: "CURRENT_USER",
+                user: user
+            }))
+})
+
+
+export default connect(
+    stpm,
+    dtpm)
+(NavigationBar)

@@ -13,9 +13,9 @@ import {Provider} from "react-redux";
 import userReducer from "../reducers/user-reducer";
 
 const reducer = combineReducers({
-                                    userReducer: userReducer,
+    userReducer: userReducer,
 
-                                })
+})
 
 const store = createStore(reducer)
 
@@ -24,30 +24,48 @@ class BaseApp extends React.Component {
         return (
             <Provider store={store}>
                 <div className="container-fluid">
-                    <NavigationBar></NavigationBar>
-                    <div className="wbdv-page-content">
-                        <Route exact path={["/", "/home"]}>
-                        <HomePage/>
+                    <Route exact path={["/", "/home"]}>
+                        <NavigationBar></NavigationBar>
+                        <div className="wbdv-page-content">
+                            <HomePage/>
+                        </div>
                     </Route>
-                        <Route path="/profile">
+                    <Route path="/profile">
+                        <NavigationBar></NavigationBar>
+                        <div className="wbdv-page-content">
                             <Profile/>
-                        </Route>
-                        <Route path="/new-recipe">
+                        </div>
+                    </Route>
+                    <Route path="/new-recipe">
+                        <NavigationBar></NavigationBar>
+                        <div className="wbdv-page-content">
                             <NewRecipe/>
-                        </Route>
-                        <Route exact path={["/details", "/details/:id"]}>
+                        </div>
+                    </Route>
+                    <Route exact path={["/details", "/details/:id"]}>
+                        <NavigationBar></NavigationBar>
+                        <div className="wbdv-page-content">
                             <DetailsPage/>
-                        </Route>
-                        <Route path="/login">
+                        </div>
+                    </Route>
+                    <Route path="/login">
+                        <NavigationBar></NavigationBar>
+                        <div className="wbdv-page-content">
                             <Login/>
-                        </Route>
-                        <Route path="/register">
+                        </div>
+                    </Route>
+                    <Route path="/register">
+                        <NavigationBar></NavigationBar>
+                        <div className="wbdv-page-content">
                             <Register/>
-                        </Route>
-                        <Route exact path={["/search", "/search/:term"]}>
+                        </div>
+                    </Route>
+                    <Route exact path={["/search", "/search/:term"]}>
+                        <NavigationBar></NavigationBar>
+                        <div className="wbdv-page-content">
                             <SearchGrid/>
-                        </Route>
-                    </div>
+                        </div>
+                    </Route>
                 </div>
             </Provider>
         )
