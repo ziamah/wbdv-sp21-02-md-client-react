@@ -4,10 +4,12 @@ import PrivateData from './private-data';
 import './profile.css'
 import UserList from './user-list'
 import RecipeList from './recipe-list'
-//import NavigationBar from './navigation-bar'
+import UserRecipeList from './user-recipe-list'
 import userService from "../profile-services/user-service";
 import followerService from "../profile-services/follower-service";
 import favoriteService from "../profile-services/favorite-service";
+import reviewService from "../profile-services/review-service";
+import userRecipeService from "../profile-services/userrecipe-service";
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                  likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -25,6 +27,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [folllowerUsers, setFollowerUsers] = useState([]);
     const [folllowedUsers, setFollowedUsers] = useState([]);
     const [favoriteRecipeId, setFavoriteRecipeId] = useState([]);
+    const [reviewRecipeId, setReviewRecipeId] = useState([]);
+    const [userRecipes, setUserRecipes] = useState([]);
     console.log({userId});
 
     useEffect(() => {
@@ -48,6 +52,17 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                         .then(recipes => {
                             setFavoriteRecipeId(recipes)
                         })
+
+        reviewService.findReviewsByUserId(userId)
+                                .then(recipes => {
+                                    setReviewRecipeId(recipes)
+                                })
+
+        userRecipeService.findUserRecipesByUserId(userId)
+                                        .then(recipes => {
+                                            setUserRecipes(recipes)
+                                })
+
 
         }, [userId])
 
@@ -73,6 +88,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log(userFollowing)
     console.log(userFollowed)
     console.log(favoriteRecipeId)
+    console.log(reviewRecipeId)
+    console.log(userRecipes)
 
 
 
@@ -157,15 +174,15 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
-                        <RecipeList recipes={["recipe1 description link", "recipe2 description link",
-                        "recipe3 description link"]}/>
+                        <UserRecipeList recipes={["recipe1 description link", "recipe2 description link",
+                        "recipe3 description link"]} myRecipes={userRecipes}/>
 
                     </div>
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link",
-                        "recipe3 description link"]}
+                        "recipe3 description link"]}  favId={reviewRecipeId}
                         heading="My Reviewed Recipes"/>
 
                     </div>
