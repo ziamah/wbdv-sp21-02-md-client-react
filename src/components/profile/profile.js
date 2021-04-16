@@ -10,6 +10,7 @@ import followerService from "../profile-services/follower-service";
 import favoriteService from "../profile-services/favorite-service";
 import reviewService from "../profile-services/review-service";
 import userRecipeService from "../profile-services/userrecipe-service";
+import recipeIdRegEx from "./recipe-regex";
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                  likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -29,6 +30,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [favoriteRecipeId, setFavoriteRecipeId] = useState([]);
     const [reviewRecipeId, setReviewRecipeId] = useState([]);
     const [userRecipes, setUserRecipes] = useState([]);
+    const [favoriteRecipeIdType, setFavoriteRecipeIdType] = useState([]);
+    const [reviewRecipeIdType, setReviewRecipeIdType] = useState([]);
     console.log({userId});
 
     useEffect(() => {
@@ -82,6 +85,37 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
         }, [userFollowing, userFollowed])
 
+
+        useEffect(() => {
+
+            favoriteRecipeId.map(eachId => setFavoriteRecipeIdType(favoriteRecipeIdType =>
+            {
+            if (recipeIdRegEx.test(eachId)) {
+            return [...favoriteRecipeIdType,[eachId, '/userrecipe']]
+            }
+            else {
+                return [...favoriteRecipeIdType,[eachId, '/apirecipe']]
+            }
+            }))
+
+        }, [favoriteRecipeId])
+
+        useEffect(() => {
+             setReviewRecipeIdType([])
+             reviewRecipeId.map(eachId => setReviewRecipeIdType(reviewRecipeIdType =>
+             {
+             if (recipeIdRegEx.test(eachId)) {
+             return[...reviewRecipeIdType,[eachId, '/userrecipe']]
+                    }
+             else {
+                console.log(eachId)
+                return[...reviewRecipeIdType,[eachId, '/apirecipe']]
+             }
+             }))
+
+        }, [reviewRecipeId])
+
+
     console.log(userName)
     console.log(profileImage)
     console.log(userBio)
@@ -91,7 +125,10 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log(favoriteRecipeId)
     console.log(reviewRecipeId)
     console.log(userRecipes)
-
+    //console.log(favoriteRecipeId[1])
+    //console.log(recipeIdRegEx.test(favoriteRecipeId[1]))
+    console.log(favoriteRecipeIdType)
+    console.log(reviewRecipeIdType)
 
 
     return(
@@ -165,7 +202,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link",
-                        "recipe3 description link"]} favId={favoriteRecipeId}
+                        "recipe3 description link"]} favId={favoriteRecipeIdType}
                         heading="My Favorite Recipes"/>
 
 
@@ -183,7 +220,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link",
-                        "recipe3 description link"]}  favId={reviewRecipeId}
+                        "recipe3 description link"]}  favId={reviewRecipeIdType}
                         heading="My Reviewed Recipes"/>
 
                     </div>

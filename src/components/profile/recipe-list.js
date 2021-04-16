@@ -19,7 +19,14 @@ const [openCollapse, setOpenCollapse] = useState(false);
                 <ul>
                     {
                         //recipes.map((recipe, index) => <li>{recipe}</li>)
-                        favId.map(id => <li><Link to={`/profile/user/${id}`}>{id}</Link></li>)
+                        favId.map(id =>
+
+                        <li>
+                             {/*<Link to={`/profile/user/${id[0]}`}>{id[0]}</Link>*/}
+                             <Link to={`${id[1]}`}>{id[0]}</Link>
+                        </li>
+
+                        )
                     }
                 </ul>
             </Collapse>
