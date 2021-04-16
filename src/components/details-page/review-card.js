@@ -3,7 +3,7 @@ const ReviewCard = () => {
         <div className="wbdv-review-card wbdv-widget-interior">
             <div className="row">
                 <div className="col-1">
-                    {/*TODO: Profile image goes here*/}
+                    {/*TODO: Profile image goes here -- if none, display default image*/}
                     <img className="d-block w-100 wbdv-padded-img"
                          src="https://www.greenecountyfoundation.org/wp-content/uploads/2019/09/Profile-Icon.png"
                          alt="default profile picture"></img>

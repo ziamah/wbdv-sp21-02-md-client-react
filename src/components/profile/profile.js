@@ -6,6 +6,8 @@ import UserList from './user-list'
 import RecipeList from './recipe-list'
 //import NavigationBar from './navigation-bar'
 import userService from "../profile-services/user-service";
+import mainUserService from '../../services/users-service'
+import favoritesService from '../../services/favorites-service';
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                  likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -19,8 +21,11 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userPassword, setUserPassword] = useState("123")
     const [userFollowing, setUserFollowing] = useState()
     const [userFollowed, setUserFollowed] = useState()
+    const [userFavorites, setUserFavorites] = useState([])
     const {userId} = useParams();
     console.log({userId});
+
+    const currentUser = mainUserService.getCurrentUser()
 
     useEffect(() => {
         userService.findUserById(userId)
@@ -33,6 +38,10 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                    setUserFollowing(user.userFollowing);
                                    setUserFollowed(user.userFollowed);
                                    })
+        favoritesService.findFavoritesByUser(userId)
+            .then(favorites => {
+                setUserFavorites(favorites)
+            })
 
         }, [userId])
 
@@ -112,8 +121,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
 
-                        <RecipeList recipes={["recipe1 description link", "recipe2 description link",
-                        "recipe3 description link"]}
+                        <RecipeList recipes={userFavorites}
                         heading="My Favorite Recipes"/>
 
 
@@ -137,14 +145,17 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     </div>
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                         <PrivateData userName = {userName}
-                                      setUserName = {setUserName}
-                                      updateUser = {userService.updateUser}
-                                      userId = {userId}
-                                      userPassword = {userPassword}
-                                      setUserPassword = {setUserPassword}
-                                      user = {user}
-                                      />
+                        {
+                            currentUser.userName !== undefined &&
+                            <PrivateData userName = {userName}
+                                         setUserName = {setUserName}
+                                         updateUser = {userService.updateUser}
+                                         userId = {userId}
+                                         userPassword = {userPassword}
+                                         setUserPassword = {setUserPassword}
+                                         user = {user}
+                            />
+                        }
                     </div>
 
 
