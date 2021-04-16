@@ -55,7 +55,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
         reviewService.findReviewsByUserId(userId)
                                 .then(recipes => {
-                                    setReviewRecipeId(recipes)
+                                    //setReviewRecipeId(recipes)
+                                    recipes.map(eachRecipe => setReviewRecipeId(reviewRecipeId => [...reviewRecipeId,eachRecipe.recipeID]))
                                 })
 
         userRecipeService.findUserRecipesByUserId(userId)
