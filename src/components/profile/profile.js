@@ -94,7 +94,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
             return [...favoriteRecipeIdType,[eachId, '/userrecipe']]
             }
             else {
-                return [...favoriteRecipeIdType,[eachId, '/apirecipe']]
+                return [...favoriteRecipeIdType,[eachId, `/details/${eachId}`]]
             }
             }))
 
@@ -109,7 +109,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     }
              else {
                 console.log(eachId)
-                return[...reviewRecipeIdType,[eachId, '/apirecipe']]
+                return[...reviewRecipeIdType,[eachId, `/details/${eachId}`]]
              }
              }))
 
@@ -156,6 +156,12 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     <div><h3 className="card-title color-green profile-bold">{userName}</h3></div>
                     <div className="color-black review-numbers-font-size">10 reviews!</div>
                     <div className="card-text color-brown">{userBio}</div>
+                    <br/>
+                    <div>
+                        <i type="button" className="btn btn-success" onClick={() => {}}>
+                            Follow Me
+                        </i>
+                    </div>
 
                 </div>
 
