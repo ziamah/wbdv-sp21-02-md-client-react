@@ -25,6 +25,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userFollowing, setUserFollowing] = useState([-1])
     const [userFollowed, setUserFollowed] = useState([-1])
     const {userId} = useParams();
+    const [followerObject, setFollowerObject] = useState();
     const [folllowerUsers, setFollowerUsers] = useState([]);
     const [folllowedUsers, setFollowedUsers] = useState([]);
     const [favoriteRecipeId, setFavoriteRecipeId] = useState([]);
@@ -35,6 +36,11 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [curUser, setCurUser] = useState(1);
     const [alreadyFollowing, setAlreadyFollowing] = useState(false);
     console.log({userId});
+
+    const addFollower = () => {
+        followerService.updateFollower(userId,{...followerObject, userFollowed:[...userFollowed,curUser]})
+        .then(setUserFollowed([...userFollowed,curUser]))
+    }
 
     useEffect(() => {
         userService.findUserById(userId)
@@ -49,6 +55,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
         followerService.findFollowerById(userId)
                     .then(user =>  {
+                                    setFollowerObject(user);
                                     setUserFollowing(user.userFollowing);
                                     setUserFollowed(user.userFollowed);
                                     })
@@ -75,16 +82,16 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
         useEffect(() => {
 
-            userService.findUserListById(userFollowing)
+            userService.findUserListById(userFollowed)
                         .then(users => {
                                           setFollowerUsers(users)
                                        })
-            userService.findUserListById(userFollowed)
+            userService.findUserListById(userFollowing)
                                     .then(users => {
                                                       setFollowedUsers(users)
                                                    })
 
-            userFollowing.map(eachId => {
+            userFollowed.map(eachId => {
                 if (eachId == curUser) {
                     setAlreadyFollowing(true)
                 }
@@ -128,6 +135,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log(profileImage)
     console.log(userBio)
     console.log(userPassword)
+    console.log(followerObject)
     console.log(userFollowing)
     console.log(userFollowed)
     console.log(favoriteRecipeId)
@@ -167,7 +175,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     <br/>
                     <div>
                         {!alreadyFollowing && curUser!=userId &&
-                        <i type="button" className="btn btn-success" onClick={() => {}}>
+                        <i type="button" className="btn btn-success" onClick={() => addFollower()}>
                             Follow Me
                         </i>
                         }
