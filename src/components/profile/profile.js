@@ -34,12 +34,15 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [favoriteRecipeIdType, setFavoriteRecipeIdType] = useState([]);
     const [reviewRecipeIdType, setReviewRecipeIdType] = useState([]);
     const [curUser, setCurUser] = useState(1);
+    const [followerObjectLoggedIn, setFollowerObjectLoggedIn] = useState();
     const [alreadyFollowing, setAlreadyFollowing] = useState(false);
     console.log({userId});
 
     const addFollower = () => {
         followerService.updateFollower(userId,{...followerObject, userFollowed:[...userFollowed,curUser]})
         .then(setUserFollowed([...userFollowed,curUser]))
+
+        followerService.updateFollower(curUser,{...followerObjectLoggedIn,userFollowing:[...followerObjectLoggedIn.userFollowing,userId]})
     }
 
     useEffect(() => {
@@ -60,6 +63,11 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                     setUserFollowed(user.userFollowed);
                                     })
 
+        followerService.findFollowerById(curUser)
+                    .then(user =>  {
+                                    setFollowerObjectLoggedIn(user);
+
+                                    })
         favoriteService.findFavoritesByUserId(userId)
                         .then(recipes => {
                             setFavoriteRecipeId(recipes)
