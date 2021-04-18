@@ -1,7 +1,8 @@
 import React from 'react'
 
 const initialState = {
-    currentUserFavorites: []
+    currentUserFavorites: [],
+    currentRecipeFavorites: []
 };
 
 const favoritesReducer = (state = initialState, action) => {
@@ -26,7 +27,10 @@ const favoritesReducer = (state = initialState, action) => {
             }
         case "FIND_FAVORITES_FOR_RECIPE":
             return {
-                currentUserFavorites: action.favorites
+                currentRecipeFavorites: [
+                    ...state.currentUserFavorites,
+                    action.favorites
+                ]
             }
         default:
             return state

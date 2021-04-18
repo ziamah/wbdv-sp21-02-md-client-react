@@ -2,12 +2,16 @@ import DietTag from "./diet-tag";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import RAPID_API_KEY_const from "../../api";
-import userService from '../../services/users-service'
+import favoritesService, {findFavoritesByRecipe} from "../../services/favorites-service";
 
 const RecipeCard = ({user}) => {
     const{id} = useParams()
-
     const RAPID_API_KEY = RAPID_API_KEY_const
+    const [recipeDetails, setRecipeDetails] = useState({});
+    const [favoriteId, setFavoriteId] = useState(undefined)
+    const [favoritesCount, setFavoritesCount] = useState()
+    const [isFavorite, setIsFavorite] = useState(false)
+
 
     // TODO: Uncomment function to use for delete recipe button
     // // Returns a boolean value determining whether recipe is user submitted or not
@@ -17,21 +21,31 @@ const RecipeCard = ({user}) => {
 
     useEffect(() => {
         getDetails();
+        const favoritesList = findFavoritesByRecipe(id)
+        setFavoritesCount(favoritesList.length)
+        const favoriteObject = favoritesList.find(favorite => favorite.userId === user.userId)
+        if (favoriteObject !== undefined) {
+            setIsFavorite(true)
+            setFavoriteId(favoriteObject.id)
+        }
     }, []);
 
-    const [recipeDetails, setRecipeDetails] = useState({});
+
 
     const getDetails = async () => {
-        const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-key": `${RAPID_API_KEY}`,
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-            }
-        });
-        const data = await response.json();
-        setRecipeDetails(data);
-        console.log(data);
+        if (!id.toString().includes("hero_")) {
+            const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-key": `${RAPID_API_KEY}`,
+                    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+                }
+            });
+            const data = await response.json();
+            setRecipeDetails(data);
+            console.log(data);
+        }
+    //    TODO: add "else" statement that gets recipe details from recipe service
     };
 
     const removeTags = (str) => {
@@ -90,10 +104,25 @@ const RecipeCard = ({user}) => {
                     </p>
                     <p className="row">
                         <div className="wbdv-body-text">
-                            {/*TODO: Make toggleable so that user can favorite/unfavorite*/}
-                            <i className="fas fa-heart wbdv-padded-icon"></i>
-                            16
+                            {
+                                isFavorite &&
+                                <i className="fas fa-heart wbdv-padded-icon" onClick={() => {
+                                    favoritesService.deleteFavorite(favoriteId);
+                                    setFavoritesCount(favoritesCount - 1)
+                                }
+                                }></i>
+                            }
+                            {
+                                isFavorite &&
+                                <i className="far fa-heart wbdv-padded-icon" onClick={() => {
+                                    favoritesService.createFavorite({userId: user.id, recipeId: id, recipeName: recipeDetails.title, recipePhotoUrl: recipeDetails.image});
+                                    setFavoritesCount(favoritesCount + 1)
+                                }
+                                }></i>
+                            }
+                            {favoritesCount}
                         </div>
+                        {/* TODO: use reviews service to display correct number of stars */}
                         <div className="wbdv-padded-icon wbdv-body-text wbdv-verticalLine">
                             <i className="fas fa-star"></i>
                             <i className="fas fa-star"></i>
