@@ -8,7 +8,7 @@ const userReducer = (state=initialState, action) => {
     switch (action.type) {
         case "LOGIN_USER":
             return {
-                currentUser: action.user
+                currentUser: (action.user === null ? initialState.currentUser : action.user)
             }
         case "CREATE_USER":
             return {
