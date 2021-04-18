@@ -11,26 +11,9 @@ heading = "Followers", listOfID=[], listOfUsers=[]}) => {
 const [openCollapse, setOpenCollapse] = useState(false);
 
 const [userObjects, setUserObjects] = useState([]);
-/*const findName = ({id}) => {
-
-    userService.findUserById(id)
-                        .then(user => {
-                            setUserObjects((prevList) => [...prevList,user])
 
 
-                        })
-
-
-}*/
-
-
-
-listOfID.map(user => () => console.log(user))
-//listOfID.map(user =>  findName(user))
-console.log(userObjects)
-//findName(1)
-
-
+//listOfID.map(user => () => console.log(user))
 
 
     return (

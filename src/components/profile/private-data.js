@@ -12,13 +12,18 @@ userBio, setUserBio, profileImage, setProfileImage}) =>
  const [editing, setEditing] = useState(false);
 
  return (
- <div className="background-followers">
-        <h1 className="fill-background"> Private Section
+ <div className="background-followers container">
+        <div className="row fill-background">
+        <div>
+           <h1 className="fill-background"> Private Section </h1>
+        </div>
 
+        <div className="add-margin-left-45px">
         {!editing &&
 
-
-                    <i onClick={() => setEditing(true)} className="float-right fas fa-edit"></i>
+                    <span className="">
+                    <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
+                    </span>
 
                  }
 
@@ -26,11 +31,13 @@ userBio, setUserBio, profileImage, setProfileImage}) =>
                     <i onClick={() => {setEditing(false);
                        updateUser(userId, {...user, userName:userName, userPW:userPassword, userBio:userBio,
                        userPicUrl:profileImage});
-                       }} className="float-right fas fa-check"></i>
+                       }} className="fas fa-check"></i>
 
         }
+        </div>
 
-        </h1>
+        {/*</h1>*/}
+        </div>
 
 
 

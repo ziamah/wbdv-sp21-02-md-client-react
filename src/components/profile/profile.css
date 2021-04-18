@@ -197,3 +197,11 @@ hr {
 .fill-heading-background {
     background-color: #d07d62;
 }
+
+.add-margin-left-45px {
+    margin-left: 45px;
+}
+
+.text-color-following {
+    color: #d07d62;
+}

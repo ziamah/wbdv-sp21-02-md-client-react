@@ -32,6 +32,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userRecipes, setUserRecipes] = useState([]);
     const [favoriteRecipeIdType, setFavoriteRecipeIdType] = useState([]);
     const [reviewRecipeIdType, setReviewRecipeIdType] = useState([]);
+    const [curUser, setCurUser] = useState(1);
+    const [alreadyFollowing, setAlreadyFollowing] = useState(false);
     console.log({userId});
 
     useEffect(() => {
@@ -82,12 +84,18 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                                       setFollowedUsers(users)
                                                    })
 
+            userFollowing.map(eachId => {
+                if (eachId == curUser) {
+                    setAlreadyFollowing(true)
+                }
+            })
+
 
         }, [userFollowing, userFollowed])
 
 
         useEffect(() => {
-
+            setFavoriteRecipeIdType([])
             favoriteRecipeId.map(eachId => setFavoriteRecipeIdType(favoriteRecipeIdType =>
             {
             if (recipeIdRegEx.test(eachId)) {
@@ -158,9 +166,14 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     <div className="card-text color-brown">{userBio}</div>
                     <br/>
                     <div>
+                        {!alreadyFollowing && curUser!=userId &&
                         <i type="button" className="btn btn-success" onClick={() => {}}>
                             Follow Me
                         </i>
+                        }
+                        {alreadyFollowing && curUser!=userId &&
+                        <h5 className="text-color-following">Following</h5>
+                        }
                     </div>
 
                 </div>
@@ -231,6 +244,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                     </div>
 
+                    { curUser == userId &&
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
                          <PrivateData userName = {userName}
                                       setUserName = {setUserName}
@@ -245,6 +259,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                       user = {user}
                                       />
                     </div>
+                    }
 
 
 
