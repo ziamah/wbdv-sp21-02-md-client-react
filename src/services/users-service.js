@@ -30,24 +30,31 @@ export const updateUser = (userId, user) =>
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json())
+        .then(response => response.json());
 
 /* Returns a list of all user objects in the database */
 export const findAllUsers = () =>
     fetch(`${baseUrl}/users`)
-        .then(response => response.json())
+        .then(response => response.json());
 
 /* Returns a user object corresponding to the supplied userId */
 export const findUserById = (userId) =>
     fetch(`${baseUrl}/users/${userId}`)
-        .then(response => response.json())
+        .then(response => response.json());
 
 /* User auth operations */
 
 /* Returns a user object if credentials are valid or null if invalid */
 export const loginUser = (username, password) =>
-    fetch(`${baseUrl}/login/${username}/${password}`)
-        .then(response => response.json())
+    fetch(`${baseUrl}/login/${username}/${password}`,
+          {
+              method: "POST",
+              credentials: "include",
+              headers: {
+                  'content-type': 'application/json'
+              }
+          })
+        .then(response => response.json());
 
 export const registerUser = (user) =>
     fetch(`${baseUrl}/register`, {
@@ -58,19 +65,22 @@ export const registerUser = (user) =>
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json())
+        .then(response => response.json());
 
 /* Returns user object for current user */
 export const getCurrentUser = () =>
-    fetch(`${baseUrl}/profile`)
-        .then(response => response.json())
+    fetch(`${baseUrl}/profile`,
+          {
+              method: "POST",
+              credentials: "include"
+          })
+        .then(response => response.json());
+
 
 /* Logs the current user out by invalidating the session */
 export const logoutUser = () =>
     fetch(`${baseUrl}/session/invalidate`)
-        .then(response => response.json())
-
-
+        .then(response => response.json());
 
 const api = {
     findAllUsers,
