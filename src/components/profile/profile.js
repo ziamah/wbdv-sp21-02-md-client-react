@@ -42,7 +42,35 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
         followerService.updateFollower(userId,{...followerObject, userFollowed:[...userFollowed,curUser]})
         .then(setUserFollowed([...userFollowed,curUser]))
 
-        followerService.updateFollower(curUser,{...followerObjectLoggedIn,userFollowing:[...followerObjectLoggedIn.userFollowing,userId]})
+        followerService.updateFollower(curUser,{...followerObjectLoggedIn,
+        userFollowing:[...followerObjectLoggedIn.userFollowing,userId]})
+    }
+
+    const removeFollower = () => {
+        followerService.updateFollower(userId,{...followerObject, userFollowed:userFollowed
+            .filter(eachUser => {
+                if(eachUser==curUser) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            })})
+            .then(setUserFollowed(followerObject.userFollowed))
+            .then(setAlreadyFollowing(false))
+
+        followerService.updateFollower(curUser,{...followerObjectLoggedIn,
+                userFollowing:followerObjectLoggedIn.userFollowing
+                    .filter(eachUser => {
+                        if(eachUser==userId) {
+                            return false;
+                        }
+                        else {
+                            return true;
+                        }
+                    })})
+
+
     }
 
     useEffect(() => {
@@ -174,7 +202,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     <img src={profileImage}
                         className="card-image-top profile-image-size rounded-circle" alt="..."/>
 
-
+                {/*<h5 className="text-color-following">Following</h5>*/}
                 <div class="card-body profile-image-size col-6">
 
                     <div><h3 className="card-title color-green profile-bold">{userName}</h3></div>
@@ -188,7 +216,10 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                         </i>
                         }
                         {alreadyFollowing && curUser!=userId &&
-                        <h5 className="text-color-following">Following</h5>
+
+                            <i type="button" className="btn btn-success" onClick={() => removeFollower()}>
+                                                    UnFollow Me
+                            </i>
                         }
                     </div>
 
