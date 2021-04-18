@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 
 const FavoritesWidget = ({user}) => {
     const [topThreeFavorites, setTopThreeFavorites] = useState([])
-    // const [favoritesList, setFavoritesList] = useState([])
 
     useEffect(  () => {
         const top3 = async () => {
