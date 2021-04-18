@@ -11,10 +11,11 @@ import Profile from "./profile/profile";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import userReducer from "../reducers/user-reducer";
+import favoritesReducer from "../reducers/favorites-reducer"
 
 const reducer = combineReducers({
     userReducer: userReducer,
-
+    favoritesReducer: favoritesReducer
 })
 
 const store = createStore(reducer)

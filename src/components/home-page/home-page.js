@@ -12,7 +12,7 @@ class HomePage extends React.Component {
                 <div className="col-12 col-md-4">
                     {
                         currentUser.userName !== undefined &&
-                        <FavoritesWidget/>
+                        <FavoritesWidget currentUser={currentUser}/>
                     }
                     {
                         currentUser.userName === undefined &&

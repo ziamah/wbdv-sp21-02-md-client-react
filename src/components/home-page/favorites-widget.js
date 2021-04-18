@@ -1,14 +1,19 @@
 import {Link} from "react-router-dom";
 import favoritesService from '../../services/favorites-service';
-import userService from '../../services/users-service';
 import {useEffect, useState} from "react";
+import {connect} from "react-redux";
 
-const FavoritesWidget = () => {
+const FavoritesWidget = (
+    {
+        currentUser,
+        currentUserFavorites,
+        getFavoritesForUser
+    }
+) => {
     const [topThreeFavorites, setTopThreeFavorites] = useState([])
 
     useEffect(() => {
-        const currentUser = userService.getCurrentUser();
-        const favoritesList = favoritesService.findFavoritesByUser(currentUser.userID)
+        const favoritesList = getFavoritesForUser(currentUser.userID)
         const top3 = () => {
             if (favoritesList.length >= 3) {
                 return favoritesList.slice(0, 3)
@@ -50,4 +55,22 @@ const FavoritesWidget = () => {
     )
 }
 
-export default FavoritesWidget
+const stpm = (state) => ({
+    currentUserFavorites: state.favoritesReducer.currentUserFavorites
+})
+
+const dtpm = (dispatch) => ({
+
+    getFavoritesForUser: (userId) =>
+        favoritesService.findFavoritesByUser(userId)
+            .then(favorites => dispatch({
+                type: "FIND_FAVORITES_FOR_USER",
+                favorites: favorites
+            })),
+})
+
+
+export default connect(
+    stpm,
+    dtpm)
+(FavoritesWidget)
