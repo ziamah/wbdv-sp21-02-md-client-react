@@ -23,7 +23,13 @@ const Login = (
     const validateForm = () => userName.length > 0 && password.length > 0;
 
     const handleSubmit = async () => {
-        await attemptUserLogin(userName, password);
+        await attemptUserLogin(userName, password)
+            .then(user => {
+                if (user === null) {
+                    alert("Uh oh! That login information wasn't correct. You have not been signed in.")
+                }
+            }
+            )
     };
 
     return (
