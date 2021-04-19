@@ -46,7 +46,14 @@ export const findUserById = (userId) =>
 
 /* Returns a user object if credentials are valid or null if invalid */
 export const loginUser = (username, password) =>
-    fetch(`${baseUrl}/login/${username}/${password}`)
+    fetch(`${baseUrl}/login`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify({username: username, password: password}),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
         .then(response => response.json())
 
 export const registerUser = (user) =>
@@ -62,7 +69,10 @@ export const registerUser = (user) =>
 
 /* Returns user object for current user */
 export const getCurrentUser = () =>
-    fetch(`${baseUrl}/profile`)
+    fetch(`${baseUrl}/profile`, {
+        method: "POST",
+        credentials: "include"
+    })
         .then(response => response.json())
 
 /* Logs the current user out by invalidating the session */
