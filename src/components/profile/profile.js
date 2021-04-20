@@ -33,17 +33,31 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userRecipes, setUserRecipes] = useState([]);
     const [favoriteRecipeIdType, setFavoriteRecipeIdType] = useState([]);
     const [reviewRecipeIdType, setReviewRecipeIdType] = useState([]);
-    const [curUser, setCurUser] = useState(1);
+    const [curUser, setCurUser] = useState(6);
     const [followerObjectLoggedIn, setFollowerObjectLoggedIn] = useState();
     const [alreadyFollowing, setAlreadyFollowing] = useState(false);
     console.log({userId});
 
     const addFollower = () => {
-        followerService.updateFollower(userId,{...followerObject, userFollowed:[...userFollowed,curUser]})
-        .then(setUserFollowed([...userFollowed,curUser]))
+        //console.log(userFollowed)
+        //if(typeof  userFollowed==='undefined') {
+        //    console.log("inside")
+        //    setUserFollowed([-1])
+        //    console.log(userFollowed)
+        //}
+        //console.log(userFollowed)
+        //followerService.findFollowerById(userId)
+        //.then(object => {
+        //    console.log(object)
+        //    if (object==undefined) {
+        //        followerService.createFollower({userID:{userId},userFollowing:[],userFollowed:[]})
+        //    }
+        //})
+        followerService.updateFollower(userId,{...followerObject, userFollowed:[...userFollowed || [],curUser]})
+        .then(setUserFollowed([...userFollowed || [],curUser]))
 
         followerService.updateFollower(curUser,{...followerObjectLoggedIn,
-        userFollowing:[...followerObjectLoggedIn.userFollowing,userId]})
+        userFollowing:[...followerObjectLoggedIn.userFollowing || [],userId]})
     }
 
     const removeFollower = () => {
@@ -126,13 +140,13 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                     .then(users => {
                                                       setFollowedUsers(users)
                                                    })
-
+            if (userFollowed!= undefined) {
             userFollowed.map(eachId => {
                 if (eachId == curUser) {
                     setAlreadyFollowing(true)
                 }
             })
-
+            }
 
         }, [userFollowing, userFollowed])
 
@@ -177,7 +191,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log(favoriteRecipeId)
     console.log(reviewRecipeId)
     console.log(userRecipes)
-    //console.log(favoriteRecipeId[1])
+    //console.log(favoriteRecipeId)
     //console.log(recipeIdRegEx.test(favoriteRecipeId[1]))
     console.log(favoriteRecipeIdType)
     console.log(reviewRecipeIdType)
