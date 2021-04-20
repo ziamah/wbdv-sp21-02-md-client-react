@@ -73,7 +73,10 @@ export const getCurrentUser = () =>
     fetch(`${baseUrl}/profile`,
           {
               method: "POST",
-              credentials: "include"
+              credentials: "include",
+              headers: {
+                  'content-type': 'application/json'
+              }
           })
         .then(response => response.json());
 
