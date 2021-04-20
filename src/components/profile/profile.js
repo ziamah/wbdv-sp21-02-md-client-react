@@ -36,6 +36,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [curUser, setCurUser] = useState(6);
     const [followerObjectLoggedIn, setFollowerObjectLoggedIn] = useState();
     const [alreadyFollowing, setAlreadyFollowing] = useState(false);
+    const [totalReviews, setTotalReviews] = useState(0);
     console.log({userId});
 
     const addFollower = () => {
@@ -120,6 +121,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
         reviewService.findReviewsByUserId(userId)
                                 .then(recipes => {
                                     //setReviewRecipeId(recipes)
+                                    setTotalReviews(recipes.length)
                                     recipes.map(eachRecipe => setReviewRecipeId(reviewRecipeId =>
                                     [...reviewRecipeId,[eachRecipe.recipeID,eachRecipe.recipeName]]))
                                 })
@@ -223,7 +225,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                 <div class="card-body profile-image-size col-6">
 
                     <div><h3 className="card-title color-green profile-bold">{userName}</h3></div>
-                    <div className="color-black review-numbers-font-size">10 reviews!</div>
+                    <div className="color-black review-numbers-font-size">{totalReviews} reviews!</div>
                     <div className="card-text color-brown">{userBio}</div>
                     <br/>
                     <div>
