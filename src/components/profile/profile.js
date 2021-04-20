@@ -110,15 +110,18 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                     setFollowerObjectLoggedIn(user);
 
                                     })
-        favoriteService.findFavoritesByUserId(userId)
+        favoriteService.findFavoritesObjectByUserId(userId)
                         .then(recipes => {
-                            setFavoriteRecipeId(recipes)
+                            //setFavoriteRecipeId(recipes)
+                            recipes.map(eachRecipe => setFavoriteRecipeId(favoriteRecipeId =>
+                            [...favoriteRecipeId,[eachRecipe.recipeID,eachRecipe.recipeName]]))
                         })
 
         reviewService.findReviewsByUserId(userId)
                                 .then(recipes => {
                                     //setReviewRecipeId(recipes)
-                                    recipes.map(eachRecipe => setReviewRecipeId(reviewRecipeId => [...reviewRecipeId,[eachRecipe.recipeID,eachRecipe.recipeName]]))
+                                    recipes.map(eachRecipe => setReviewRecipeId(reviewRecipeId =>
+                                    [...reviewRecipeId,[eachRecipe.recipeID,eachRecipe.recipeName]]))
                                 })
 
         userRecipeService.findUserRecipesByUserId(userId)
@@ -155,11 +158,11 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
             setFavoriteRecipeIdType([])
             favoriteRecipeId.map(eachId => setFavoriteRecipeIdType(favoriteRecipeIdType =>
             {
-            if (recipeIdRegEx.test(eachId)) {
-            return [...favoriteRecipeIdType,[eachId, '/userrecipe']]
+            if (recipeIdRegEx.test(eachId[0])) {
+            return [...favoriteRecipeIdType,[eachId[0], '/userrecipe',eachId[1]]]
             }
             else {
-                return [...favoriteRecipeIdType,[eachId, `/details/${eachId}`]]
+                return [...favoriteRecipeIdType,[eachId[0], `/details/${eachId[0]}`,eachId[1]]]
             }
             }))
 

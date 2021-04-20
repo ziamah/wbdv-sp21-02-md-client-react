@@ -13,5 +13,6 @@ export const findFavoritesObjectByUserId = (UserId) =>
         .then(response => response.json())
 
 export default {
-    findFavoritesByUserId
+    findFavoritesByUserId,
+    findFavoritesObjectByUserId
 }
