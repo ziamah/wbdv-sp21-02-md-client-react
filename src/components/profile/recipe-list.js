@@ -23,7 +23,7 @@ const [openCollapse, setOpenCollapse] = useState(false);
 
                         <li>
                              {/*<Link to={`/profile/user/${id[0]}`}>{id[0]}</Link>*/}
-                             <Link to={`${id[1]}`}>{id[0]}</Link>
+                             <Link to={`${id[1]}`}>{id[2]}</Link>
                         </li>
 
                         )

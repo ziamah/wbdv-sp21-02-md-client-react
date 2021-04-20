@@ -118,7 +118,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
         reviewService.findReviewsByUserId(userId)
                                 .then(recipes => {
                                     //setReviewRecipeId(recipes)
-                                    recipes.map(eachRecipe => setReviewRecipeId(reviewRecipeId => [...reviewRecipeId,eachRecipe.recipeID]))
+                                    recipes.map(eachRecipe => setReviewRecipeId(reviewRecipeId => [...reviewRecipeId,[eachRecipe.recipeID,eachRecipe.recipeName]]))
                                 })
 
         userRecipeService.findUserRecipesByUserId(userId)
@@ -169,12 +169,12 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
              setReviewRecipeIdType([])
              reviewRecipeId.map(eachId => setReviewRecipeIdType(reviewRecipeIdType =>
              {
-             if (recipeIdRegEx.test(eachId)) {
-             return[...reviewRecipeIdType,[eachId, '/userrecipe']]
+             if (recipeIdRegEx.test(eachId[0])) {
+             return[...reviewRecipeIdType,[eachId[0], '/userrecipe',eachId[1]]]
                     }
              else {
-                console.log(eachId)
-                return[...reviewRecipeIdType,[eachId, `/details/${eachId}`]]
+                console.log(eachId[0])
+                return[...reviewRecipeIdType,[eachId[0], `/details/${eachId[0]}`,eachId[1]]]
              }
              }))
 

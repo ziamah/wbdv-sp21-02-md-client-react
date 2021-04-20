@@ -6,7 +6,11 @@ export const findFavoritesByUserId = (UserId) =>
     })
         .then(response => response.json())
 
-
+export const findFavoritesObjectByUserId = (UserId) =>
+    fetch(`${FAVORITES_URL}/object/user/${UserId}`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
 
 export default {
     findFavoritesByUserId
