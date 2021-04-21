@@ -46,11 +46,11 @@ export const findUserById = (userId) =>
 /* User auth operations */
 
 /* Returns a user object if credentials are valid or null if invalid */
-export const loginUser = (username, password) =>
+export const loginUser = (credentials) =>
     fetch(`${baseUrl}/users/login`, {
         method: "POST",
         credentials: "include",
-        body: JSON.stringify(username, password),
+        body: JSON.stringify(credentials),
         headers: {
             'content-type': 'application/json'
         }
