@@ -20,11 +20,18 @@ const RecipeCard = ({user}) => {
     // }
 
     useEffect(() => {
-        const getFavoritesInfo = async () =>
-            findFavoritesByRecipe(id)
-                .then((favorites) => setFavoritesCount(favorites.length) &&
-                favorites.find(favorite => favorite.userId === user.userID) !== undefined ?
-                    setIsFavorite(true) : setIsFavorite(false))
+        const getFavoritesInfo = async () => {
+            const favorites = await findFavoritesByRecipe(id)
+                .then(favorites => favorites);
+            setFavoritesCount(favorites.length);
+            if (user !== undefined) {
+                const currentUserFavorite = favorites.find(favorite => favorite.userId === user.userID)
+                if (currentUserFavorite !== undefined) {
+                    setIsFavorite(true);
+                    setFavoriteId(currentUserFavorite.favoriteId)
+                }
+            }
+        }
         getDetails();
         getFavoritesInfo();
     }, []);
