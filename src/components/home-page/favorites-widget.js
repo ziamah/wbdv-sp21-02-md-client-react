@@ -39,12 +39,11 @@ const FavoritesWidget = ({user}) => {
                     </>
                 )}
                 {
-                    topThreeFavorites.length >= 0 &&
+                    topThreeFavorites.length <= 0 &&
                     <div className="wbdv-center-in-div">
                         You don't have any favorite recipes yet! Explore the site to save recipes you love.
                     </div>
                 }
-                {topThreeFavorites.toString()}
             </div>
         </div>
 

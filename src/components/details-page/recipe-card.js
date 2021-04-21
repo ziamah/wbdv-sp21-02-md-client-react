@@ -20,7 +20,6 @@ const RecipeCard = ({user}) => {
     // }
 
     useEffect(() => {
-
         const getFavoritesInfo = async () =>
             findFavoritesByRecipe(id)
                 .then((favorites) => setFavoritesCount(favorites.length) &&
