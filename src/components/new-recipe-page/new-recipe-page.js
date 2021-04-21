@@ -3,25 +3,34 @@ import DietTagsSelector from "./diet-tags-selection";
 import IngredientTagsSelector from "./ingredient-tags-selection";
 import userService from '../../services/users-service'
 import SignUpWidget from "../home-page/sign-up-widget";
+import {useEffect, useState} from "react";
 
 const NewRecipe = () => {
-    const currentUser = userService.getCurrentUser()
-    return (
+    const [currentUser, setCurrentUser] = useState(undefined)
+    useEffect(() => {
+        userService.getCurrentUser()
+            .then((user) => {
+                if (user !== null) {
+                    setCurrentUser(user)
+                }
+            })
+    })
+        return (
         <>
             {
-                currentUser.userName === undefined &&
+                currentUser === undefined &&
                 <div className="wbdv-center-in-div">
                     <SignUpWidget title={"Sign In To Post A Recipe"} page={"new-recipe"}/>
                 </div>
             }
             {
-                currentUser.userName !== undefined && currentUser.userRole === "1" &&
+                currentUser !== undefined && currentUser.userRole === "1" &&
                 <div className="wbdv-center-in-div">
                     You must be a Recipe Author to post a new recipe.
                 </div>
             }
             {
-                currentUser.userName !== undefined && currentUser.userRole !== "1" &&
+                currentUser !== undefined && currentUser.userRole !== "1" &&
                 <div className="wbdv-widget-container-light wbdv-widget-interior">
                     <h1 className="h1 wbdv-center-in-div">
                         New Recipe
