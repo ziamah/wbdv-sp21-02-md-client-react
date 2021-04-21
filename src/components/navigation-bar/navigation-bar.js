@@ -28,13 +28,16 @@ const NavigationBar = (
         window.location.href = `/search/${searchTerm}`;
     }
 
-    useEffect(() => {
-        userService.getCurrentUser()
-            .then((user) => {
-                if (user !== null) {
-                    setCurrentUser(user)
-                }
-            })
+    useEffect( () => {
+        const getUser = async () => {
+            await userService.getCurrentUser()
+                .then((user) => {
+                    if (user !== null) {
+                        setCurrentUser(user)
+                    }
+                })
+        }
+        getUser()
     }, [])
 
     return (
