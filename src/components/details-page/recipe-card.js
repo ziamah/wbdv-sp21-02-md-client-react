@@ -7,11 +7,11 @@ import favoritesService, {findFavoritesByRecipe} from "../../services/favorites-
 const RecipeCard = ({user}) => {
     const{id} = useParams()
     const RAPID_API_KEY = RAPID_API_KEY_const
+
     const [recipeDetails, setRecipeDetails] = useState({});
     const [favoriteId, setFavoriteId] = useState(undefined)
     const [favoritesCount, setFavoritesCount] = useState()
     const [isFavorite, setIsFavorite] = useState(false)
-
 
     // TODO: Uncomment function to use for delete recipe button
     // // Returns a boolean value determining whether recipe is user submitted or not
@@ -247,5 +247,32 @@ const RecipeCard = ({user}) => {
         </div>
     )
 }
+
+const stpm = (state) => ({
+    currentRecipeFavorites: state.favoritesReducer.currentRecipeFavorites
+})
+
+const dtpm = (dispatch) => ({
+
+    getFavoritesForRecipe: (recipeId) =>
+        favoritesService.findFavoritesByRecipe(recipeId)
+            .then(favorites => dispatch({
+                type: "FIND_FAVORITES_FOR_RECIPE",
+                favorites: favorites
+            })),
+    createFavorite: (userId, recipeId, recipeName, recipePhotoUrl) =>
+        favoritesService.createFavorite({userId: userId, recipeId: recipeId, recipeName: recipeName, recipePhotoUrl: recipePhotoUrl})
+            .then (favorite => dispatch ({
+                type: "CREATE_FAVORITE",
+                favorite: favorite
+            })),
+    deleteFavorite: (favoriteId) =>
+        favoritesService.deleteFavorite(favoriteId)
+            .then(favorite => dispatch({
+                type: "DELETE_FAVORITE",
+                favoriteToDelete: favorite
+            }))
+})
+
 
 export default RecipeCard

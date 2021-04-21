@@ -51,4 +51,5 @@ const FavoritesWidget = ({user}) => {
     )
 }
 
+
 export default FavoritesWidget

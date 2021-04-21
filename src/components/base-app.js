@@ -16,6 +16,7 @@ import userReducer from "../reducers/user-reducer";
 const reducer = combineReducers({
     userReducer: userReducer,
     // favoritesReducer: favoritesReducer
+
 })
 
 const store = createStore(reducer)
