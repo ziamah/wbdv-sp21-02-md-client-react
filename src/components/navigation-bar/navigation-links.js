@@ -1,12 +1,23 @@
 import {Link} from 'react-router-dom'
 import userService from "../../services/users-service";
 import {connect} from "react-redux";
+import {useEffect, useState} from "react";
 
 const NavigationLinks = (
-    currentUser,
+    // currentUser,
     logoutUser
 ) => {
-    currentUser = userService.getCurrentUser();
+    const [currentUser, setCurrentUser] = useState(undefined)
+
+    useEffect(() => {
+        userService.getCurrentUser()
+            .then((user) => {
+                if (user !== null) {
+                    setCurrentUser(user)
+                }
+            })
+    }, [])
+
     return (
         <>
             <Link to="/home">
@@ -15,7 +26,7 @@ const NavigationLinks = (
                 </button>
             </Link>
             {
-                currentUser.userName !== undefined && currentUser.userRole !== "1" &&
+                currentUser !== undefined && currentUser.userRole !== "1" &&
                 <Link to="/new-recipe">
                     <button className="btn wbdv-navbar-btn">
                         <i className="fas fa-plus-circle"></i>
@@ -23,7 +34,7 @@ const NavigationLinks = (
                 </Link>
             }
             {
-                currentUser.userName !== undefined &&
+                currentUser !== undefined &&
                     <>
                         <Link to="/profile">
                             <button className="btn wbdv-navbar-btn">profile</button>
@@ -37,7 +48,7 @@ const NavigationLinks = (
                     </>
             }
             {
-                currentUser.userName === undefined &&
+                currentUser === undefined &&
                 <Link to="/login">
                     <button className="btn wbdv-navbar-btn">
                         sign in

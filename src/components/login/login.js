@@ -1,32 +1,27 @@
 import React, {useState, useEffect} from 'react'
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {connect} from 'react-redux'
 import userService from '../../services/users-service'
 
 
 const Login = (
     {
-        currentUser = {},
         attemptUserLogin,
-        getCurrentUser
     }
 ) => {
+    const history = useHistory()
     const [userName, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    // const [current, setCurrent] = useState({});
-
-    // useEffect (() => {
-    //     const user = getCurrentUser();
-    //     setCurrent(user);
-    // }, [getCurrentUser])
 
     const validateForm = () => userName.length > 0 && password.length > 0;
 
     const handleSubmit = async () => {
-        await attemptUserLogin(userName, password)
-            .then(user => {
+        await attemptUserLogin({userName: userName, userPW: password})
+            .then((user) => {
                 if (user === null) {
                     alert("Uh oh! That login information wasn't correct. You have not been signed in.")
+                } else {
+                    history.push("/home")
                 }
             }
             )
@@ -78,7 +73,7 @@ const Login = (
                 </div>
             </div>
             <div className="row wbdv-center-in-div">
-                <Link to="/home">
+                {/*<Link to="/home">*/}
                     <button className="btn wbdv-affirmative-btn"
                             onClick = {async () => {
                                 validateForm();
@@ -86,7 +81,7 @@ const Login = (
                             }}>
                         SIGN IN
                     </button>
-                </Link>
+                {/*</Link>*/}
             </div>
             <div className="wbdv-center-in-div wbdv-widget-interior">
                 or

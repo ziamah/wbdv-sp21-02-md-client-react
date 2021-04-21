@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {connect} from 'react-redux'
 import userService from '../../services/users-service'
 
@@ -9,6 +9,7 @@ const Register = (
         registerUser,
     }
 ) => {
+    const history = useHistory()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [userName, setUsername] = useState("");
@@ -16,11 +17,11 @@ const Register = (
 
     const validateForm = () => email.length > 0 && password.length > 0 && userName.length > 0;
     const handleSubmit = async () => {
-        console.log("role:" + role)
         const newUser = {userName: userName, userPW: password, userRole: role, userEmail: email}
-        //await createUser(newUser)
-        console.log(newUser.userRole)
-        await registerUser(newUser)
+        registerUser(newUser)
+            .then((user) => {
+                history.push("/home")
+            })
     }
 
     return (
@@ -96,14 +97,14 @@ const Register = (
             </div>
 
             <div className="row wbdv-center-in-div">
-                <Link to="/home">
+                {/*<Link to="/home">*/}
                     <button className="btn wbdv-affirmative-btn"
                             onClick={() => {
                                 validateForm && handleSubmit()
                             }}>
                         REGISTER ACCOUNT
                     </button>
-                </Link>
+                {/*</Link>*/}
             </div>
             <div className="wbdv-center-in-div wbdv-widget-interior">
                 or

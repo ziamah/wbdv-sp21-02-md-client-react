@@ -46,16 +46,17 @@ export const findUserById = (userId) =>
 /* User auth operations */
 
 /* Returns a user object if credentials are valid or null if invalid */
-export const loginUser = (username, password) =>
+export const loginUser = (credentials) =>
     fetch(`${baseUrl}/users/login`, {
         method: "POST",
         credentials: "include",
-        body: JSON.stringify(username, password),
+        body: JSON.stringify(credentials),
         headers: {
             'content-type': 'application/json'
         }
     })
         .then(response => response.json())
+        .then(response => console.log(response))
 
 
 export const registerUser = (user) =>
@@ -83,8 +84,12 @@ export const getCurrentUser = () =>
 
 /* Logs the current user out by invalidating the session */
 export const logoutUser = () =>
-    fetch(`${baseUrl}/session/invalidate`)
-        .then(response => response.json());
+    fetch(`${baseUrl}/users/logout`,
+        {
+            method: "POST",
+            credentials: "include",
+        })
+        .then();
 
 const api = {
     findAllUsers,

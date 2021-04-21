@@ -1,22 +1,21 @@
 import {Link} from "react-router-dom";
 import favoritesService from '../../services/favorites-service';
-import userService from '../../services/users-service';
 import {useEffect, useState} from "react";
 
-const FavoritesWidget = () => {
+const FavoritesWidget = ({user}) => {
     const [topThreeFavorites, setTopThreeFavorites] = useState([])
+    // const [favoritesList, setFavoritesList] = useState([])
 
-    useEffect(() => {
-        const currentUser = userService.getCurrentUser();
-        const favoritesList = favoritesService.findFavoritesByUser(currentUser.userID)
-        const top3 = () => {
+    useEffect(  () => {
+        const top3 = async () => {
+            const favoritesList = await favoritesService.findFavoritesByUser(user.userID)
             if (favoritesList.length >= 3) {
                 return favoritesList.slice(0, 3)
             }
             return favoritesList
         }
         setTopThreeFavorites(top3)
-    })
+    }, [])
 
     return (
         <div className="wbdv-widget-container">

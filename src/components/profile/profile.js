@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter,Link,Route, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import PrivateData from './private-data';
 import './profile.css'
 import UserList from './user-list'
 import RecipeList from './recipe-list'
-//import NavigationBar from './navigation-bar'
 import userService from "../profile-services/user-service";
 import mainUserService from '../../services/users-service'
 import favoritesService from '../../services/favorites-service';
@@ -22,12 +21,17 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userFollowing, setUserFollowing] = useState()
     const [userFollowed, setUserFollowed] = useState()
     const [userFavorites, setUserFavorites] = useState([])
+    const [currentUser, setCurrentUser] = useState(undefined)
     const {userId} = useParams();
     console.log({userId});
 
-    const currentUser = mainUserService.getCurrentUser()
-
     useEffect(() => {
+        mainUserService.getCurrentUser()
+            .then((user) => {
+                if (user !== null) {
+                    setCurrentUser(user)
+                }
+            })
         userService.findUserById(userId)
                     .then(user => {
                                    setUserName(user.userName);
@@ -55,9 +59,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
     return(
     <div>
-    {/*<Route path="/profile/user/:userId" exact={true}>*/}
     <div>
-        {/*<NavigationBar/>*/}
     </div>
 
     <div className="background-liked add-margin-top">
@@ -146,7 +148,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         {
-                            currentUser.userName !== undefined &&
+                            currentUser !== undefined && currentUser.userID === userId &&
                             <PrivateData userName = {userName}
                                          setUserName = {setUserName}
                                          updateUser = {userService.updateUser}
@@ -158,13 +160,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                         }
                     </div>
 
-
-
-
-
         </div>
     </div>
-    {/*</Route>*/}
     </div>
     )
 }
