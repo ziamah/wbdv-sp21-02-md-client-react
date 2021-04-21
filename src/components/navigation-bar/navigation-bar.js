@@ -8,14 +8,14 @@ import {connect} from "react-redux";
 
 const NavigationBar = (
     {
-        currentUser,
+        //currentUser,
         getCurrentUser
     }
 ) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [query, setQuery] = useState('testing');
 
-    currentUser = userService.getCurrentUser();
+    const currentUser = userService.getCurrentUser();
 
     const updateSearch = e => {
         setSearchTerm(e.target.value);
