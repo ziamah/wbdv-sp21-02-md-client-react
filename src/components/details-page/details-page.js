@@ -12,7 +12,7 @@ const DetailsPage = () => {
                     setCurrentUser(user)
                 }
             })
-    })
+    }, [])
     return (
         <>
             <div className="row">

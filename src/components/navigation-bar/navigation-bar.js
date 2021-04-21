@@ -35,7 +35,7 @@ const NavigationBar = (
                     setCurrentUser(user)
                 }
             })
-    })
+    }, [])
 
     return (
         <>
@@ -84,7 +84,7 @@ const NavigationBar = (
                                     currentUser !== undefined &&
                                         <>
                                             <a className="dropdown-item wbdv-body-text" href={`/profile/${currentUser.userID}`}>profile</a>
-                                            <a className="dropdown-item wbdv-body-text" onClick={() => userService.logoutUser()}>logout</a>
+                                            <a className="dropdown-item wbdv-body-text" href="/home" onClick={() => userService.logoutUser()}>logout</a>
                                         </>
                                 }
                                 {

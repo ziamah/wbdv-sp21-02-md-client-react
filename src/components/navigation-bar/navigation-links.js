@@ -16,7 +16,7 @@ const NavigationLinks = (
                     setCurrentUser(user)
                 }
             })
-    })
+    }, [])
 
     return (
         <>

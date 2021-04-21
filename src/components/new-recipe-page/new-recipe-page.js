@@ -14,7 +14,7 @@ const NewRecipe = () => {
                     setCurrentUser(user)
                 }
             })
-    })
+    }, [])
         return (
         <>
             {
