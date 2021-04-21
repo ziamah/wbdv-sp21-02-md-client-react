@@ -5,16 +5,12 @@ import {useEffect, useState} from "react";
 const FavoritesWidget = ({user}) => {
     const [topThreeFavorites, setTopThreeFavorites] = useState([])
 
-    useEffect(  () => {
-        const top3 = async () => {
-            const favoritesList = await favoritesService.findFavoritesByUser(user.userID)
-            if (favoritesList.length >= 3) {
-                return favoritesList.slice(0, 3)
-            }
-            return favoritesList
-        }
-        setTopThreeFavorites(top3)
-    }, [])
+    useEffect(() => {
+        favoritesService.findFavoritesByUser(user.userID)
+            .then((response) => response.length >= 3 ?
+                response.slice(0, 3) : response)
+            .then((result) => setTopThreeFavorites(result))
+    }, [user.userID])
 
     return (
         <div className="wbdv-widget-container">
@@ -22,26 +18,33 @@ const FavoritesWidget = ({user}) => {
                 <h3 className="wbdv-center-in-div">Recent Favorites</h3>
             </div>
             <div className="wbdv-widget-interior">
-                {topThreeFavorites.map(favorite =>
-                        <>
-                            <div>
-                                <img className="d-block w-100 wbdv-padded-img"
-                                     src={`${favorite.recipePhotoUrl}`}
-                                     alt={`${favorite.recipeName} photo`}/>
+                {topThreeFavorites.length > 0 && topThreeFavorites.map(favorite =>
+                    <>
+                        <div>
+                            <img className="d-block w-100 wbdv-padded-img"
+                                 src={`${favorite.recipePhotoUrl}`}
+                                 alt={`${favorite.recipeName} photo`}/>
+                            <Link to={`/details/${favorite.recipeId}`}>
+                                <h5 className="h5 wbdv-center-in-div">{favorite.recipeName}</h5>
+                            </Link>
+                            <div className="wbdv-center-in-div">
                                 <Link to={`/details/${favorite.recipeId}`}>
-                                    <h5 className="h5 wbdv-center-in-div">{favorite.recipeName}</h5>
+                                    <button className="btn wbdv-affirmative-btn">
+                                        VIEW FULL RECIPE
+                                    </button>
                                 </Link>
-                                <div className="wbdv-center-in-div">
-                                    <Link to={`/details/${favorite.recipeId}`}>
-                                        <button className="btn wbdv-affirmative-btn">
-                                            VIEW FULL RECIPE
-                                        </button>
-                                    </Link>
-                                </div>
                             </div>
-                            <hr/>
-                        </>
+                        </div>
+                        <hr/>
+                    </>
                 )}
+                {
+                    topThreeFavorites.length >= 0 &&
+                    <div className="wbdv-center-in-div">
+                        You don't have any favorite recipes yet! Explore the site to save recipes you love.
+                    </div>
+                }
+                {topThreeFavorites.toString()}
             </div>
         </div>
 

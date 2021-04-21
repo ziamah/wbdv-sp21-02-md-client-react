@@ -20,14 +20,13 @@ const RecipeCard = ({user}) => {
     // }
 
     useEffect(() => {
+
+        const getFavoritesInfo = async () =>
+            findFavoritesByRecipe(id)
+                // .then((favorites) => setFavoritesCount(favorites.length))
+                .then((favorites) => setFavoritesCount(favorites.length) && favorites.find(favorite => favorite.userId === user.userId) !== undefined ? setIsFavorite(true) : setIsFavorite(false))
         getDetails();
-        const favoritesList = findFavoritesByRecipe(id)
-        setFavoritesCount(favoritesList.length)
-        const favoriteObject = favoritesList.find(favorite => favorite.userId === user.userId)
-        if (favoriteObject !== undefined) {
-            setIsFavorite(true)
-            setFavoriteId(favoriteObject.id)
-        }
+        getFavoritesInfo();
     }, []);
 
 
@@ -84,7 +83,7 @@ const RecipeCard = ({user}) => {
             <div className="row wbdv-widget-interior wbdv-center-in-div">
                 {/* TODO: Delete button should also be visible if recipe is user-submitted and currentUser.userID === recipe.userID */}
                 {
-                    user !== undefined && user.userRole === "3" &&
+                    id.includes("hero_") && user !== undefined && user.userRole === "3" &&
                     <button className="btn wbdv-danger-btn">
                         {/* TODO: delete recipe onClick -- should we add an "are your sure?" modal? */}
                         DELETE RECIPE
@@ -106,16 +105,18 @@ const RecipeCard = ({user}) => {
                         <div className="wbdv-body-text">
                             {
                                 isFavorite &&
-                                <i className="fas fa-heart wbdv-padded-icon" onClick={() => {
-                                    favoritesService.deleteFavorite(favoriteId);
+                                <i className="fas fa-heart wbdv-padded-icon" onClick={async () => {
+                                    await favoritesService.deleteFavorite(favoriteId);
+                                    // setIsFavorite(false)
                                     setFavoritesCount(favoritesCount - 1)
                                 }
                                 }></i>
                             }
                             {
-                                isFavorite &&
-                                <i className="far fa-heart wbdv-padded-icon" onClick={() => {
-                                    favoritesService.createFavorite({userId: user.id, recipeId: id, recipeName: recipeDetails.title, recipePhotoUrl: recipeDetails.image});
+                                !isFavorite &&
+                                <i className="far fa-heart wbdv-padded-icon" onClick={async () => {
+                                    await favoritesService.createFavorite({userId: user.id, recipeId: id, recipeName: recipeDetails.title, recipePhotoUrl: recipeDetails.image});
+                                    // setIsFavorite(true)
                                     setFavoritesCount(favoritesCount + 1)
                                 }
                                 }></i>
