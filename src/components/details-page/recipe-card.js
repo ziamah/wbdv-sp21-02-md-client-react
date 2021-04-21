@@ -23,8 +23,9 @@ const RecipeCard = ({user}) => {
 
         const getFavoritesInfo = async () =>
             findFavoritesByRecipe(id)
-                // .then((favorites) => setFavoritesCount(favorites.length))
-                .then((favorites) => setFavoritesCount(favorites.length) && favorites.find(favorite => favorite.userId === user.userId) !== undefined ? setIsFavorite(true) : setIsFavorite(false))
+                .then((favorites) => setFavoritesCount(favorites.length) &&
+                favorites.find(favorite => favorite.userId === user.userID) !== undefined ?
+                    setIsFavorite(true) : setIsFavorite(false))
         getDetails();
         getFavoritesInfo();
     }, []);
@@ -68,8 +69,6 @@ const RecipeCard = ({user}) => {
         }
     }
 
-
-    // const summary = recipeDetails.summary.replace(/['"]+/g, '')
     let summary = removeTags(recipeDetails.summary)
     summary = truncate(summary, 4)
 
@@ -104,22 +103,36 @@ const RecipeCard = ({user}) => {
                     <p className="row">
                         <div className="wbdv-body-text">
                             {
-                                isFavorite &&
+                                user !== undefined && isFavorite &&
                                 <i className="fas fa-heart wbdv-padded-icon" onClick={async () => {
+                                    console.log(favoriteId)
                                     await favoritesService.deleteFavorite(favoriteId);
-                                    // setIsFavorite(false)
+                                    setFavoriteId(undefined)
+                                    setIsFavorite(false)
                                     setFavoritesCount(favoritesCount - 1)
                                 }
                                 }></i>
                             }
                             {
-                                !isFavorite &&
+                                user !== undefined && !isFavorite &&
                                 <i className="far fa-heart wbdv-padded-icon" onClick={async () => {
-                                    await favoritesService.createFavorite({userId: user.id, recipeId: id, recipeName: recipeDetails.title, recipePhotoUrl: recipeDetails.image});
-                                    // setIsFavorite(true)
+                                    await favoritesService.createFavorite({userId: user.userID, recipeId: id, recipeName: recipeDetails.title, recipePhotoUrl: recipeDetails.image});
+                                    findFavoritesByRecipe(id)
+                                            .then((favorites) => {
+                                                const favorite = favorites.find(favorite => favorite.userId === user.userID)
+                                                if (favorite !== undefined) {
+                                                    setFavoriteId(favorite.favoriteId)
+                                                    console.log(favorite.favoriteId)
+                                                }
+                                            })
+                                    setIsFavorite(true)
                                     setFavoritesCount(favoritesCount + 1)
                                 }
                                 }></i>
+                            }
+                            {
+                                user === undefined &&
+                                <i className="fas fa-heart wbdv-padded-icon"></i>
                             }
                             {favoritesCount}
                         </div>
