@@ -56,6 +56,7 @@ export const loginUser = (username, password) =>
         }
     })
         .then(response => response.json())
+        .then(response => console.log(response))
 
 
 export const registerUser = (user) =>

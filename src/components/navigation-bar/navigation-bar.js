@@ -14,8 +14,7 @@ const NavigationBar = (
 ) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [query, setQuery] = useState('testing');
-
-    const currentUser = userService.getCurrentUser();
+    const [currentUser, setCurrentUser] = useState(undefined)
 
     const updateSearch = e => {
         setSearchTerm(e.target.value);
@@ -28,6 +27,15 @@ const NavigationBar = (
         setSearchTerm("");
         window.location.href = `/search/${searchTerm}`;
     }
+
+    useEffect(() => {
+        userService.getCurrentUser()
+            .then((user) => {
+                if (user !== null) {
+                    setCurrentUser(user)
+                }
+            })
+    })
 
     return (
         <>
@@ -69,18 +77,18 @@ const NavigationBar = (
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a className="dropdown-item wbdv-body-text" href="/home">home</a>
                                 {
-                                    currentUser.userName !== undefined && currentUser.userRole !== "1" &&
+                                    currentUser !== undefined && currentUser.userRole !== "1" &&
                                     <a className="dropdown-item wbdv-body-text" href="/new-recipe">new recipe</a>
                                 }
                                 {
-                                    currentUser.userName !== undefined &&
+                                    currentUser !== undefined &&
                                         <>
-                                            <a className="dropdown-item wbdv-body-text" href="/profile">profile</a>
+                                            <a className="dropdown-item wbdv-body-text" href={`/profile/${currentUser.userID}`}>profile</a>
                                             <a className="dropdown-item wbdv-body-text" onClick={() => userService.logoutUser()}>logout</a>
                                         </>
                                 }
                                 {
-                                    currentUser.userName === undefined &&
+                                    currentUser === undefined &&
                                     <a className="dropdown-item wbdv-body-text" href="/login">sign in</a>
                                 }
                             </div>

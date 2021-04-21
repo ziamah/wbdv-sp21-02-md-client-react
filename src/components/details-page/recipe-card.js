@@ -4,12 +4,10 @@ import {useEffect, useState} from "react";
 import RAPID_API_KEY_const from "../../api";
 import userService from '../../services/users-service'
 
-const RecipeCard = () => {
+const RecipeCard = ({user}) => {
     const{id} = useParams()
 
     const RAPID_API_KEY = RAPID_API_KEY_const
-
-    const currentUser = userService.getCurrentUser();
 
     // TODO: Uncomment function to use for delete recipe button
     // // Returns a boolean value determining whether recipe is user submitted or not
@@ -72,7 +70,7 @@ const RecipeCard = () => {
             <div className="row wbdv-widget-interior wbdv-center-in-div">
                 {/* TODO: Delete button should also be visible if recipe is user-submitted and currentUser.userID === recipe.userID */}
                 {
-                    currentUser.userRole === "3" &&
+                    user !== undefined && user.userRole === "3" &&
                     <button className="btn wbdv-danger-btn">
                         {/* TODO: delete recipe onClick -- should we add an "are your sure?" modal? */}
                         DELETE RECIPE

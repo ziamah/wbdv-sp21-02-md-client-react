@@ -1,4 +1,4 @@
-const ReviewCard = () => {
+const ReviewCard = ({user}) => {
     return (
         <div className="wbdv-review-card wbdv-widget-interior">
             <div className="row">
