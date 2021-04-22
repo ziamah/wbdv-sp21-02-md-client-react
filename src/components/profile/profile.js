@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter,Link,Route, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import PrivateData from './private-data';
 import './profile.css'
 import UserList from './user-list'
@@ -8,10 +8,9 @@ import RecipeListReview from './recipe-list-review'
 import UserRecipeList from './user-recipe-list'
 import profileUserService from "../profile-services/user-service";
 import followerService from "../profile-services/follower-service";
-import favoriteService from "../../services/favorites-service";
+import favoriteService from "../profile-services/favorite-service";
 import reviewService from "../profile-services/review-service";
 import userRecipeService from "../profile-services/userrecipe-service";
-import recipeIdRegEx from "./recipe-regex";
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                      likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -206,9 +205,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
     return(
         <div>
-            {/*<Route path="/profile/user/:userId" exact={true}>*/}
             <div>
-                {/*<NavigationBar/>*/}
             </div>
 
             <div className="background-liked add-margin-top">
@@ -335,7 +332,6 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                 </div>
             </div>
-            {/*</Route>*/}
         </div>
     )
 }
