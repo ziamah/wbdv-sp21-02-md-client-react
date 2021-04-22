@@ -18,7 +18,7 @@ const [openCollapse, setOpenCollapse] = useState(false);
 
                 <ul>
                     {
-                        
+
                         myRecipes.map(recipe => <li><Link to={`/details/${recipe.recipeID}`}>
                         {recipe.recipeName}</Link></li>)
                     }

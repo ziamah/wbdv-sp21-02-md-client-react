@@ -4,6 +4,7 @@ import PrivateData from './private-data';
 import './profile.css'
 import UserList from './user-list'
 import RecipeList from './recipe-list'
+import RecipeListReview from './recipe-list-review'
 import UserRecipeList from './user-recipe-list'
 import userService from "../profile-services/user-service";
 import followerService from "../profile-services/follower-service";
@@ -33,7 +34,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userRecipes, setUserRecipes] = useState([]);
     const [favoriteRecipeIdType, setFavoriteRecipeIdType] = useState([]);
     const [reviewRecipeIdType, setReviewRecipeIdType] = useState([]);
-    const [curUser, setCurUser] = useState(6);
+    const [curUser, setCurUser] = useState(1);
     const [followerObjectLoggedIn, setFollowerObjectLoggedIn] = useState();
     const [alreadyFollowing, setAlreadyFollowing] = useState(false);
     const [totalReviews, setTotalReviews] = useState(0);
@@ -113,17 +114,17 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                     })
         favoriteService.findFavoritesObjectByUserId(userId)
                         .then(recipes => {
-                            //setFavoriteRecipeId(recipes)
-                            recipes.map(eachRecipe => setFavoriteRecipeId(favoriteRecipeId =>
-                            [...favoriteRecipeId,[eachRecipe.recipeID,eachRecipe.recipeName]]))
+                            setFavoriteRecipeId(recipes)
+                            //recipes.map(eachRecipe => setFavoriteRecipeId(favoriteRecipeId =>
+                            //[...favoriteRecipeId,[eachRecipe.recipeId,eachRecipe.recipeName]]))
                         })
 
         reviewService.findReviewsByUserId(userId)
                                 .then(recipes => {
-                                    //setReviewRecipeId(recipes)
+                                    setReviewRecipeId(recipes)
                                     setTotalReviews(recipes.length)
-                                    recipes.map(eachRecipe => setReviewRecipeId(reviewRecipeId =>
-                                    [...reviewRecipeId,[eachRecipe.recipeID,eachRecipe.recipeName]]))
+                                    //recipes.map(eachRecipe => setReviewRecipeId(reviewRecipeId =>
+                                    //[...reviewRecipeId,[eachRecipe.recipeID,eachRecipe.recipeName]]))
                                 })
 
         userRecipeService.findUserRecipesByUserId(userId)
@@ -155,7 +156,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
         }, [userFollowing, userFollowed])
 
-
+        /*
         useEffect(() => {
             setFavoriteRecipeIdType([])
             favoriteRecipeId.map(eachId => setFavoriteRecipeIdType(favoriteRecipeIdType =>
@@ -184,6 +185,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
              }))
 
         }, [reviewRecipeId])
+        */
 
 
     console.log(userName)
@@ -287,7 +289,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link",
-                        "recipe3 description link"]} favId={favoriteRecipeIdType}
+                        "recipe3 description link"]} favId={favoriteRecipeId}
                         heading="My Favorite Recipes"/>
 
 
@@ -304,8 +306,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
-                        <RecipeList recipes={["recipe1 description link", "recipe2 description link",
-                        "recipe3 description link"]}  favId={reviewRecipeIdType}
+                        <RecipeListReview recipes={["recipe1 description link", "recipe2 description link",
+                        "recipe3 description link"]}  favId={reviewRecipeId}
                         heading="My Reviewed Recipes"/>
 
                     </div>

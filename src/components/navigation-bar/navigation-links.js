@@ -10,7 +10,7 @@ const NavigationLinks = () => {
                     home
                 </button>
             </Link>
-            <Link to="/profile/user/2">
+            <Link to="/profile/2">
             <button className="btn wbdv-navbar-btn">profile</button>
             </Link>
             <Link to="/new-recipe">
