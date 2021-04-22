@@ -54,7 +54,7 @@ const NavigationBar = (
 
                     </div>
 
-                    <div className="col-4 d-none d-md-block">
+                    <div className="col-4 d-none d-lg-block">
                         <NavigationLinks/>
                     </div>
                     <form onSubmit={getSearch} className="col-md-4 col-8">
@@ -64,7 +64,7 @@ const NavigationBar = (
                                placeholder="Search"/>
                     </form>
                     <div className="col-1 ">
-                        <div className="dropdown d-block d-sm-block d-md-none">
+                        <div className="dropdown d-block d-sm-block d-lg-none">
                             <a className="btn wbdv-navbar-btn dropdown-toggle"
                                href="#" role="button"
                                id="dropdownMenuLink"
