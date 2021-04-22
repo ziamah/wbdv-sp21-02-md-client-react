@@ -2,12 +2,16 @@ import DietTag from "./diet-tag";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import RAPID_API_KEY_const from "../../api";
-import userService from '../../services/users-service'
+import favoritesService, {findFavoritesByRecipe} from "../../services/favorites-service";
 
 const RecipeCard = ({user}) => {
     const{id} = useParams()
-
     const RAPID_API_KEY = RAPID_API_KEY_const
+
+    const [recipeDetails, setRecipeDetails] = useState({});
+    const [favoriteId, setFavoriteId] = useState(undefined)
+    const [favoritesCount, setFavoritesCount] = useState()
+    const [isFavorite, setIsFavorite] = useState(false)
 
     // TODO: Uncomment function to use for delete recipe button
     // // Returns a boolean value determining whether recipe is user submitted or not
@@ -16,22 +20,38 @@ const RecipeCard = ({user}) => {
     // }
 
     useEffect(() => {
+        const getFavoritesInfo = async () => {
+            const favorites = await findFavoritesByRecipe(id)
+                .then(favorites => favorites);
+            setFavoritesCount(favorites.length);
+            if (user !== undefined) {
+                const currentUserFavorite = favorites.find(favorite => favorite.userId === user.userID)
+                if (currentUserFavorite !== undefined) {
+                    setIsFavorite(true);
+                    setFavoriteId(currentUserFavorite.favoriteId)
+                }
+            }
+        }
         getDetails();
+        getFavoritesInfo();
     }, []);
 
-    const [recipeDetails, setRecipeDetails] = useState({});
+
 
     const getDetails = async () => {
-        const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-key": `${RAPID_API_KEY}`,
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-            }
-        });
-        const data = await response.json();
-        setRecipeDetails(data);
-        console.log(data);
+        if (!id.toString().includes("hero_")) {
+            const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-key": `${RAPID_API_KEY}`,
+                    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+                }
+            });
+            const data = await response.json();
+            setRecipeDetails(data);
+            console.log(data);
+        }
+    //    TODO: add "else" statement that gets recipe details from recipe service
     };
 
     const removeTags = (str) => {
@@ -55,8 +75,6 @@ const RecipeCard = ({user}) => {
         }
     }
 
-
-    // const summary = recipeDetails.summary.replace(/['"]+/g, '')
     let summary = removeTags(recipeDetails.summary)
     summary = truncate(summary, 4)
 
@@ -70,7 +88,7 @@ const RecipeCard = ({user}) => {
             <div className="row wbdv-widget-interior wbdv-center-in-div">
                 {/* TODO: Delete button should also be visible if recipe is user-submitted and currentUser.userID === recipe.userID */}
                 {
-                    user !== undefined && user.userRole === "3" &&
+                    id.includes("hero_") && user !== undefined && user.userRole === "3" &&
                     <button className="btn wbdv-danger-btn">
                         {/* TODO: delete recipe onClick -- should we add an "are your sure?" modal? */}
                         DELETE RECIPE
@@ -90,10 +108,41 @@ const RecipeCard = ({user}) => {
                     </p>
                     <p className="row">
                         <div className="wbdv-body-text">
-                            {/*TODO: Make toggleable so that user can favorite/unfavorite*/}
-                            <i className="fas fa-heart wbdv-padded-icon"></i>
-                            16
+                            {
+                                user !== undefined && isFavorite &&
+                                <i className="fas fa-heart wbdv-padded-icon" onClick={async () => {
+                                    console.log(favoriteId)
+                                    await favoritesService.deleteFavorite(favoriteId);
+                                    setFavoriteId(undefined)
+                                    setIsFavorite(false)
+                                    setFavoritesCount(favoritesCount - 1)
+                                }
+                                }></i>
+                            }
+                            {
+                                user !== undefined && !isFavorite &&
+                                <i className="far fa-heart wbdv-padded-icon" onClick={async () => {
+                                    await favoritesService.createFavorite({userId: user.userID, recipeId: id, recipeName: recipeDetails.title, recipePhotoUrl: recipeDetails.image});
+                                    findFavoritesByRecipe(id)
+                                            .then((favorites) => {
+                                                const favorite = favorites.find(favorite => favorite.userId === user.userID)
+                                                if (favorite !== undefined) {
+                                                    setFavoriteId(favorite.favoriteId)
+                                                    console.log(favorite.favoriteId)
+                                                }
+                                            })
+                                    setIsFavorite(true)
+                                    setFavoritesCount(favoritesCount + 1)
+                                }
+                                }></i>
+                            }
+                            {
+                                user === undefined &&
+                                <i className="fas fa-heart wbdv-padded-icon"></i>
+                            }
+                            {favoritesCount}
                         </div>
+                        {/* TODO: use reviews service to display correct number of stars */}
                         <div className="wbdv-padded-icon wbdv-body-text wbdv-verticalLine">
                             <i className="fas fa-star"></i>
                             <i className="fas fa-star"></i>
@@ -204,5 +253,32 @@ const RecipeCard = ({user}) => {
         </div>
     )
 }
+
+const stpm = (state) => ({
+    currentRecipeFavorites: state.favoritesReducer.currentRecipeFavorites
+})
+
+const dtpm = (dispatch) => ({
+
+    getFavoritesForRecipe: (recipeId) =>
+        favoritesService.findFavoritesByRecipe(recipeId)
+            .then(favorites => dispatch({
+                type: "FIND_FAVORITES_FOR_RECIPE",
+                favorites: favorites
+            })),
+    createFavorite: (userId, recipeId, recipeName, recipePhotoUrl) =>
+        favoritesService.createFavorite({userId: userId, recipeId: recipeId, recipeName: recipeName, recipePhotoUrl: recipePhotoUrl})
+            .then (favorite => dispatch ({
+                type: "CREATE_FAVORITE",
+                favorite: favorite
+            })),
+    deleteFavorite: (favoriteId) =>
+        favoritesService.deleteFavorite(favoriteId)
+            .then(favorite => dispatch({
+                type: "DELETE_FAVORITE",
+                favoriteToDelete: favorite
+            }))
+})
+
 
 export default RecipeCard

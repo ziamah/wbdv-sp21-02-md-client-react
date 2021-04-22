@@ -4,83 +4,49 @@ import {useEffect, useState} from "react";
 
 const FavoritesWidget = ({user}) => {
     const [topThreeFavorites, setTopThreeFavorites] = useState([])
-    // const [favoritesList, setFavoritesList] = useState([])
 
-    useEffect(  () => {
-        const top3 = async () => {
-            const favoritesList = await favoritesService.findFavoritesByUser(user.userID)
-            if (favoritesList.length >= 3) {
-                return favoritesList.slice(0, 3)
-            }
-            return favoritesList
-        }
-        setTopThreeFavorites(top3)
-    }, [])
+    useEffect(() => {
+        favoritesService.findFavoritesByUser(user.userID)
+            .then((response) => response.length >= 3 ?
+                response.slice(0, 3) : response)
+            .then((result) => setTopThreeFavorites(result))
+    }, [user.userID])
 
     return (
         <div className="wbdv-widget-container">
             <div className="wbdv-contrast-header">
                 <h3 className="wbdv-center-in-div">Recent Favorites</h3>
             </div>
-            {/*TODO: These should be filled programmatically!*/}
             <div className="wbdv-widget-interior">
-            <div>
-                <img className="d-block w-100 wbdv-padded-img"
-                     src="https://static.onecms.io/wp-content/uploads/sites/9/2020/03/19/birria-tacos-FT-RECIPE0420-1.jpg"
-                     alt="birria-img.jpg"/>
-                <h5 className="h5 wbdv-center-in-div">Recipe Name</h5>
-                {/*TODO: Should link to recipe detail page*/}
-                <p className="wbdv-body-text">Recipe detail text</p>
-                <div className="wbdv-center-in-div">
-                    {/*TODO: set Link address programmatically*/}
-                    <Link to={"/details"}>
-                        <button className="btn wbdv-affirmative-btn">
-                            VIEW FULL RECIPE
-                        </button>
-                    </Link>
-
-                </div>
+                {topThreeFavorites.length > 0 && topThreeFavorites.map(favorite =>
+                    <>
+                        <div>
+                            <img className="d-block w-100 wbdv-padded-img"
+                                 src={`${favorite.recipePhotoUrl}`}
+                                 alt={`${favorite.recipeName} photo`}/>
+                                <h5 className="h5 wbdv-center-in-div">{favorite.recipeName}</h5>
+                            <div className="wbdv-center-in-div">
+                                <Link to={`/details/${favorite.recipeId}`}>
+                                    <button className="btn wbdv-affirmative-btn">
+                                        VIEW FULL RECIPE
+                                    </button>
+                                </Link>
+                            </div>
+                        </div>
+                        <hr/>
+                    </>
+                )}
+                {
+                    topThreeFavorites.length <= 0 &&
+                    <div className="wbdv-center-in-div">
+                        You don't have any favorite recipes yet! Explore the site to save recipes you love.
+                    </div>
+                }
             </div>
-            <hr/>
-            <div>
-                <img className="d-block w-100 wbdv-padded-img"
-                     src="https://media.riverford.co.uk/images/chicken-pepper-and-maftoul-bowl-with-saffron-and-olives-2000x1333-17a54aa939517c7d7534e92d9b0534ec.jpg"
-                     alt="chicken-maftoul-img.jpg"/>
-                <h5 className="h5 wbdv-center-in-div">Recipe Name</h5>
-                {/*TODO: Should link to recipe detail page*/}
-                <p className="wbdv-body-text">Recipe detail text</p>
-                <div className="wbdv-center-in-div">
-                    {/*TODO: set Link address programmatically*/}
-                    <Link to={"/details"}>
-                        <button className="btn wbdv-affirmative-btn">
-                            VIEW FULL RECIPE
-                        </button>
-                    </Link>
-
-                </div>
-            </div>
-            <hr/>
-            <div>
-                <img className="d-block w-100 wbdv-padded-img"
-                     src="https://www.parsnipsandpastries.com/wp-content/uploads/2019/04/FullSizeRender-33-2000x1333.jpg"
-                     alt="shakshuka-img.jpg"/>
-                <h5 className="h5 wbdv-center-in-div">Recipe Name</h5>
-                {/*TODO: Should link to recipe detail page*/}
-                <p className="wbdv-body-text">Recipe detail text</p>
-            </div>
-                <div className="wbdv-center-in-div">
-                    {/*TODO: set Link address programmatically*/}
-                    <Link to={"/details"}>
-                        <button className="btn wbdv-affirmative-btn">
-                            VIEW FULL RECIPE
-                        </button>
-                    </Link>
-
-                </div>
-        </div>
         </div>
 
     )
 }
+
 
 export default FavoritesWidget

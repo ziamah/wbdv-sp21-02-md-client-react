@@ -1,10 +1,8 @@
 import WriteAReview from "./write-a-review-form";
 import ReviewCard from "./review-card";
 import SignUpWidget from "../home-page/sign-up-widget";
-import userService from '../../services/users-service'
 
-const ReviewsWidget = () => {
-    const currentUser = userService.getCurrentUser()
+const ReviewsWidget = ({user}) => {
     return (
             <div className="col-12 wbdv-widget-container wbdv-widget-interior">
                 <div className="col-12">
@@ -14,11 +12,11 @@ const ReviewsWidget = () => {
                 <div className="row">
                     <div className="col-12 col-md-4">
                         {
-                            currentUser.userName !== undefined &&
+                            user !== undefined &&
                             <WriteAReview/>
                         }
                         {
-                            currentUser.userName === undefined &&
+                            user === undefined &&
                             <SignUpWidget title={"Sign in to leave a review"}
                                           page={"detail"}/>
                         }
