@@ -36,7 +36,7 @@ const NavigationLinks = (
             {
                 currentUser !== undefined &&
                     <>
-                        <Link to="/profile">
+                        <Link to={`/profile/${currentUser.userID}`}>
                             <button className="btn wbdv-navbar-btn">profile</button>
                         </Link>
                         <Link to="/home">
