@@ -24,9 +24,7 @@ const FavoritesWidget = ({user}) => {
                             <img className="d-block w-100 wbdv-padded-img"
                                  src={`${favorite.recipePhotoUrl}`}
                                  alt={`${favorite.recipeName} photo`}/>
-                            <Link to={`/details/${favorite.recipeId}`}>
                                 <h5 className="h5 wbdv-center-in-div">{favorite.recipeName}</h5>
-                            </Link>
                             <div className="wbdv-center-in-div">
                                 <Link to={`/details/${favorite.recipeId}`}>
                                     <button className="btn wbdv-affirmative-btn">
