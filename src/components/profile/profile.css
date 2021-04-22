@@ -90,12 +90,12 @@
 
 
 hr {
-  border:none;
-  border-top:1px dashed #f00;
-  color:#fff;
-  background-color:#fff;
-  height:1px;
-  width:50%;
+    border:none;
+    border-top:1px dashed #f00;
+    color:#fff;
+    background-color:#fff;
+    height:1px;
+    width:50%;
 }
 
 .dotted {
@@ -196,4 +196,12 @@ hr {
 
 .fill-heading-background {
     background-color: #d07d62;
+}
+
+.add-margin-left-45px {
+    margin-left: 45px;
+}
+
+.text-color-following {
+    color: #d07d62;
 }
