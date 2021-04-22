@@ -18,7 +18,7 @@ class BaseApp extends React.Component {
                     <Route path="/home">
                         <HomePage/>
                     </Route>
-                    <Route path="/profile/user/:userId">
+                    <Route path="/profile/:userId">
                         <Profile/>
                     </Route>
                     <Route path="/new-recipe">

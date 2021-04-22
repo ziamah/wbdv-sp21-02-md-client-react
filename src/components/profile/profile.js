@@ -161,7 +161,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
             favoriteRecipeId.map(eachId => setFavoriteRecipeIdType(favoriteRecipeIdType =>
             {
             if (recipeIdRegEx.test(eachId[0])) {
-            return [...favoriteRecipeIdType,[eachId[0], '/userrecipe',eachId[1]]]
+            return [...favoriteRecipeIdType,[eachId[0], `/details/${eachId[0]}`,eachId[1]]]
             }
             else {
                 return [...favoriteRecipeIdType,[eachId[0], `/details/${eachId[0]}`,eachId[1]]]
@@ -175,7 +175,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
              reviewRecipeId.map(eachId => setReviewRecipeIdType(reviewRecipeIdType =>
              {
              if (recipeIdRegEx.test(eachId[0])) {
-             return[...reviewRecipeIdType,[eachId[0], '/userrecipe',eachId[1]]]
+             return[...reviewRecipeIdType,[eachId[0], `/details/${eachId[0]}`,eachId[1]]]
                     }
              else {
                 console.log(eachId[0])

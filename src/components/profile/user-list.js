@@ -29,7 +29,7 @@ const [userObjects, setUserObjects] = useState([]);
                   <ul>
                         {
                            //listOfID.map(user => <li><Link to={`/profile/user/${user}`}>{user}</Link></li>)
-                             listOfUsers.map(user => <li><Link to={`/profile/user/${user.userID}`}>{user.userName}</Link></li>)
+                             listOfUsers.map(user => <li><Link to={`/profile/${user.userID}`}>{user.userName}</Link></li>)
                        }
 
                   </ul>
