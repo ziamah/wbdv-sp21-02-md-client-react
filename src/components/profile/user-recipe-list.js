@@ -18,8 +18,8 @@ const [openCollapse, setOpenCollapse] = useState(false);
 
                 <ul>
                     {
-                        //Need to work on link to individual recipe page
-                        myRecipes.map(recipe => <li><Link to={`/profile/user/${recipe.recipeID}`}>
+                        
+                        myRecipes.map(recipe => <li><Link to={`/details/${recipe.recipeID}`}>
                         {recipe.recipeName}</Link></li>)
                     }
                 </ul>
