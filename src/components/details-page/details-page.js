@@ -4,25 +4,36 @@ import ReviewsWidget from "./reviews-widget";
 import userService from "../../services/users-service";
 
 const DetailsPage = () => {
+    const [isLoading, setIsLoading] = useState(true)
     const [currentUser, setCurrentUser] = useState(undefined)
+
     useEffect(() => {
-        userService.getCurrentUser()
-            .then((user) => {
-                if (user !== null) {
-                    setCurrentUser(user)
-                }
+        const getUser = async () =>
+            await userService.getCurrentUser()
+                .then((user) => {
+                    if (user !== null) {
+                        setCurrentUser(user)
+                    }
+                })
+        getUser()
+            .then(response => {
+                setIsLoading(false)
             })
     }, [])
     return (
         <>
-            <div className="row">
-                <RecipeCard user={currentUser}/>
-            </div>
-            <div className="row">
-                <br/>
-                <ReviewsWidget user={currentUser}/>
-            </div>
-
+            {
+                !isLoading &&
+                <>
+                    <div className="row">
+                        <RecipeCard user={currentUser}/>
+                    </div>
+                    <div className="row">
+                        <br/>
+                        <ReviewsWidget user={currentUser}/>
+                    </div>
+                </>
+            }
         </>
     )
 }

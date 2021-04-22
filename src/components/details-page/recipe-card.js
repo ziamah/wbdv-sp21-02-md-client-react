@@ -13,30 +13,26 @@ const RecipeCard = ({user}) => {
     const [favoritesCount, setFavoritesCount] = useState()
     const [isFavorite, setIsFavorite] = useState(false)
 
-    // TODO: Uncomment function to use for delete recipe button
-    // // Returns a boolean value determining whether recipe is user submitted or not
-    // const isUserRecipe = () => {
-    //     return recipe.recipeID.toString().includes("hero_");
-    // }
-
     useEffect(() => {
-        const getFavoritesInfo = async () => {
-            const favorites = await findFavoritesByRecipe(id)
-                .then(favorites => favorites);
-            setFavoritesCount(favorites.length);
-            if (user !== undefined) {
-                const currentUserFavorite = favorites.find(favorite => favorite.userId === user.userID)
-                if (currentUserFavorite !== undefined) {
-                    setIsFavorite(true);
-                    setFavoriteId(currentUserFavorite.favoriteId)
-                }
-            }
-        }
         getDetails();
         getFavoritesInfo();
     }, []);
 
-
+    const getFavoritesInfo = async () => {
+        const favorites = await findFavoritesByRecipe(id)
+            .then(favorites => favorites);
+        setFavoritesCount(favorites.length);
+        console.log("current user: " + JSON.stringify(user))
+        if (user !== undefined) {
+            const currentUserFavorite = favorites.find(favorite => favorite.userId === user.userID)
+            console.log(JSON.stringify(currentUserFavorite))
+            if (currentUserFavorite !== undefined) {
+                console.log("isFavorite")
+                setIsFavorite(true);
+                setFavoriteId(currentUserFavorite.favoriteId)
+            }
+        }
+    }
 
     const getDetails = async () => {
         if (!id.toString().includes("hero_")) {
@@ -49,7 +45,6 @@ const RecipeCard = ({user}) => {
             });
             const data = await response.json();
             setRecipeDetails(data);
-            console.log(data);
         }
     //    TODO: add "else" statement that gets recipe details from recipe service
     };
@@ -59,10 +54,8 @@ const RecipeCard = ({user}) => {
             return false;
         else
             str = str.toString();
-        // Regular expression to identify HTML tags in
-        // the input string. Replacing the identified
-        // HTML tag with a null string.
-        // Source: https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
+        // Regular expression to identify HTML tags in the input string. Replacing the identified HTML tag with a null
+        // string. Source: https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
         return str.replace( /(<([^>]+)>)/ig, '');
     }
 
@@ -82,7 +75,9 @@ const RecipeCard = ({user}) => {
         <div className="col-12 wbdv-widget-container wbdv-widget-interior">
             <div className="col-12">
                 <h1 className="h1 wbdv-center-in-div"> {recipeDetails.title} </h1>
-                <a className="wbdv-link-text wbdv-center-in-div" href={recipeDetails.sourceUrl}>From {recipeDetails.sourceName}</a>
+                <a className="wbdv-link-text wbdv-center-in-div" href={recipeDetails.sourceUrl}>
+                    From {recipeDetails.sourceName}
+                </a>
             </div>
             <hr/>
             <div className="row wbdv-widget-interior wbdv-center-in-div">
@@ -122,10 +117,12 @@ const RecipeCard = ({user}) => {
                             {
                                 user !== undefined && !isFavorite &&
                                 <i className="far fa-heart wbdv-padded-icon" onClick={async () => {
-                                    await favoritesService.createFavorite({userId: user.userID, recipeId: id, recipeName: recipeDetails.title, recipePhotoUrl: recipeDetails.image});
+                                    await favoritesService.createFavorite({userId: user.userID, recipeId: id,
+                                        recipeName: recipeDetails.title, recipePhotoUrl: recipeDetails.image});
                                     findFavoritesByRecipe(id)
                                             .then((favorites) => {
-                                                const favorite = favorites.find(favorite => favorite.userId === user.userID)
+                                                const favorite = favorites.find(favorite =>
+                                                    favorite.userId === user.userID)
                                                 if (favorite !== undefined) {
                                                     setFavoriteId(favorite.favoriteId)
                                                     console.log(favorite.favoriteId)
@@ -253,32 +250,5 @@ const RecipeCard = ({user}) => {
         </div>
     )
 }
-
-const stpm = (state) => ({
-    currentRecipeFavorites: state.favoritesReducer.currentRecipeFavorites
-})
-
-const dtpm = (dispatch) => ({
-
-    getFavoritesForRecipe: (recipeId) =>
-        favoritesService.findFavoritesByRecipe(recipeId)
-            .then(favorites => dispatch({
-                type: "FIND_FAVORITES_FOR_RECIPE",
-                favorites: favorites
-            })),
-    createFavorite: (userId, recipeId, recipeName, recipePhotoUrl) =>
-        favoritesService.createFavorite({userId: userId, recipeId: recipeId, recipeName: recipeName, recipePhotoUrl: recipePhotoUrl})
-            .then (favorite => dispatch ({
-                type: "CREATE_FAVORITE",
-                favorite: favorite
-            })),
-    deleteFavorite: (favoriteId) =>
-        favoritesService.deleteFavorite(favoriteId)
-            .then(favorite => dispatch({
-                type: "DELETE_FAVORITE",
-                favoriteToDelete: favorite
-            }))
-})
-
 
 export default RecipeCard
