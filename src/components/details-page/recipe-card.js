@@ -1,6 +1,6 @@
 import DietTag from "./diet-tag";
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import RAPID_API_KEY_const from "../../api";
 import favoritesService, {findFavoritesByRecipe} from "../../services/favorites-service";
 
@@ -121,8 +121,8 @@ const RecipeCard = ({user}) => {
                 <div className="row wbdv-widget-interior">
                     <div className="col-12 col-sm-6">
                         <img className="d-block w-100 wbdv-padded-img"
-                             src={userRecipeDetails.picURL}
-                             alt="birria-img.jpg"></img>
+                            src={userRecipeDetails.picURL}
+                            alt="birria-img.jpg"/>
                     </div>
                     <div className="col-12 col-sm-6">
                         {/*Basic Info Section*/}

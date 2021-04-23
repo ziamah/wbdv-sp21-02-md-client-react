@@ -22,6 +22,7 @@ const NewRecipe = () => {
 
     const handleSubmit = async () => {
         const newUserRecipe = {
+            userID: currentUser.userID,
             picURL: picURL,
             recipeName: title,
             servings: servings,
@@ -45,6 +46,8 @@ const NewRecipe = () => {
             })
     }, [])
 
+
+    // console.log(currentUser.userID)
 
         return (
         <>
@@ -125,7 +128,8 @@ const NewRecipe = () => {
                                 <div className="col-12 col-lg-2">
                                     <label htmlFor="summary-field" className="wbdv-label">Summary: </label>
                                 </div>
-                                <textarea id="summary-field" className="col-lg-8 col-12"
+                                <textarea id="summary-field" className="form-control col-lg-8 col-12"
+                                          style={{whiteSpace: "pre-wrap"}}
                                           placeholder="A few sentences describing your recipe"
                                           rows="3"
                                           onChange={(event) => setSummary(event.target.value)}
@@ -157,16 +161,22 @@ const NewRecipe = () => {
                                 <div className="col-12 col-xl-2">
                                     <label htmlFor="ingredients-field" className="wbdv-label">Ingredient List: </label>
                                 </div>
-                                <textarea id="ingredients-field" className="col-xl-8 col-12" rows="5"
-                                          placeholder={`1. 1 cup of water\n2. 2 large eggs\n3. ...`}
-                                          onChange={(event) => setIngredients(event.target.value)}
-                                          value={ingredients}/>
+
+                                    <textarea id="ingredients-field"
+                                              style={{whiteSpace: "pre-wrap"}}
+                                              className="form-control col-xl-8 col-12" rows="5"
+                                              placeholder={`1. 1 cup of water\n2. 2 large eggs\n3. ...`}
+                                              onChange={(event) => setIngredients(event.target.value)}
+                                              value={ingredients}/>
+
                             </p>
                             <p className="row">
                                 <div className="col-12 col-xl-2">
                                     <label htmlFor="instructions-field" className="wbdv-label">Instructions: </label>
                                 </div>
-                                <textarea id="instructions-field" className="col-xl-8 col-12" rows="7"
+                                <textarea id="instructions-field"
+                                          style={{whiteSpace: "pre-wrap"}}
+                                          className="form-control col-xl-8 col-12" rows="7"
                                           placeholder="Write the recipe steps here"
                                           onChange={(event) => setInstructions(event.target.value)}
                                           value={instructions}/>
