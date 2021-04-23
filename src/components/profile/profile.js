@@ -147,7 +147,7 @@ const Profile = () => {
                              className="card-image-top profile-image-size rounded-circle" alt=""/>
                         <div className="card-body profile-image-size col-6">
                             <div>
-                                <h3 className="card-title color-green profile-bold">{userName}</h3></div>
+                                <h3 className="card-title h2 profile-bold">{userName}</h3></div>
                             <div className="color-black review-numbers-font-size">{totalReviews} reviews</div>
                             <div className="card-text color-brown">{userBio}</div>
                             <br/>
