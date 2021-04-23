@@ -18,7 +18,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
     const [privatemode, setPrivateMode] = useState(true);
     const [editing, setEditing] = useState(false);
-    const [userName, setUserName] = useState("Manzur")
+    const [userName, setUserName] = useState("")
     //const [profileImage, setProfileImage] = useState("https://i.ibb.co/T8hppc1/anna-pelzer-IGf-IGP5-ONV0-unsplash.jpg")
     const [profileImage, setProfileImage] = useState("")
     //const [userBio, setUserBio] = useState("Food Lover!")
@@ -45,20 +45,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log({userId});
 
     const addFollower = () => {
-        //console.log(userFollowed)
-        //if(typeof  userFollowed==='undefined') {
-        //    console.log("inside")
-        //    setUserFollowed([-1])
-        //    console.log(userFollowed)
-        //}
-        //console.log(userFollowed)
-        //followerService.findFollowerById(userId)
-        //.then(object => {
-        //    console.log(object)
-        //    if (object==undefined) {
-        //        followerService.createFollower({userID:{userId},userFollowing:[],userFollowed:[]})
-        //    }
-        //})
+
         followerService.updateFollower(userId,{...followerObject, userFollowed:[...userFollowed || [],curUser]})
             .then(setUserFollowed([...userFollowed || [],curUser]))
 
@@ -125,24 +112,18 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                 setUserFollowed(user.userFollowed);
             })
 
-        //followerService.findFollowerById(curUser)
-        //    .then(user =>  {
-        //        setFollowerObjectLoggedIn(user);
-        //
-        //    })
+
         favoriteService.findFavoritesObjectByUserId(userId)
             .then(recipes => {
                 setFavoriteRecipeId(recipes)
-                //recipes.map(eachRecipe => setFavoriteRecipeId(favoriteRecipeId =>
-                //[...favoriteRecipeId,[eachRecipe.recipeId,eachRecipe.recipeName]]))
+
             })
 
         reviewService.findReviewsByUserId(userId)
             .then(recipes => {
                 setReviewRecipeId(recipes)
                 setTotalReviews(recipes.length)
-                //recipes.map(eachRecipe => setReviewRecipeId(reviewRecipeId =>
-                //[...reviewRecipeId,[eachRecipe.recipeID,eachRecipe.recipeName]]))
+
             })
 
         userRecipeService.findUserRecipesByUserId(userId)
@@ -173,37 +154,6 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
         }
 
     }, [userFollowing, userFollowed])
-
-    /*
-    useEffect(() => {
-        setFavoriteRecipeIdType([])
-        favoriteRecipeId.map(eachId => setFavoriteRecipeIdType(favoriteRecipeIdType =>
-        {
-        if (recipeIdRegEx.test(eachId[0])) {
-        return [...favoriteRecipeIdType,[eachId[0], `/details/${eachId[0]}`,eachId[1]]]
-        }
-        else {
-            return [...favoriteRecipeIdType,[eachId[0], `/details/${eachId[0]}`,eachId[1]]]
-        }
-        }))
-
-    }, [favoriteRecipeId])
-
-    useEffect(() => {
-         setReviewRecipeIdType([])
-         reviewRecipeId.map(eachId => setReviewRecipeIdType(reviewRecipeIdType =>
-         {
-         if (recipeIdRegEx.test(eachId[0])) {
-         return[...reviewRecipeIdType,[eachId[0], `/details/${eachId[0]}`,eachId[1]]]
-                }
-         else {
-            console.log(eachId[0])
-            return[...reviewRecipeIdType,[eachId[0], `/details/${eachId[0]}`,eachId[1]]]
-         }
-         }))
-
-    }, [reviewRecipeId])
-    */
 
 
     console.log(userName)
@@ -240,7 +190,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                         <img src={profileImage}
                              className="card-image-top profile-image-size rounded-circle" alt="..."/>
 
-                        {/*<h5 className="text-color-following">Following</h5>*/}
+
                         <div class="card-body profile-image-size col-6">
 
                             <div><h3 className="card-title color-green profile-bold">{userName}</h3></div>
