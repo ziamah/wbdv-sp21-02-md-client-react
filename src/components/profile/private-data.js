@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
 const PrivateData = ({userName, setUserName, userPassword, setUserPassword, updateUser, userId, user,
-                         userBio, setUserBio, profileImage, setProfileImage}) =>
+                         userBio, setUserBio, profileImage, setProfileImage, userEmail, setUserEmail}) =>
 
 {
 
 
-    const [email, setEmail] = useState("xyz@abc.com")
+    //const [email, setEmail] = useState("xyz@abc.com")
     const [password, setPassword] = useState("1234")
     const [editing, setEditing] = useState(false);
 
@@ -29,8 +29,9 @@ const PrivateData = ({userName, setUserName, userPassword, setUserPassword, upda
 
                     {editing &&
                     <i onClick={() => {setEditing(false);
+                        console.log(userEmail);
                         updateUser(userId, {...user, userName:userName, userPW:userPassword, userBio:userBio,
-                            userPicUrl:profileImage});
+                            userPicUrl:profileImage, userEmail:userEmail});
                     }} className="fas fa-check"></i>
 
                     }
@@ -78,13 +79,13 @@ const PrivateData = ({userName, setUserName, userPassword, setUserPassword, upda
 
                     { !editing &&
                     <div id="email" className="col-7">
-                        {email}
+                        {userEmail}
                     </div>
                     }
                     { editing &&
                     <div id="email" className="col-7">
-                        <input className = "form-control" onChange = {(event) => setEmail(event.target.value)}
-                               value={email}/>
+                        <input className = "form-control" onChange = {(event) => {setUserEmail(event.target.value)}}
+                               value={userEmail}/>
                     </div>
                     }
 

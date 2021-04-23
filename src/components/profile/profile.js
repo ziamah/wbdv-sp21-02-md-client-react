@@ -24,6 +24,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     //const [userBio, setUserBio] = useState("Food Lover!")
     const [userBio, setUserBio] = useState("")
     const [user, setUser] = useState()
+    const [userEmail, setUserEmail] = useState("")
     //const [userPassword, setUserPassword] = useState("123")
     const [userPassword, setUserPassword] = useState("")
     const [userFollowing, setUserFollowing] = useState([-1])
@@ -100,6 +101,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                 setUserName(user.userName);
                 setProfileImage(user.userPicUrl);
                 setUserBio(user.userBio);
+                setUserEmail(user.userEmail)
                 setUser(user);
                 setUserPassword(user.userPW);
 
@@ -171,6 +173,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     console.log(favoriteRecipeIdType)
     console.log(reviewRecipeIdType)
     console.log(curUser)
+    console.log(userEmail)
 
 
     return(
@@ -291,6 +294,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                                      setUserPassword = {setUserPassword}
                                      profileImage = {profileImage}
                                      setProfileImage = {setProfileImage}
+                                     userEmail = {userEmail}
+                                     setUserEmail = {setUserEmail}
                                      user = {user}
                         />
                     </div>
