@@ -1,8 +1,5 @@
-//const TOPICS_URL = "http://localhost:8080/api/topics";
-//const WIDGETS_URL = "http://localhost:8080/api/widgets";
-const USERS_URL = "http://localhost:8080/api/users";
-// const USERS_URL = process.env.REACT_APP_USERS_URL;
 
+const USERS_URL = "http://localhost:8080/api/users";
 
 export const findAllUsers = () =>
     fetch(USERS_URL)
@@ -18,6 +15,12 @@ export const deleteUser = (UserId) =>
 
 export const findUserById = (UserId) =>
     fetch(`${USERS_URL}/${UserId}`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+
+export const findUserListById = (UserId) =>
+    fetch(`${USERS_URL}/list/${UserId}`, {
         method: 'GET'
     })
         .then(response => response.json())
@@ -47,7 +50,8 @@ export default {
     deleteUser: deleteUser,
     createUser,
     updateUser: updateUser,
-    findUserById
+    findUserById,
+    findUserListById
 }
 
 
