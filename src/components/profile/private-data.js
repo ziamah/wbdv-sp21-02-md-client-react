@@ -37,11 +37,11 @@ const PrivateData = ({
             </div>
             <br/>
 
-            <div className="container">
+            <div className="container section-container">
                 <div className="form-group row">
                     <div className="col-5">
                         <label htmlFor="name" className="wbdv-body-text">
-                            Name
+                            Username:
                         </label>
                     </div>
                     {editing &&
@@ -56,16 +56,20 @@ const PrivateData = ({
                     </div>
                     }
                 </div>
-                <div className="form-group row">
+                <div>
                     {
                         !editing &&
                             <>
-                                <label htmlFor="email" className="wbdv-body-text">
-                                    Email
+                            <div className="row">
+                            <label htmlFor="email" className="col-5 wbdv-body-text">
+                                    Email:
                                 </label>
-                                <div id="email" className="col-7 wbdv-body-text">
+                            </div>
+                            <div className="row">
+                            <div id="email" className="col-12 wbdv-body-text">
                                     {userEmail}
                                 </div>
+                            </div>
                             </>
                     }
 
@@ -75,7 +79,7 @@ const PrivateData = ({
                     <div className="form-group row">
                         <div className="col-5">
                             <label htmlFor="password" className="wbdv-body-text">
-                                Password
+                                Password:
                             </label>
                         </div>
                         <div id="password" className="col-7">
@@ -89,7 +93,7 @@ const PrivateData = ({
                     <div className="form-group row">
                         <div className="col-5">
                             <label htmlFor="bio" className="wbdv-body-text">
-                                Bio
+                                Bio:
                             </label>
                         </div>
                         <div id="bio" className="col-7">
@@ -103,7 +107,7 @@ const PrivateData = ({
                     <div className="form-group row">
                         <div className="col-5">
                             <label htmlFor="pImage" className="wbdv-body-text">
-                                Photo URL
+                                Photo URL:
                             </label>
                         </div>
                         <div id="pImage" className="col-7">
