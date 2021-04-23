@@ -148,7 +148,7 @@ const Profile = () => {
                         <div className="card-body profile-image-size col-6">
                             <div>
                                 <h3 className="card-title color-green profile-bold">{userName}</h3></div>
-                            <div className="color-black review-numbers-font-size">{totalReviews} reviews!</div>
+                            <div className="color-black review-numbers-font-size">{totalReviews} reviews</div>
                             <div className="card-text color-brown">{userBio}</div>
                             <br/>
                             <div>
@@ -185,10 +185,10 @@ const Profile = () => {
                         {favoriteRecipeId.length !== 0 &&
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link",
                             "recipe3 description link"]} favId={favoriteRecipeId}
-                                    heading="My Favorite Recipes"/>
+                                    heading="Favorite Recipes"/>
                         }
                         {favoriteRecipeId.length === 0 &&
-                        <h3 className="fill-background">No Favorites Recipes</h3>
+                        <h3 className="wbdv-section-header">No Favorites Recipes</h3>
 
                         }
                     </div>
@@ -205,11 +205,11 @@ const Profile = () => {
                                           heading="My Reviewed Recipes"/>
                         }
                         {reviewRecipeId.length === 0 &&
-                        <h3 className="fill-background">No Reviewed Recipes</h3>
+                        <h3 className="wbdv-section-header">No Reviewed Recipes</h3>
                         }
                     </div>
                     {currentUser === userId &&
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div className="add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <PrivateData userName={userName}
                                      setUserName={setUserName}
                                      updateUser={profileUserService.updateUser}

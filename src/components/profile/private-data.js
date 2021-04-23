@@ -12,18 +12,18 @@ const PrivateData = ({
 
     return (
         <div className="background-followers container">
-            <div className="row fill-background">
+            <div className="row wbdv-section-header">
                 <div>
-                    <h1 className="fill-background"> Private Section </h1>
+                    <h1 className="h3 wbdv-section-header">
+                        Private Section
+                    </h1>
                 </div>
-                <div className="add-margin-left-45px">
+                <div >
                     {!editing &&
-                    <span className="">
-                    <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
-                    </span>
+                    <i className="float-right" onClick={() => setEditing(true)} className="fas fa-edit"></i>
                     }
                     {editing &&
-                    <i onClick={() => {
+                    <i className="float-right" onClick={() => {
                         setEditing(false);
                         console.log(userEmail);
                         updateUser(userId, {
@@ -32,13 +32,15 @@ const PrivateData = ({
                         });
                     }} className="fas fa-check"></i>
                     }
+
                 </div>
             </div>
+            <br/>
 
             <div className="container">
                 <div className="form-group row">
                     <div className="col-5">
-                        <label htmlFor="name" className="">
+                        <label htmlFor="name" className="wbdv-body-text">
                             Name
                         </label>
                     </div>
@@ -49,24 +51,30 @@ const PrivateData = ({
                     </div>
                     }
                     {!editing &&
-                    <div id="name" className="col-7">
+                    <div id="name" className="col-7 wbdv-body-text">
                         {userName}
                     </div>
                     }
                 </div>
                 <div className="form-group row">
-                    <label htmlFor="email" className="">
-                        Email
-                    </label>
-                    <div id="email" className="col-7">
-                        {userEmail}
-                    </div>
+                    {
+                        !editing &&
+                            <>
+                                <label htmlFor="email" className="wbdv-body-text">
+                                    Email
+                                </label>
+                                <div id="email" className="col-7 wbdv-body-text">
+                                    {userEmail}
+                                </div>
+                            </>
+                    }
+
                 </div>
                 {editing &&
                 <>
                     <div className="form-group row">
                         <div className="col-5">
-                            <label htmlFor="password" className="">
+                            <label htmlFor="password" className="wbdv-body-text">
                                 Password
                             </label>
                         </div>
@@ -80,13 +88,13 @@ const PrivateData = ({
                     </div>
                     <div className="form-group row">
                         <div className="col-5">
-                            <label htmlFor="bio" className="">
+                            <label htmlFor="bio" className="wbdv-body-text">
                                 Bio
                             </label>
                         </div>
                         <div id="bio" className="col-7">
 
-                            <input className="form-control" onChange={(event) => {
+                            <textarea rows={3} className="form-control" onChange={(event) => {
                                 setUserBio(event.target.value);
                             }}
                                    value={userBio}/>
@@ -94,8 +102,8 @@ const PrivateData = ({
                     </div>
                     <div className="form-group row">
                         <div className="col-5">
-                            <label htmlFor="pImage" className="">
-                                PIC
+                            <label htmlFor="pImage" className="wbdv-body-text">
+                                Photo URL
                             </label>
                         </div>
                         <div id="pImage" className="col-7">
@@ -108,6 +116,8 @@ const PrivateData = ({
                     </div>
                 </>
                 }
+                <br/>
+
             </div>
         </div>
     )
