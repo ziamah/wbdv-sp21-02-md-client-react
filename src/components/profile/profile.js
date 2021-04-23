@@ -113,7 +113,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
             })
 
 
-        favoriteService.findFavoritesByUser(userId)
+        favoriteService.findFavoritesByUser(parseInt(userId))
             .then(recipes => {
                 setFavoriteRecipeId(recipes)
 
