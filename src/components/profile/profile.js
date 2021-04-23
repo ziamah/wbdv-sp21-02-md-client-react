@@ -257,11 +257,16 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 
-
+                        {favoriteRecipeId.length != 0 &&
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link",
                             "recipe3 description link"]} favId={favoriteRecipeId}
                                     heading="My Favorite Recipes"/>
+                        }
 
+                        {favoriteRecipeId.length == 0 &&
+                            <h3 className="fill-background">No Liked Recipe</h3>
+
+                        }
 
                     </div>
 
@@ -269,16 +274,25 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
+                        {userRecipes.length != 0 &&
                         <UserRecipeList recipes={["recipe1 description link", "recipe2 description link",
                             "recipe3 description link"]} myRecipes={userRecipes}/>
 
+                        }
+
                     </div>
 
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
+                        {reviewRecipeId.length != 0 &&
                         <RecipeListReview recipes={["recipe1 description link", "recipe2 description link",
                             "recipe3 description link"]}  favId={reviewRecipeId}
                                           heading="My Reviewed Recipes"/>
+                        }
+
+                        {reviewRecipeId.length == 0 &&
+                            <h3 className="fill-background">No Recipe Reviewed</h3>
+                        }
 
                     </div>
 

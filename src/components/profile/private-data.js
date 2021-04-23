@@ -77,17 +77,17 @@ const PrivateData = ({userName, setUserName, userPassword, setUserPassword, upda
                         </label>
                     </div>
 
-                    { !editing &&
+                    {
                     <div id="email" className="col-7">
                         {userEmail}
                     </div>
                     }
-                    { editing &&
+                    {/*editing &&
                     <div id="email" className="col-7">
                         <input className = "form-control" onChange = {(event) => {setUserEmail(event.target.value)}}
                                value={userEmail}/>
                     </div>
-                    }
+                    */}
 
                 </div>
 
