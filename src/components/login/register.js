@@ -152,6 +152,15 @@ const Register = (
                     </Link>
                 </Link>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
 
     );

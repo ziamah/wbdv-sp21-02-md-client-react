@@ -73,9 +73,6 @@ const Login = (
                                value={password}/>
 
                         <div className="wbdv-padded-img">
-                            <Link className="wbdv-link-text" to={"#"}>
-                                Forgot Password?
-                            </Link>
                             <Link className="wbdv-link-text float-right" to={"/home"}>
                                 Continue as Guest
                             </Link>
@@ -84,7 +81,7 @@ const Login = (
                 </div>
             </form>
             <div className="row wbdv-center-in-div">
-                {/*<Link to="/home">*/}
+                <div>
                     <button className="btn wbdv-affirmative-btn"
                             onClick = {async () => {
                                 validateForm();
@@ -92,22 +89,38 @@ const Login = (
                             }}>
                         SIGN IN
                     </button>
-                {/*</Link>*/}
+                </div>
             </div>
             <div className="wbdv-center-in-div wbdv-widget-interior">
                 or
             </div>
-            <div className="row wbdv-center-in-div"><Link to={"/register"}>
+            <div className="row wbdv-center-in-div">
+                <Link to={"/register"}>
                     <button className="btn wbdv-affirmative-btn">
                         CREATE AN ACCOUNT
                     </button>
                 </Link>
 
             </div>
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
 
         </div>
 
