@@ -59,7 +59,8 @@ const RecipeCard = ({user}) => {
 
     const getUserDetails = async () => {
         const response = await fetch(
-            `https://recipehero2021-backend2.herokuapp.com/api/userrecipes`);
+            // `https://recipehero2021-backend2.herokuapp.com/api/userrecipes`);
+            'http://localhost:8080/api/userrecipes');
         const data = await response.json();
 
         var results = data.filter(function (data) {
@@ -120,7 +121,7 @@ const RecipeCard = ({user}) => {
                 <div className="row wbdv-widget-interior">
                     <div className="col-12 col-sm-6">
                         <img className="d-block w-100 wbdv-padded-img"
-                             src={userRecipeDetails.image}
+                             src={userRecipeDetails.picURL}
                              alt="birria-img.jpg"></img>
                     </div>
                     <div className="col-12 col-sm-6">
