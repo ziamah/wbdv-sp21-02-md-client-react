@@ -18,12 +18,11 @@ const FavoritesWidget = ({user}) => {
                 <h3 className="wbdv-center-in-div">Recent Favorites</h3>
             </div>
             <div className="wbdv-widget-interior">
-                {topThreeFavorites.length > 0 && topThreeFavorites.map(favorite =>
-                    <>
-                        <div>
+                {topThreeFavorites.length > 0 && topThreeFavorites.map((favorite, index) =>
+                        <div key={index}>
                             <img className="d-block w-100 wbdv-padded-img"
                                  src={`${favorite.recipePhotoUrl}`}
-                                 alt={`${favorite.recipeName} photo`}/>
+                                 alt=""/>
                                 <h5 className="h5 wbdv-center-in-div">{favorite.recipeName}</h5>
                             <div className="wbdv-center-in-div">
                                 <Link to={`/details/${favorite.recipeId}`}>
@@ -32,9 +31,8 @@ const FavoritesWidget = ({user}) => {
                                     </button>
                                 </Link>
                             </div>
+                            <hr/>
                         </div>
-                        <hr/>
-                    </>
                 )}
                 {
                     topThreeFavorites.length <= 0 &&

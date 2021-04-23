@@ -17,13 +17,12 @@ const SearchGrid = () => {
                         "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com" } });
             const data = await response.json();
             setRecipes(data.results);
-            console.log(data);
         };
         const timer = setTimeout(async () => {
             await getRecipes()
         }, 100);
         return () => clearTimeout(timer)
-    }, [term]);
+    }, [RAPID_API_KEY, term]);
 
 
     return(

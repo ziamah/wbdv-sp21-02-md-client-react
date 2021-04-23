@@ -46,39 +46,43 @@ const Login = (
                     Oops, that didn't work. Check your username and password and try again.
                 </Alert>
             }
-            <div className="mb-4 row">
-                <div className="container-sm">
-                    {/*<div>*/}
-                    <input type="text"
-                           placeholder="Username"
-                           title="Please type your username"
-                           className="form-control"
-                           id="username"
-                           onChange = {(event) =>  setUsername(event.target.value)}
-                           value={userName}/>
+            <form>
+                <div className="mb-4 row">
+                    <div className="container-sm">
+                        {/*<div>*/}
+                        <input type="text"
+                               placeholder="Username"
+                               title="Please type your username"
+                               className="form-control"
+                               id="username"
+                               autoComplete="on"
+                               onChange = {(event) =>  setUsername(event.target.value)}
+                               value={userName}/>
+                    </div>
+
+
                 </div>
+                <div className="mb-4 row">
+                    <div className="container-sm">
+                        <input type="password"
+                               placeholder="Password"
+                               className="form-control"
+                               id="inputPassword"
+                               autoComplete="on"
+                               onChange = {(event) =>  setPassword(event.target.value)}
+                               value={password}/>
 
-
-            </div>
-            <div className="mb-4 row">
-                <div className="container-sm">
-                    <input type="password"
-                           placeholder="Password"
-                           className="form-control"
-                           id="inputPassword"
-                           onChange = {(event) =>  setPassword(event.target.value)}
-                           value={password}/>
-
-                    <div className="wbdv-padded-img">
-                        <Link className="wbdv-link-text" to={"#"}>
-                            Forgot Password?
-                        </Link>
-                        <Link className="wbdv-link-text float-right" to={"/home"}>
-                            Continue as Guest
-                        </Link>
+                        <div className="wbdv-padded-img">
+                            <Link className="wbdv-link-text" to={"#"}>
+                                Forgot Password?
+                            </Link>
+                            <Link className="wbdv-link-text float-right" to={"/home"}>
+                                Continue as Guest
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <div className="row wbdv-center-in-div">
                 {/*<Link to="/home">*/}
                     <button className="btn wbdv-affirmative-btn"

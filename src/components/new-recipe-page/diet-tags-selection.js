@@ -4,8 +4,8 @@ const DietTagsSelector = () => {
     const diets = ["gf", "keto", "veg", "vegan", "pesc", "paleo", "primal", "whole30"]
     return (
         <>
-            {diets.map(diet =>
-                <h2>
+            {diets.map((diet, index) =>
+                <h2 key={index}>
                     <TagBadge tag={diet}/>
                 </h2>
             )}

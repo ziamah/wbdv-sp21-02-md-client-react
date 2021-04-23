@@ -75,6 +75,7 @@ const Register = (
                                title="Please type your username"
                                className="form-control"
                                id="username"
+                               autoComplete="on"
                                onChange={(event) => setUsername(event.target.value)}
                                value={userName}/>
                     </div>
@@ -86,6 +87,7 @@ const Register = (
                                title="Please type your email"
                                className="form-control"
                                id="email"
+                               autoComplete="on"
                                onChange={(event) => setEmail(event.target.value)}
                                value={email}/>
                     </div>
@@ -109,6 +111,7 @@ const Register = (
                                title="Please type your password"
                                className="form-control"
                                id="password"
+                               autoComplete="on"
                                onChange={(event) => setPassword(event.target.value)}
                                value={password}/>
                     </div>
@@ -119,6 +122,7 @@ const Register = (
                                placeholder="Re-enter Password"
                                className="form-control"
                                id="inputPassword"
+                               autoComplete="on"
                                onChange={(event) => setValidatingPassword(event.target.value)}
                                value={validatingPassword}/>
                         <div className="wbdv-padded-img">
@@ -131,14 +135,12 @@ const Register = (
             </form>
 
             <div className="row wbdv-center-in-div">
-                {/*<Link to="/home">*/}
                     <button className="btn wbdv-affirmative-btn"
                             onClick={async () => {
                                 await handleSubmit()
                             }}>
                         REGISTER ACCOUNT
                     </button>
-                {/*</Link>*/}
             </div>
             <div className="wbdv-center-in-div wbdv-widget-interior">
                 or

@@ -13,41 +13,39 @@ const RecipeCard = ({user}) => {
     const [favoritesCount, setFavoritesCount] = useState()
     const [isFavorite, setIsFavorite] = useState(false)
 
-    useEffect(() => {
-        getDetails();
-        getFavoritesInfo();
-    }, []);
 
-    const getFavoritesInfo = async () => {
-        const favorites = await findFavoritesByRecipe(id)
-            .then(favorites => favorites);
-        setFavoritesCount(favorites.length);
-        console.log("current user: " + JSON.stringify(user))
-        if (user !== undefined) {
-            const currentUserFavorite = favorites.find(favorite => favorite.userId === user.userID)
-            console.log(JSON.stringify(currentUserFavorite))
-            if (currentUserFavorite !== undefined) {
-                console.log("isFavorite")
-                setIsFavorite(true);
-                setFavoriteId(currentUserFavorite.favoriteId)
+
+    useEffect(() => {
+        const getFavoritesInfo = async () => {
+            const favorites = await findFavoritesByRecipe(id)
+                .then(favorites => favorites);
+            setFavoritesCount(favorites.length);
+            if (user !== undefined) {
+                const currentUserFavorite = favorites.find(favorite => favorite.userId === user.userID)
+                if (currentUserFavorite !== undefined) {
+                    setIsFavorite(true);
+                    setFavoriteId(currentUserFavorite.favoriteId)
+                }
             }
         }
-    }
 
-    const getDetails = async () => {
-        if (!id.toString().includes("hero_")) {
-            const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-key": `${RAPID_API_KEY}`,
-                    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-                }
-            });
-            const data = await response.json();
-            setRecipeDetails(data);
-        }
-    //    TODO: add "else" statement that gets recipe details from recipe service
-    };
+        const getDetails = async () => {
+            if (!id.toString().includes("hero_")) {
+                const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
+                    "method": "GET",
+                    "headers": {
+                        "x-rapidapi-key": `${RAPID_API_KEY}`,
+                        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+                    }
+                });
+                const data = await response.json();
+                setRecipeDetails(data);
+            }
+            //    TODO: add "else" statement that gets recipe details from recipe service
+        };
+        getDetails();
+        getFavoritesInfo();
+    }, [RAPID_API_KEY, id, user]);
 
     const removeTags = (str) => {
         if ((str===null) || (str==='') || (str===undefined))
@@ -98,15 +96,15 @@ const RecipeCard = ({user}) => {
                 </div>
                 <div className="col-12 col-sm-6">
                     {/*Basic Info Section*/}
-                    <p className="row wbdv-body-text">
+                    <div className="row wbdv-body-text">
                         {summary}
-                    </p>
-                    <p className="row">
+                    </div>
+                    <br/>
+                    <div className="row">
                         <div className="wbdv-body-text">
                             {
                                 user !== undefined && isFavorite &&
                                 <i className="fas fa-heart wbdv-padded-icon" onClick={async () => {
-                                    console.log(favoriteId)
                                     await favoritesService.deleteFavorite(favoriteId);
                                     setFavoriteId(undefined)
                                     setIsFavorite(false)
@@ -125,7 +123,6 @@ const RecipeCard = ({user}) => {
                                                     favorite.userId === user.userID)
                                                 if (favorite !== undefined) {
                                                     setFavoriteId(favorite.favoriteId)
-                                                    console.log(favorite.favoriteId)
                                                 }
                                             })
                                     setIsFavorite(true)
@@ -139,6 +136,7 @@ const RecipeCard = ({user}) => {
                             }
                             {favoritesCount}
                         </div>
+                        <br/>
                         {/* TODO: use reviews service to display correct number of stars */}
                         <div className="wbdv-padded-icon wbdv-body-text wbdv-verticalLine">
                             <i className="fas fa-star"></i>
@@ -147,7 +145,7 @@ const RecipeCard = ({user}) => {
                             <i className="fas fa-star"></i>
                             <i className="fas fa-star-half"></i>
                         </div>
-                    </p>
+                    </div>
                     <div className="row">
                         <div className="wbdv-body-text">
                             Servings: {recipeDetails.servings}
@@ -231,9 +229,9 @@ const RecipeCard = ({user}) => {
                     <h3 className="h3">Ingredients:</h3>
                     <ul>
                         {recipeDetails.extendedIngredients && recipeDetails.extendedIngredients.map(
-                            (ingredient) => {
+                            (ingredient, index) => {
                                 return(
-                                    <li>{ingredient.original}</li>
+                                    <li key={index}>{ingredient.original}</li>
                                 )
                             })}
 
