@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {connect} from 'react-redux'
 import userService from '../../services/users-service'
+import followerService from "../../services/follower-service";
 
 const Register = (
     {
@@ -20,7 +21,9 @@ const Register = (
         const newUser = {userName: userName, userPW: password, userRole: role, userEmail: email}
         registerUser(newUser)
             .then((user) => {
-                history.push("/home")
+                followerService.createFollower({userID:user.userId,userFollowing:[],userFollowed:[]})
+                .then(() => history.push("/home"))
+                //history.push("/home")
             })
     }
 

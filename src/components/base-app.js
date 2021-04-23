@@ -32,7 +32,7 @@ class BaseApp extends React.Component {
                             <HomePage/>
                         </div>
                     </Route>
-                    <Route path="/profile">
+                    <Route path="/profile/:userId">
                         <NavigationBar></NavigationBar>
                         <div className="wbdv-page-content">
                             <Profile/>
