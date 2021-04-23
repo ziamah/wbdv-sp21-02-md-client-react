@@ -1,14 +1,13 @@
-//const REVIEWS_URL = "http://localhost:8080/api/review";
-const REVIEWS_URL = "http://localhost:8080/api";
+const baseUrl = process.env.REACT_APP_USERS_URL;
 
-export const findReviewsByUserId = (UserId) =>
-    fetch(`${REVIEWS_URL}/user/${UserId}/reviews`, {
+export const findReviewsByUserId = (userId) =>
+    fetch(`${baseUrl}/user/${userId}/reviews`, {
         method: 'GET'
     })
         .then(response => response.json())
 
-
-
-export default {
+const api = {
     findReviewsByUserId
 }
+
+export default api

@@ -1,4 +1,3 @@
-
 const USERS_URL = "http://localhost:8080/api/users";
 
 export const findAllUsers = () =>
@@ -45,7 +44,7 @@ export const updateUser = (UserId, User) =>
     })
         .then(response => response.json())
 
-export default {
+const api = {
     findAllUsers,
     deleteUser: deleteUser,
     createUser,
@@ -54,4 +53,4 @@ export default {
     findUserListById
 }
 
-
+export default api
