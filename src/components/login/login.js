@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {Link, useHistory} from "react-router-dom";
 import {connect} from 'react-redux'
 import userService from '../../services/users-service'
+import {Alert} from 'react-bootstrap'
 
 
 const Login = (
@@ -12,14 +13,15 @@ const Login = (
     const history = useHistory()
     const [userName, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [alertVisible, setAlertVisible] = useState(false)
 
     const validateForm = () => userName.length > 0 && password.length > 0;
 
     const handleSubmit = async () => {
         await attemptUserLogin({userName: userName, userPW: password})
-            .then((user) => {
-                if (user === null) {
-                    alert("Uh oh! That login information wasn't correct. You have not been signed in.")
+            .then((response) => {
+                if (response.user === null) {
+                    setAlertVisible(true)
                 } else {
                     history.push("/home")
                 }
@@ -38,7 +40,12 @@ const Login = (
                 <h1 className="h1 wbdv-center-in-div">
                     Sign In
                 </h1> </div>
-            {/*{current ? typeof current.userName : current === {} ?  "{}" : "not fetching"}*/}
+            {
+                alertVisible &&
+                <Alert variant='danger'>
+                    Oops, that didn't work. Check your username and password and try again.
+                </Alert>
+            }
             <div className="mb-4 row">
                 <div className="container-sm">
                     {/*<div>*/}
