@@ -11,6 +11,7 @@ import followerService from "../profile-services/follower-service";
 import favoriteService from "../profile-services/favorite-service";
 import reviewService from "../profile-services/review-service";
 import userRecipeService from "../profile-services/userrecipe-service";
+import mainUserService from '../../services/users-service'
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                      likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
@@ -18,10 +19,13 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [privatemode, setPrivateMode] = useState(true);
     const [editing, setEditing] = useState(false);
     const [userName, setUserName] = useState("Manzur")
-    const [profileImage, setProfileImage] = useState("https://i.ibb.co/T8hppc1/anna-pelzer-IGf-IGP5-ONV0-unsplash.jpg")
-    const [userBio, setUserBio] = useState("Food Lover!")
+    //const [profileImage, setProfileImage] = useState("https://i.ibb.co/T8hppc1/anna-pelzer-IGf-IGP5-ONV0-unsplash.jpg")
+    const [profileImage, setProfileImage] = useState("")
+    //const [userBio, setUserBio] = useState("Food Lover!")
+    const [userBio, setUserBio] = useState("")
     const [user, setUser] = useState()
-    const [userPassword, setUserPassword] = useState("123")
+    //const [userPassword, setUserPassword] = useState("123")
+    const [userPassword, setUserPassword] = useState("")
     const [userFollowing, setUserFollowing] = useState([-1])
     const [userFollowed, setUserFollowed] = useState([-1])
     const {userId} = useParams();
@@ -33,7 +37,17 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [userRecipes, setUserRecipes] = useState([]);
     const [favoriteRecipeIdType, setFavoriteRecipeIdType] = useState([]);
     const [reviewRecipeIdType, setReviewRecipeIdType] = useState([]);
-    const [curUser, setCurUser] = useState(1);
+    const [curUser, setCurUser] = useState(undefined);
+    //const [curUser, setCurUser] = useState(() => {
+    //    mainUserService.getCurrentUser()
+    //                        .then((user) => {
+    //                            if (user !== null) {
+    //                                setCurUser(user.userID)
+    //                                //return user
+    //                                //return user.userID
+    //                            }
+    //                        })
+    //});
     const [followerObjectLoggedIn, setFollowerObjectLoggedIn] = useState();
     const [alreadyFollowing, setAlreadyFollowing] = useState(false);
     const [totalReviews, setTotalReviews] = useState(0);
@@ -89,6 +103,20 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     }
 
     useEffect(() => {
+
+        mainUserService.getCurrentUser()
+                    .then((user) => {
+                        if (user !== null) {
+                            setCurUser(user.userID)
+
+                            followerService.findFollowerById(user.userID)
+                                        .then(user =>  {
+                                            setFollowerObjectLoggedIn(user);
+
+                                        })
+
+                        }
+                    })
         profileUserService.findUserById(userId)
             .then(user => {
                 setUserName(user.userName);
@@ -106,11 +134,11 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                 setUserFollowed(user.userFollowed);
             })
 
-        followerService.findFollowerById(curUser)
-            .then(user =>  {
-                setFollowerObjectLoggedIn(user);
-
-            })
+        //followerService.findFollowerById(curUser)
+        //    .then(user =>  {
+        //        setFollowerObjectLoggedIn(user);
+        //
+        //    })
         favoriteService.findFavoritesObjectByUserId(userId)
             .then(recipes => {
                 setFavoriteRecipeId(recipes)
@@ -201,6 +229,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     //console.log(recipeIdRegEx.test(favoriteRecipeId[1]))
     console.log(favoriteRecipeIdType)
     console.log(reviewRecipeIdType)
+    console.log(curUser)
 
 
     return(
