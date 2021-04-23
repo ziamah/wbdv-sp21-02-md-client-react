@@ -37,25 +37,31 @@ const Profile = () => {
     const [totalReviews, setTotalReviews] = useState(0);
 
     const addFollower = () => {
-        followerService.updateFollower(userId,{...followerObject, userFollowed:[...userFollowed || [],currentUser]})
-            .then(setUserFollowed([...userFollowed || [],currentUser]))
-        followerService.updateFollower(currentUser,{...followerObjectLoggedIn,
-            userFollowing:[...followerObjectLoggedIn.userFollowing || [],userId]})
+        followerService.updateFollower(userId, {...followerObject, userFollowed: [...userFollowed || [], currentUser]})
+            .then(setUserFollowed([...userFollowed || [], currentUser]))
+        followerService.updateFollower(currentUser, {
+            ...followerObjectLoggedIn,
+            userFollowing: [...followerObjectLoggedIn.userFollowing || [], userId]
+        })
     }
 
     const removeFollower = () => {
-        followerService.updateFollower(userId,{...followerObject, userFollowed:userFollowed
+        followerService.updateFollower(userId, {
+            ...followerObject, userFollowed: userFollowed
                 .filter(eachUser => {
                     return eachUser !== currentUser;
-                })})
+                })
+        })
             .then((followers) => setUserFollowed(followers.userFollowed))
             .then(() => setAlreadyFollowing(false))
 
-        followerService.updateFollower(currentUser,{...followerObjectLoggedIn,
-            userFollowing:followerObjectLoggedIn.userFollowing
+        followerService.updateFollower(currentUser, {
+            ...followerObjectLoggedIn,
+            userFollowing: followerObjectLoggedIn.userFollowing
                 .filter(eachUser => {
                     return eachUser !== userId;
-                })})
+                })
+        })
 
 
     }
@@ -63,18 +69,18 @@ const Profile = () => {
     useEffect(() => {
 
         mainUserService.getCurrentUser()
-                    .then((user) => {
-                        if (user !== null) {
-                            setCurrentUser(user.userID)
+            .then((user) => {
+                if (user !== null) {
+                    setCurrentUser(user.userID.toString())
 
-                            followerService.findFollowerById(user.userID)
-                                        .then(user =>  {
-                                            setFollowerObjectLoggedIn(user);
+                    followerService.findFollowerById(user.userID)
+                        .then(user => {
+                            setFollowerObjectLoggedIn(user);
 
-                                        })
+                        })
 
-                        }
-                    })
+                }
+            })
         profileUserService.findUserById(userId)
             .then(user => {
                 setUserName(user.userName);
@@ -87,7 +93,7 @@ const Profile = () => {
             })
 
         followerService.findFollowerById(userId)
-            .then(user =>  {
+            .then(user => {
                 setFollowerObject(user);
                 setUserFollowing(user.userFollowing);
                 setUserFollowed(user.userFollowed);
@@ -111,13 +117,6 @@ const Profile = () => {
             .then(recipes => {
                 setUserRecipes(recipes)
             })
-
-
-    }, [userId])
-
-
-    useEffect(() => {
-
         profileUserService.findUserListById(userFollowed)
             .then(users => {
                 setFollowerUsers(users)
@@ -126,17 +125,16 @@ const Profile = () => {
             .then(users => {
                 setFollowedUsers(users)
             })
-        if (userFollowed!== undefined) {
+        if (userFollowed !== undefined) {
             userFollowed.map(eachId => {
                 if (eachId === currentUser) {
                     setAlreadyFollowing(true)
                 }
             })
         }
+    }, [currentUser, userFollowed, userFollowing, userId])
 
-    }, [userFollowing, userFollowed, currentUser])
-
-    return(
+    return (
         <div>
             <div>
             </div>
@@ -154,13 +152,12 @@ const Profile = () => {
                             <div className="card-text color-brown">{userBio}</div>
                             <br/>
                             <div>
-                                {!alreadyFollowing && currentUser!==userId && currentUser!==undefined &&
+                                {!alreadyFollowing && currentUser !== userId && currentUser !== undefined &&
                                 <i className="btn btn-success" onClick={() => addFollower()}>
                                     Follow
                                 </i>
                                 }
-                                {alreadyFollowing && currentUser!==userId && currentUser!==undefined &&
-
+                                {alreadyFollowing && currentUser !== userId && currentUser !== undefined &&
                                 <i className="btn btn-success" onClick={() => removeFollower()}>
                                     Unfollow
                                 </i>
@@ -181,7 +178,7 @@ const Profile = () => {
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         {followedUsers.length !== undefined &&
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
-                                  heading = "Following" listOfID={userFollowed}  listOfUsers={followedUsers}/>
+                                  heading="Following" listOfID={userFollowed} listOfUsers={followedUsers}/>
                         }
                     </div>
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -191,7 +188,7 @@ const Profile = () => {
                                     heading="My Favorite Recipes"/>
                         }
                         {favoriteRecipeId.length === 0 &&
-                            <h3 className="fill-background">No Favorites Recipes</h3>
+                        <h3 className="fill-background">No Favorites Recipes</h3>
 
                         }
                     </div>
@@ -204,33 +201,39 @@ const Profile = () => {
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         {reviewRecipeId.length !== 0 &&
                         <RecipeListReview recipes={["recipe1 description link", "recipe2 description link",
-                            "recipe3 description link"]}  favId={reviewRecipeId}
+                            "recipe3 description link"]} favId={reviewRecipeId}
                                           heading="My Reviewed Recipes"/>
                         }
                         {reviewRecipeId.length === 0 &&
-                            <h3 className="fill-background">No Reviewed Recipes</h3>
+                        <h3 className="fill-background">No Reviewed Recipes</h3>
                         }
                     </div>
-                    { currentUser === userId &&
+                    {currentUser === userId &&
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <PrivateData userName = {userName}
-                                     setUserName = {setUserName}
-                                     updateUser = {profileUserService.updateUser}
-                                     userId = {userId}
-                                     userBio = {userBio}
-                                     setUserBio = {setUserBio}
-                                     userPassword = {userPassword}
-                                     setUserPassword = {setUserPassword}
-                                     profileImage = {profileImage}
-                                     setProfileImage = {setProfileImage}
-                                     userEmail = {userEmail}
-                                     setUserEmail = {setUserEmail}
-                                     user = {user}
+                        <PrivateData userName={userName}
+                                     setUserName={setUserName}
+                                     updateUser={profileUserService.updateUser}
+                                     userId={userId}
+                                     userBio={userBio}
+                                     setUserBio={setUserBio}
+                                     userPassword={userPassword}
+                                     setUserPassword={setUserPassword}
+                                     profileImage={profileImage}
+                                     setProfileImage={setProfileImage}
+                                     userEmail={userEmail}
+                                     setUserEmail={setUserEmail}
+                                     user={user}
                         />
                     </div>
                     }
                 </div>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
     )
 }
