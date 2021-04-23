@@ -38,16 +38,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     const [favoriteRecipeIdType, setFavoriteRecipeIdType] = useState([]);
     const [reviewRecipeIdType, setReviewRecipeIdType] = useState([]);
     const [curUser, setCurUser] = useState(undefined);
-    //const [curUser, setCurUser] = useState(() => {
-    //    mainUserService.getCurrentUser()
-    //                        .then((user) => {
-    //                            if (user !== null) {
-    //                                setCurUser(user.userID)
-    //                                //return user
-    //                                //return user.userID
-    //                            }
-    //                        })
-    //});
+
     const [followerObjectLoggedIn, setFollowerObjectLoggedIn] = useState();
     const [alreadyFollowing, setAlreadyFollowing] = useState(false);
     const [totalReviews, setTotalReviews] = useState(0);
@@ -257,12 +248,12 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                             <div className="card-text color-brown">{userBio}</div>
                             <br/>
                             <div>
-                                {!alreadyFollowing && curUser!=userId &&
+                                {!alreadyFollowing && curUser!=userId && curUser!=undefined &&
                                 <i type="button" className="btn btn-success" onClick={() => addFollower()}>
                                     Follow Me
                                 </i>
                                 }
-                                {alreadyFollowing && curUser!=userId &&
+                                {alreadyFollowing && curUser!=userId && curUser!=undefined &&
 
                                 <i type="button" className="btn btn-success" onClick={() => removeFollower()}>
                                     UnFollow Me
