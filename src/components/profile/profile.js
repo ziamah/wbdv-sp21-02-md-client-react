@@ -85,8 +85,8 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                         return true;
                     }
                 })})
-            .then(setUserFollowed(followerObject.userFollowed))
-            .then(setAlreadyFollowing(false))
+            .then((followers) => setUserFollowed(followers.userFollowed))
+            .then(() => setAlreadyFollowing(false))
 
         followerService.updateFollower(curUser,{...followerObjectLoggedIn,
             userFollowing:followerObjectLoggedIn.userFollowing
