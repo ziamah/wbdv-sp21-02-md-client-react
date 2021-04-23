@@ -3,6 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import {connect} from 'react-redux'
 import userService from '../../services/users-service'
 import {Alert} from "react-bootstrap";
+import followerService from "../../services/follower-service";
 
 const Register = (
     {
@@ -36,10 +37,10 @@ const Register = (
         if (valid) {
             const newUser = {userName: userName, userPW: password, userRole: role, userEmail: email}
             registerUser(newUser)
-                .then((user) => {
-                    history.push("/home")
-                })
-        }
+            .then((user) => {
+                followerService.createFollower({userID:user.userId,userFollowing:[],userFollowed:[]})
+                .then(() => history.push("/home"))
+            })
     }
 
     return (
