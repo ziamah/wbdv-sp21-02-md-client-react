@@ -7,10 +7,10 @@ import RecipeList from './recipe-list'
 import RecipeListReview from './recipe-list-review'
 import UserRecipeList from './user-recipe-list'
 import profileUserService from "../profile-services/user-service";
-import followerService from "../profile-services/follower-service";
-import favoriteService from "../profile-services/favorite-service";
-import reviewService from "../profile-services/review-service";
-import userRecipeService from "../profile-services/userrecipe-service";
+import followerService from "../../services/follower-service";
+import favoriteService from "../../services/favorites-service";
+import reviewService from "../../services/review-service";
+import userRecipeService from "../../services/userrecipe-service";
 import mainUserService from '../../services/users-service'
 
 const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
@@ -113,7 +113,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
             })
 
 
-        favoriteService.findFavoritesObjectByUserId(userId)
+        favoriteService.findFavoritesByUser(userId)
             .then(recipes => {
                 setFavoriteRecipeId(recipes)
 
