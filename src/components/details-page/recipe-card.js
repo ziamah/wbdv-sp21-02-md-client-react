@@ -74,6 +74,7 @@ const RecipeCard = ({user}) => {
         console.log(data);
         console.log(data.length);
         console.log(results);
+        console.log(userRecipeDetails.instructions);
     };
 
     const removeTags = (str) => {
@@ -105,6 +106,11 @@ const RecipeCard = ({user}) => {
         return (<div className="col-12 wbdv-widget-container wbdv-widget-interior">
                 <div className="col-12">
                     <h1 className="h1 wbdv-center-in-div"> {userRecipeDetails.recipeName} </h1>
+                    {
+                        id.includes("hero_") && user !== undefined &&
+                        <a className="wbdv-link-text wbdv-center-in-div"
+                           href={`/profile/${user.userID}`}>From {user.userName}</a>
+                    }
                 </div>
                 <hr/>
                 <div className="row wbdv-widget-interior wbdv-center-in-div">
@@ -220,13 +226,33 @@ const RecipeCard = ({user}) => {
                         {/*Ingredients Section*/}
                         <h3 className="h3">Ingredients:</h3>
                         <ul>
-                            {userRecipeDetails.ingredients}
+                            {
+                                userRecipeDetails.ingredients != undefined &&
+                                userRecipeDetails.ingredients.split("\n").map((item) => {
+                                    return(
+                                        <li key={item}>
+                                            {item}
+                                        </li>
+                                    )
+                                })
+                            }
                         </ul>
                     </div>
                     <div className="col-12 col-md-6 wbdv-body-text">
                         {/*Instructions Section*/}
                         <h3 className="h3">Instructions:</h3>
-                        <p>{userRecipeDetails.instructions}</p>
+                        <ol>
+                            {
+                                userRecipeDetails.ingredients != undefined &&
+                            userRecipeDetails.instructions.split("\n").map((item) => {
+                                return(
+                                    <li key={item}>
+                                        {item}
+                                    </li>
+                                )
+                            })
+                        }
+                        </ol>
 
                     </div>
                 </div>
