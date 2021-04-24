@@ -6,7 +6,7 @@ const ReviewCard = ({user}) => {
                     {/*TODO: Profile image goes here -- if none, display default image*/}
                     <img className="d-block w-100 wbdv-padded-img"
                          src="https://www.greenecountyfoundation.org/wp-content/uploads/2019/09/Profile-Icon.png"
-                         alt="default profile picture"></img>
+                         alt=""></img>
                 </div>
                 <div className="col-11">
                     <div className="row">

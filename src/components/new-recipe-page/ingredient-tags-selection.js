@@ -5,8 +5,8 @@ const IngredientTagsSelector = () => {
         "treenut", "wheat"]
     return (
         <>
-            {diets.map(diet =>
-                <h3>
+            {diets.map((diet, index) =>
+                <h3 key={index}>
                     <TagBadge tag={diet}/>
                 </h3>
             )}

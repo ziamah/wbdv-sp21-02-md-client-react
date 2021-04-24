@@ -1,6 +1,4 @@
-import {Link, useHistory} from 'react-router-dom'
-import DietTagsSelector from "./diet-tags-selection";
-import IngredientTagsSelector from "./ingredient-tags-selection";
+import {useHistory} from 'react-router-dom'
 import userService from '../../services/users-service'
 import SignUpWidget from "../home-page/sign-up-widget";
 import React, {useEffect, useState} from "react";
@@ -30,11 +28,12 @@ const NewRecipe = () => {
             cuisine: cuisine,
             recipeDescription: summary,
             ingredients: ingredients,
-            instructions: instructions,}
+            instructions: instructions,
+        }
         createUserRecipe(newUserRecipe)
-        .then((newUserRecipe) => {
-        history.push(`details/${newUserRecipe.recipeID}`)
-        })
+            .then((newUserRecipe) => {
+                history.push(`details/${newUserRecipe.recipeID}`)
+            })
     }
 
     useEffect(() => {
@@ -49,7 +48,7 @@ const NewRecipe = () => {
 
     // console.log(currentUser.userID)
 
-        return (
+    return (
         <>
             {
                 currentUser === undefined &&
@@ -88,79 +87,62 @@ const NewRecipe = () => {
                         <div className="col-8">
                             {/*    TODO: Connect form to server*/}
 
-                            <p className="row">
+                            <div className="row">
                                 <div className="col-12 col-lg-2">
                                     <label htmlFor="title-field" className="wbdv-label">Recipe Title: </label>
                                 </div>
                                 <input id="title-field" className="col-lg-8 col-12"
+
                                        placeholder="Abuela's Famous Birria Tacos"
                                        onChange={(event) => setTitle(event.target.value)}
                                        value={title}/>
-                            </p>
-                            <p className="row">
-                                <div className="col-12 col-lg-2">
-                                    <label htmlFor="title-field" className="wbdv-label">Servings: </label>
-                                </div>
-                                <input id="title-field" className="col-lg-8 col-12"
-                                       placeholder="E.g. 4"
-                                       onChange={(event) => setServings(event.target.value)}
-                                       value={servings}/>
-                            </p>
-                            <p className="row">
-                                <div className="col-12 col-lg-2">
-                                    <label htmlFor="title-field" className="wbdv-label">Cooktime: </label>
-                                </div>
-                                <input id="title-field" className="col-lg-8 col-12"
-                                       placeholder="E.g. 30 minutes"
-                                       onChange={(event) => setCookTime(event.target.value)}
-                                       value={cookTime}/>
-                            </p>
-                            <p className="row">
-                                <div className="col-12 col-lg-2">
-                                    <label htmlFor="title-field" className="wbdv-label">Cuisine: </label>
-                                </div>
-                                <input id="title-field" className="col-lg-8 col-12"
-                                       placeholder="E.g. Italian"
-                                       onChange={(event) => setCuisine(event.target.value)}
-                                       value={cuisine}/>
-                            </p>
-                            <p className="row">
-                                <div className="col-12 col-lg-2">
-                                    <label htmlFor="summary-field" className="wbdv-label">Summary: </label>
-                                </div>
-                                <textarea id="summary-field" className="form-control col-lg-8 col-12"
-                                          style={{whiteSpace: "pre-wrap"}}
-                                          placeholder="A few sentences describing your recipe"
-                                          rows="3"
-                                          onChange={(event) => setSummary(event.target.value)}
-                                          value={summary}/>
-                            </p>
-                            {/*<p className="row">*/}
-                            {/*    <div className="col-12 col-lg-2">*/}
-                            {/*        <label htmlFor="diet-options" className="wbdv-label">Diet Tags: </label>*/}
-                            {/*    </div>*/}
-                            {/*    /!*TODO: Allow selector buttons to add diet tags*!/*/}
-                            {/*    <div className="col-10">*/}
-                            {/*        <div className="row">*/}
-                            {/*            <DietTagsSelector classname="col-10"/>*/}
-                            {/*        </div>*/}
-                            {/*    </div>*/}
-                            {/*</p>*/}
-                            {/*<p className="row">*/}
-                            {/*    <div className="col-12 col-lg-2">*/}
-                            {/*        <label htmlFor="ingredient-options" className="wbdv-label">Ingredient Tags: </label>*/}
-                            {/*    </div>*/}
-                            {/*    /!*TODO: Allow selector buttons to add diet tags*!/*/}
-                            {/*    <div className="col-10">*/}
-                            {/*        <div className="row">*/}
-                            {/*            <IngredientTagsSelector/>*/}
-                            {/*        </div>*/}
-                            {/*    </div>*/}
-                            {/*</p>*/}
-                            <p className="row">
-                                <div className="col-12 col-xl-2">
-                                    <label htmlFor="ingredients-field" className="wbdv-label">Ingredient List: </label>
-                                </div>
+                                <p className="row">
+                                    <div className="col-12 col-lg-2">
+                                        <label htmlFor="title-field" className="wbdv-label">Servings: </label>
+                                    </div>
+
+                                    <input id="title-field" className="col-lg-8 col-12"
+                                           placeholder="E.g. 4"
+                                           onChange={(event) => setServings(event.target.value)}
+                                           value={servings}/>
+                                </p>
+                                <p className="row">
+                                    <div className="col-12 col-lg-2">
+                                        <label htmlFor="title-field" className="wbdv-label">Cooktime: </label>
+                                    </div>
+
+                                    <input id="title-field" className="col-lg-8 col-12"
+                                           placeholder="E.g. 30 minutes"
+                                           onChange={(event) => setCookTime(event.target.value)}
+                                           value={cookTime}/>
+                                </p>
+                                <p className="row">
+                                    <div className="col-12 col-lg-2">
+                                        <label htmlFor="title-field" className="wbdv-label">Cuisine: </label>
+                                    </div>
+                                    <input id="title-field" className="col-lg-8 col-12"
+                                           placeholder="E.g. Italian"
+                                           onChange={(event) => setCuisine(event.target.value)}
+                                           value={cuisine}/>
+                                </p>
+                                <p className="row">
+                                    <div className="col-12 col-lg-2">
+                                        <label htmlFor="summary-field" className="wbdv-label">Summary: </label>
+                                    </div>
+
+                                    <textarea id="summary-field" className="form-control col-lg-8 col-12"
+                                              style={{whiteSpace: "pre-wrap"}}
+                                              placeholder="A few sentences describing your recipe"
+                                              rows="3"
+                                              onChange={(event) => setSummary(event.target.value)}
+                                              value={summary}/>
+                                </p>
+
+                                <p className="row">
+                                    <div className="col-12 col-xl-2">
+                                        <label htmlFor="ingredients-field" className="wbdv-label">Ingredient
+                                            List: </label>
+                                    </div>
 
                                     <textarea id="ingredients-field"
                                               style={{whiteSpace: "pre-wrap"}}
@@ -169,33 +151,37 @@ const NewRecipe = () => {
                                               onChange={(event) => setIngredients(event.target.value)}
                                               value={ingredients}/>
 
-                            </p>
-                            <p className="row">
-                                <div className="col-12 col-xl-2">
-                                    <label htmlFor="instructions-field" className="wbdv-label">Instructions: </label>
-                                </div>
-                                <textarea id="instructions-field"
-                                          style={{whiteSpace: "pre-wrap"}}
-                                          className="form-control col-xl-8 col-12" rows="7"
-                                          placeholder="Write the recipe steps here"
-                                          onChange={(event) => setInstructions(event.target.value)}
-                                          value={instructions}/>
-                            </p>
-                            <div className="row wbdv-center-in-div">
-                                {/*<Link to="/details">*/}
+                                </p>
+                                <p className="row">
+                                    <div className="col-12 col-xl-2">
+                                        <label htmlFor="instructions-field"
+                                               className="wbdv-label">Instructions: </label>
+                                    </div>
+                                    <textarea id="instructions-field"
+                                              style={{whiteSpace: "pre-wrap"}}
+                                              className="form-control col-xl-8 col-12" rows="7"
+                                              placeholder="Write the recipe steps here"
+                                              onChange={(event) => setInstructions(event.target.value)}
+                                              value={instructions}/>
+                                </p>
+                                <div className="row wbdv-center-in-div">
+                                    {/*<Link to="/details">*/}
                                     <button className="btn wbdv-affirmative-btn"
                                             onClick={() => {
-                                        handleSubmit()
-                                    }}>
+                                                handleSubmit()
+                                            }}>
                                         Submit
                                     </button>
-                                {/*</Link>*/}
+                                    {/*</Link>*/}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             }
         </>
+
+
     )
 }
 

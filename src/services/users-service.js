@@ -55,8 +55,8 @@ export const loginUser = (credentials) =>
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json())
-        .then(response => console.log(response))
+        .then(response => response.text())
+        .then(responseText => responseText ? JSON.parse(responseText) : null)
 
 
 export const registerUser = (user) =>
@@ -80,7 +80,8 @@ export const getCurrentUser = () =>
                   'content-type': 'application/json'
               }
           })
-        .then(response => response.json());
+        .then(response => response.text())
+        .then(responseText => responseText ? JSON.parse(responseText) : null)
 
 /* Logs the current user out by invalidating the session */
 export const logoutUser = () =>

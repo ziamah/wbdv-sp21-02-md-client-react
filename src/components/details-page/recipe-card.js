@@ -14,16 +14,11 @@ const RecipeCard = ({user}) => {
     const [isFavorite, setIsFavorite] = useState(false)
     const [userRecipeDetails, setUserRecipeDetails] = useState({});
 
-    // TODO: Uncomment function to use for delete recipe button
-    // // Returns a boolean value determining whether recipe is user submitted or not
-    // const isUserRecipe = () => {
-    //     return recipe.recipeID.toString().includes("hero_");
-    // }
 
     useEffect(() => {
         const getFavoritesInfo = async () => {
             const favorites = await findFavoritesByRecipe(id)
-            .then(favorites => favorites);
+                .then(favorites => favorites);
             setFavoritesCount(favorites.length);
             if (user !== undefined) {
                 const currentUserFavorite = favorites.find(
@@ -34,6 +29,21 @@ const RecipeCard = ({user}) => {
                 }
             }
         }
+
+        const getDetails = async () => {
+            if (!id.toString().includes("hero_")) {
+                const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
+                    "method": "GET",
+                    "headers": {
+                        "x-rapidapi-key": `${RAPID_API_KEY}`,
+                        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+                    }
+                });
+                const data = await response.json();
+                setRecipeDetails(data);
+            }
+            //    TODO: add "else" statement that gets recipe details from recipe service
+        };
         getDetails();
         getFavoritesInfo();
         getUserDetails();
@@ -70,11 +80,6 @@ const RecipeCard = ({user}) => {
         var object = results[0];
 
         setUserRecipeDetails(object);
-
-        console.log(data);
-        console.log(data.length);
-        console.log(results);
-        console.log(userRecipeDetails.instructions);
     };
 
     const removeTags = (str) => {
@@ -82,10 +87,8 @@ const RecipeCard = ({user}) => {
             return false;
         else
             str = str.toString();
-        // Regular expression to identify HTML tags in
-        // the input string. Replacing the identified
-        // HTML tag with a null string.
-        // Source: https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
+        // Regular expression to identify HTML tags in the input string. Replacing the identified HTML tag with a null
+        // string. Source: https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
         return str.replace(/(<([^>]+)>)/ig, '');
     }
 
@@ -127,8 +130,8 @@ const RecipeCard = ({user}) => {
                 <div className="row wbdv-widget-interior">
                     <div className="col-12 col-sm-6">
                         <img className="d-block w-100 wbdv-padded-img"
-                            src={userRecipeDetails.picURL}
-                            alt="birria-img.jpg"/>
+                             src={userRecipeDetails.picURL}
+                             alt="birria-img.jpg"/>
                     </div>
                     <div className="col-12 col-sm-6">
                         {/*Basic Info Section*/}
@@ -162,17 +165,17 @@ const RecipeCard = ({user}) => {
                                                    recipePhotoUrl: userRecipeDetails.image
                                                });
                                            findFavoritesByRecipe(id)
-                                           .then((favorites) => {
-                                               const favorite = favorites.find(
-                                                   favorite => favorite.userId
-                                                       === user.userID)
-                                               if (favorite !== undefined) {
-                                                   setFavoriteId(
-                                                       favorite.favoriteId)
-                                                   console.log(
-                                                       favorite.favoriteId)
-                                               }
-                                           })
+                                               .then((favorites) => {
+                                                   const favorite = favorites.find(
+                                                       favorite => favorite.userId
+                                                           === user.userID)
+                                                   if (favorite !== undefined) {
+                                                       setFavoriteId(
+                                                           favorite.favoriteId)
+                                                       console.log(
+                                                           favorite.favoriteId)
+                                                   }
+                                               })
                                            setIsFavorite(true)
                                            setFavoritesCount(favoritesCount + 1)
                                        }
@@ -229,7 +232,7 @@ const RecipeCard = ({user}) => {
                             {
                                 userRecipeDetails.ingredients != undefined &&
                                 userRecipeDetails.ingredients.split("\n").map((item) => {
-                                    return(
+                                    return (
                                         <li key={item}>
                                             {item}
                                         </li>
@@ -244,14 +247,14 @@ const RecipeCard = ({user}) => {
                         <ol>
                             {
                                 userRecipeDetails.ingredients != undefined &&
-                            userRecipeDetails.instructions.split("\n").map((item) => {
-                                return(
-                                    <li key={item}>
-                                        {item}
-                                    </li>
-                                )
-                            })
-                        }
+                                userRecipeDetails.instructions.split("\n").map((item) => {
+                                    return (
+                                        <li key={item}>
+                                            {item}
+                                        </li>
+                                    )
+                                })
+                            }
                         </ol>
 
                     </div>
@@ -317,17 +320,17 @@ const RecipeCard = ({user}) => {
                                                    recipePhotoUrl: recipeDetails.image
                                                });
                                            findFavoritesByRecipe(id)
-                                           .then((favorites) => {
-                                               const favorite = favorites.find(
-                                                   favorite => favorite.userId
-                                                       === user.userID)
-                                               if (favorite !== undefined) {
-                                                   setFavoriteId(
-                                                       favorite.favoriteId)
-                                                   console.log(
-                                                       favorite.favoriteId)
-                                               }
-                                           })
+                                               .then((favorites) => {
+                                                   const favorite = favorites.find(
+                                                       favorite => favorite.userId
+                                                           === user.userID)
+                                                   if (favorite !== undefined) {
+                                                       setFavoriteId(
+                                                           favorite.favoriteId)
+                                                       console.log(
+                                                           favorite.favoriteId)
+                                                   }
+                                               })
                                            setIsFavorite(true)
                                            setFavoritesCount(favoritesCount + 1)
                                        }
@@ -458,37 +461,6 @@ const RecipeCard = ({user}) => {
             </div>
         )
     }
-
-    const stpm = (state) => ({
-        currentRecipeFavorites: state.favoritesReducer.currentRecipeFavorites
-    })
-
-    const dtpm = (dispatch) => ({
-
-        getFavoritesForRecipe: (recipeId) =>
-            favoritesService.findFavoritesByRecipe(recipeId)
-            .then(favorites => dispatch({
-                type: "FIND_FAVORITES_FOR_RECIPE",
-                favorites: favorites
-            })),
-        createFavorite: (userId, recipeId, recipeName, recipePhotoUrl) =>
-            favoritesService.createFavorite({
-                userId: userId,
-                recipeId: recipeId,
-                recipeName: recipeName,
-                recipePhotoUrl: recipePhotoUrl
-            })
-            .then(favorite => dispatch({
-                type: "CREATE_FAVORITE",
-                favorite: favorite
-            })),
-        deleteFavorite: (favoriteId) =>
-            favoritesService.deleteFavorite(favoriteId)
-            .then(favorite => dispatch({
-                type: "DELETE_FAVORITE",
-                favoriteToDelete: favorite
-            }))
-    })
 }
 
 export default RecipeCard

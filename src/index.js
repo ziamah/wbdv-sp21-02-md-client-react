@@ -6,7 +6,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/js/bootstrap.js';
-import Popper from 'popper.js';
 
 ReactDOM.render(
     <React.StrictMode>

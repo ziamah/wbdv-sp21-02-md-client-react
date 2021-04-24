@@ -9,7 +9,7 @@ const WriteAReview = () => {
                 </h3>
             </div>
             <div className="wbdv-widget-interior">
-                <label for="star-rating-select"  className="wbdv-padded-icon">
+                <label htmlFor="star-rating-select"  className="wbdv-padded-icon">
                     Choose a rating:
                 </label>
                 <select id="star-rating-select">
