@@ -18,9 +18,25 @@ const Register = (
     const [validatingPassword, setValidatingPassword] = useState("");
     const [inputAlert, setInputAlert] = useState(false);
     const [passwordAlert, setPasswordAlert] = useState(false);
+    const [usernameAlert, setUsernameAlert] = useState(false);
+
+    const validateUsername = async () => {
+        const existingUsers = await userService.findAllUsers()
+        let existingUser;
+        for (existingUser in existingUsers) {
+            if (existingUsers.hasOwnProperty(existingUser) &&
+                userName === existingUser.userName) {
+                setUsernameAlert(true)
+                return false;
+            }
+        }
+        setUsernameAlert(false)
+        return true;
+    }
 
     const validateForm = () => {
         if (email.length <= 0 || password.length <= 0 || userName.length <= 0) {
+            setPasswordAlert(false)
             setInputAlert(true)
             return false;
         } else if (password !== validatingPassword) {
@@ -32,8 +48,9 @@ const Register = (
         }
     }
     const handleSubmit = async () => {
-        const valid = validateForm();
-        if (valid) {
+        const validUsername = await validateUsername();
+        const validForm = validateForm();
+        if (validUsername && validForm) {
             const newUser = {userName: userName, userPW: password, userRole: role, userEmail: email}
             registerUser(newUser)
                 .then((user) => {
@@ -41,6 +58,7 @@ const Register = (
                         .then(() => history.push("/home"))
                 })
         }
+    }
 
         return (
             <div className="container-fluid">
@@ -64,6 +82,12 @@ const Register = (
                     passwordAlert &&
                     <Alert variant='danger'>
                         Make sure that your passwords match!
+                    </Alert>
+                }
+                {
+                    usernameAlert &&
+                    <Alert variant='danger'>
+                        That username already exists. Choose another one!
                     </Alert>
                 }
 
@@ -165,7 +189,7 @@ const Register = (
 
         );
     }
-}
+
 
 const stpm = (state) => ({
     currentUser: state.userReducer.currentUser
