@@ -16,7 +16,9 @@ const SearchCard = (
                     <div className="col-md-4">
                             <img className="d-block w-100 wbdv-padded-img"
                                  src={image}
-                                 alt={`${title}`}/>
+                                 alt={`${title}`}
+                                 width={500}
+                                 height={400}/>
                     </div>
                     <div className="col-md-8" >
                         <div className="wbdv-widget-container wbdv-widget-interior">

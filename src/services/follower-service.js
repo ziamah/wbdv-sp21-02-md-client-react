@@ -1,11 +1,12 @@
-const FOLLOWERS_URL = "http://localhost:8080/api/followlist";
+//const FOLLOWERS_URL = "http://localhost:8080/api/followlist";
+const baseUrl = process.env.REACT_APP_USERS_URL;
 
 export const findAllFollowers = () =>
-    fetch(FOLLOWERS_URL)
+    fetch(`${baseUrl}/followlist`)
         .then(response => response.json())
 
 export const deleteFollower = (UserId) =>
-    fetch(`${FOLLOWERS_URL}/${UserId}`, {
+    fetch(`${baseUrl}/followlist/${UserId}`, {
         method: 'DELETE'
     })
         .then(response => response.json())
@@ -13,13 +14,13 @@ export const deleteFollower = (UserId) =>
 
 
 export const findFollowerById = (UserId) =>
-    fetch(`${FOLLOWERS_URL}/${UserId}`, {
+    fetch(`${baseUrl}/followlist/${UserId}`, {
         method: 'GET'
     })
         .then(response => response.json())
 
 export const createFollower = (Follower) =>
-    fetch(`${FOLLOWERS_URL}`, {
+    fetch(`${baseUrl}/followlist`, {
         method: 'POST',
         body: JSON.stringify(Follower),
         headers: {
@@ -29,7 +30,7 @@ export const createFollower = (Follower) =>
         .then(response => response.json())
 
 export const updateFollower = (UserId, Follower) =>
-    fetch(`${FOLLOWERS_URL}/${UserId}`, {
+    fetch(`${baseUrl}/followlist/${UserId}`, {
         method: 'PUT',
         body: JSON.stringify(Follower),
         headers: {
