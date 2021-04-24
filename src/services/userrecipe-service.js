@@ -1,8 +1,9 @@
 //const USER_RECIPES_URL = "http://localhost:8080/api/userrecipe";
-const USER_RECIPES_URL = "http://localhost:8080/api";
+//const USER_RECIPES_URL = "http://localhost:8080/api";
+const baseUrl = process.env.REACT_APP_USERS_URL;
 
 export const findUserRecipesByUserId = (UserId) =>
-    fetch(`${USER_RECIPES_URL}/user/${UserId}/userrecipes`, {
+    fetch(`${baseUrl}/user/${UserId}/userrecipes`, {
         method: 'GET'
     })
         .then(response => response.json())
