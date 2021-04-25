@@ -10,23 +10,21 @@ const ReviewsWidget = ({user}) => {
     const {id} = useParams()
     const [reviews, setReviews] = useState([])
 
-    // useEffect(() => {
-    //     reviewService.findReviewsByRecipe(id)
-    //         .then((reviews) => {
-    //             setReviews(reviews)
-    //         })
-    //     console.log(reviews)
-    // }, [])
-
     useEffect(() => {
-        reviewService.findAllReviews()
+        reviewService.findReviewsByRecipe(id)
             .then((reviews) => {
                 setReviews(reviews)
             })
         console.log(reviews)
     }, [])
 
-
+    // useEffect(() => {
+    //     reviewService.findAllReviews()
+    //         .then((reviews) => {
+    //             setReviews(reviews)
+    //         })
+    //     console.log(reviews)
+    // }, [])
 
     return (
         <div className="col-12 wbdv-widget-container wbdv-widget-interior">
