@@ -1,3 +1,5 @@
+import {findAllFavorites} from "./favorites-service";
+
 const baseUrl = process.env.REACT_APP_USERS_URL;
 
 /* CRUD operations */
@@ -39,8 +41,10 @@ export const findAllReviews = () =>
 
 /* Returns a list of all review objects in the database for a given recipeID */
 export const findReviewsByRecipe = async (recipeId) => {
-    fetch(`${baseUrl}/recipe/${recipeId}/reviews`)
-        .then(response => response.json())
+    const allFavorites = await findAllReviews();
+    return allFavorites.filter(favorite => favorite.recipeID === recipeId)
+    // fetch(`${baseUrl}/recipe/${recipeId}/reviews`)
+    //     .then(response => response.json())
 
 }
 
