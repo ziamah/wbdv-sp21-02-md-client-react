@@ -9,10 +9,11 @@ const WriteAReview = (user) => {
     const [reviewTitle, setReviewTitle] = useState("");
 
     const handleSubmit = async () => {
+        console.log("this is the rating", rating)
         const newReview = {
             userID: user.userId,
             recipeID: id,
-            Rating: rating,
+            rating: rating,
             reviewText: reviewText,
             reviewTitle: reviewTitle
         }
