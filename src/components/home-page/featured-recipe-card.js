@@ -1,6 +1,65 @@
 import {Link} from 'react-router-dom'
+import RAPID_API_KEY_const from "../../api";
+import RecipeCard from "../details-page/recipe-card";
+import React, {useEffect, useState} from "react";
 
 const FeaturedRecipeCard = () => {
+
+    const getRandomNumber = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
+    const randomRecipeID = () => getRandomNumber(1,999999);
+    const RAPID_API_KEY = RAPID_API_KEY_const
+
+    console.log(randomRecipeID())
+
+    const [recipeDetails, setRecipeDetails] = useState({});
+
+    const removeTags = (str) => {
+        if ((str === null) || (str === '') || (str === undefined))
+            return false;
+        else
+            str = str.toString();
+        // Regular expression to identify HTML tags in the input string. Replacing the identified HTML tag with a null
+        // string. Source: https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
+        return str.replace(/(<([^>]+)>)/ig, '');
+    }
+
+    function truncate(str, num_sentences) {
+        if ((str === null) || (str === '') || (str === undefined))
+            return false;
+        else {
+            str = str.toString();
+            return str.split(".").splice(0, num_sentences).join(".").concat(
+                ".");
+        }
+    }
+
+    let summary = removeTags(recipeDetails.summary)
+    summary = truncate(summary, 4)
+
+    useEffect(() => {
+        const getDetails = async () => {
+            const response = await fetch(
+                `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${randomRecipeID()}/information`,
+                {
+                    "method": "GET",
+                    "headers": {
+                        "x-rapidapi-key": `${RAPID_API_KEY}`,
+                        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+                    }
+                });
+            const data = await response.json();
+            setRecipeDetails(data);
+            console.log(data);
+
+            //    TODO: add "else" statement that gets recipe details from recipe service
+        };
+        getDetails();
+    },[])
+
+
     return (
         <div className="wbdv-widget-container wbdv-widget-interior">
             <h1 className="h1 wbdv-center-in-div">
@@ -17,7 +76,7 @@ const FeaturedRecipeCard = () => {
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img className="d-block w-100"
-                             src="https://www.tastecooking.com/wp-content/uploads/2019/10/Article-Caramelized-Fennel-Fronds-Pollen-Recipe-2000x1333.jpg"
+                             src={recipeDetails.image}
                              alt="fennel-img.jpg"/>
                     </div>
                 </div>
@@ -32,39 +91,35 @@ const FeaturedRecipeCard = () => {
             </div>
             <div className="wbdv-widget-interior">
                 <h3 className="h3">
-                    Recipe Name
-                    <div className="wbdv-padded-icon float-right">
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star-half"></i>
-                    </div>
+                    {recipeDetails.title}
+                    {/*<div className="wbdv-padded-icon float-right">*/}
+                    {/*    <i className="fas fa-star"></i>*/}
+                    {/*    <i className="fas fa-star"></i>*/}
+                    {/*    <i className="fas fa-star"></i>*/}
+                    {/*    <i className="fas fa-star"></i>*/}
+                    {/*    <i className="fas fa-star-half"></i>*/}
+                    {/*</div>*/}
+                    <p className="wbdv-body-text col-2 float-right">
+                        <i className="fas fa-heart wbdv-padded-icon color-red"></i>
+                        {recipeDetails.aggregateLikes}
+                    </p>
                 </h3>
                 <div className="row">
                     <p className="wbdv-body-text col-2">
-                        60 minutes
+                        Cook time: {recipeDetails.readyInMinutes} minutes
                     </p>
-                    <p className="wbdv-body-text col-2">
-                        <i className="fas fa-heart wbdv-padded-icon"></i>
-                        16
+                    <p>
+                        Servings: {recipeDetails.servings}
                     </p>
                 </div>
                 <hr/>
 
                 <p className="wbdv-body-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae aliquet velit. Mauris massa quam,
-                    rhoncus nec scelerisque a, eleifend at magna. Aenean id pulvinar risus. Sed at ipsum sed odio
-                    commodo gravida. Fusce luctus varius massa, ac vestibulum turpis pharetra at. Aenean diam felis,
-                    luctus sit amet felis et, dapibus gravida libero. Proin feugiat porttitor orci a imperdiet.
-                    Curabitur est lectus, iaculis quis mauris vitae, lobortis maximus magna. Proin efficitur elit ut
-                    eros efficitur accumsan. Nullam viverra ullamcorper erat in rhoncus. In volutpat porttitor dictum.
-                    Ut nec fringilla orci, id eleifend neque. Proin suscipit imperdiet ex eget volutpat. Nam elementum
-                    sem erat, eget lobortis odio fermentum nec.
+                    {summary}
                 </p>
                 <div className="wbdv-center-in-div">
                     {/*TODO: set Link address programmatically*/}
-                    <Link to={"/details"}>
+                    <Link to={"/details/" + recipeDetails.id}>
                         <button className="btn wbdv-affirmative-btn">
                             VIEW FULL RECIPE
                         </button>
