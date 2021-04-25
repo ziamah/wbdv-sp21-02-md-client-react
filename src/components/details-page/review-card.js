@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import reviewService from "../../services/review-service";
+import usersService from "../../services/users-service";
 
 const ReviewCard = ({
                         user,
@@ -11,6 +12,15 @@ const ReviewCard = ({
     recipeName
                     }) => {
     const {id} = useParams()
+    const {username, setUsername} = useState(undefined);
+    const numStars = Number(rating)
+    const stars = new Array(numStars).fill(null);
+    // useEffect(() => {
+    //     usersService.findUserById(reviewer)
+    //         .then((user) => {
+    //             setUser(user)
+    //         })
+    // }, [])
     return (
         <div className="wbdv-review-card wbdv-widget-interior">
             <div className="row">
@@ -26,11 +36,12 @@ const ReviewCard = ({
                             {/*TODO: Fill in content programmatically*/}
                             Review Title {recipeName}
                             <div className="wbdv-padded-icon float-right">
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star-half"></i>
+                                {stars.map((star, idx) => <i className="fas fa-star" key = {idx}></i>)}
+                                {/*<i className="fas fa-star"></i>*/}
+                                {/*<i className="fas fa-star"></i>*/}
+                                {/*<i className="fas fa-star"></i>*/}
+                                {/*<i className="fas fa-star"></i>*/}
+                                {/*<i className="fas fa-star-half"></i>*/}
                             </div>
                         </h3>
                     </div>

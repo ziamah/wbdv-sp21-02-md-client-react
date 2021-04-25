@@ -1,21 +1,34 @@
 import {Link, useParams} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {createReview} from "../../services/review-service";
+import userService from "../../services/users-service";
 
 const WriteAReview = (user) => {
     const {id} = useParams()
     const [rating, setRating] = useState("1");
     const [reviewText, setReviewText] = useState("");
     const [reviewTitle, setReviewTitle] = useState("");
+    const [currentUser, setCurrentUser] = useState(undefined)
+
+
+    useEffect(() => {
+        userService.getCurrentUser()
+            .then((user) => {
+                if (user !== null) {
+                    setCurrentUser(user)
+                }
+            })
+    }, [])
 
     const handleSubmit = async () => {
-        console.log("this is the rating", rating)
+        console.log("user id", user.userId)
         const newReview = {
-            userID: user.userId,
+            userID: currentUser.userID,
             recipeID: id,
             rating: rating,
             reviewText: reviewText,
-            reviewTitle: reviewTitle
+            reviewTitle: reviewTitle,
+            reviewer: currentUser.userName
         }
         createReview(id, newReview)
     }
