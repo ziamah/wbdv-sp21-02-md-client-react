@@ -1,13 +1,11 @@
-
-//const USERS_URL = "http://localhost:8080/api/users";
-const baseUrl = process.env.REACT_APP_USERS_URL;
+const USERS_URL = "http://localhost:8080/api/users";
 
 export const findAllUsers = () =>
-    fetch(`${baseUrl}/users`)
+    fetch(USERS_URL)
         .then(response => response.json())
 
 export const deleteUser = (UserId) =>
-    fetch(`${baseUrl}/users/${UserId}`, {
+    fetch(`${USERS_URL}/${UserId}`, {
         method: 'DELETE'
     })
         .then(response => response.json())
@@ -15,19 +13,19 @@ export const deleteUser = (UserId) =>
 
 
 export const findUserById = (UserId) =>
-    fetch(`${baseUrl}/users/${UserId}`, {
+    fetch(`${USERS_URL}/${UserId}`, {
         method: 'GET'
     })
         .then(response => response.json())
 
 export const findUserListById = (UserId) =>
-    fetch(`${baseUrl}/users/list/${UserId}`, {
+    fetch(`${USERS_URL}/list/${UserId}`, {
         method: 'GET'
     })
         .then(response => response.json())
 
 export const createUser = (User) =>
-    fetch(`${baseUrl}/users`, {
+    fetch(USERS_URL, {
         method: 'POST',
         body: JSON.stringify(User),
         headers: {
@@ -37,7 +35,7 @@ export const createUser = (User) =>
         .then(response => response.json())
 
 export const updateUser = (UserId, User) =>
-    fetch(`${baseUrl}/users/${UserId}`, {
+    fetch(`${USERS_URL}/${UserId}`, {
         method: 'PUT',
         body: JSON.stringify(User),
         headers: {
@@ -46,7 +44,7 @@ export const updateUser = (UserId, User) =>
     })
         .then(response => response.json())
 
-export default {
+const api = {
     findAllUsers,
     deleteUser: deleteUser,
     createUser,
@@ -55,4 +53,4 @@ export default {
     findUserListById
 }
 
-
+export default api
