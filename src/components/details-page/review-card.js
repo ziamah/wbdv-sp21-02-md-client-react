@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import reviewService from "../../services/review-service";
 import usersService from "../../services/users-service";
@@ -9,7 +9,8 @@ const ReviewCard = ({
                         rating,
                         reviewText,
                         reviewer,
-    recipeName
+                        userID,
+                        recipeName
                     }) => {
     const {id} = useParams()
     const {username, setUsername} = useState(undefined);
@@ -26,9 +27,9 @@ const ReviewCard = ({
             <div className="row">
                 <div className="col-1">
                     {/*TODO: Profile image goes here -- if none, display default image*/}
-                    <img className="d-block w-100 wbdv-padded-img"
-                         src="https://www.greenecountyfoundation.org/wp-content/uploads/2019/09/Profile-Icon.png"
-                         alt=""></img>
+                    {/*<img className="d-block w-100 wbdv-padded-img"*/}
+                    {/*     src="https://www.greenecountyfoundation.org/wp-content/uploads/2019/09/Profile-Icon.png"*/}
+                    {/*     alt=""></img>*/}
                 </div>
                 <div className="col-11">
                     <div className="row">
@@ -48,7 +49,9 @@ const ReviewCard = ({
                     {/*TODO: Link to profile page*/}
                     <div className="wbdv-link-text">
                         {/*    TODO: Fill username programmatically*/}
-                        username: {reviewer}
+                        <Link to={`/profile/${userID}`}>
+                            username: {reviewer}
+                        </Link>
                     </div>
                     <div className="row wbdv-widget-interior">
                         {reviewText}

@@ -54,7 +54,8 @@ const ReviewsWidget = ({user}) => {
                         reviewText={review.reviewText}
                         reviewer={review.reviewer}
                         recipeName={review.recipeName}
-                        reviewTitle={review.reviewTitle}/>
+                        reviewTitle={review.reviewTitle}
+                        userID={review.userID}/>
 
                     )}
 
