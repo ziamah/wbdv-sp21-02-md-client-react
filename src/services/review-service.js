@@ -22,7 +22,6 @@ export const createReview = (recipeId, review) =>
     })
         .then(response => response.json());
 
-
 /* Updates an existing review object from the database */
 export const updateUser = (reviewId, review) =>
     fetch(`${baseUrl}/reviews/${reviewId}`, {
@@ -50,30 +49,28 @@ export const findReviewsByRecipe = async (recipeId) => {
 
 //Note: MZ did not change this method since it was already here.
 export const findReviewsByUserId = (UserId) =>
-    fetch(`${baseUrl}/review/user/${UserId}/reviews`, {
+    fetch(`${baseUrl}/user/${UserId}/reviews`, {
         method: 'GET'
     })
         .then(response => response.json())
 
-/* Returns the average user rating for a recipe */
-export const findAvgReview = async (recipeId) =>{
-    fetch(`${baseUrl}/recipe/${recipeId}/reviews/rating`)
-        .then(response => response.json())
-}
+    /* Returns the average user rating for a recipe */
+    export const findAvgReview = async (recipeId) => {
+        fetch(`${baseUrl}/recipe/${recipeId}/reviews/rating`)
+            .then(response => response.json())
+    }
 
-const api = {
-    deleteReview,
-    createReview,
-    updateUser,
-    findAllReviews,
-    findReviewsByRecipe,
-    findReviewsByUserId,
-    findAvgReview
-}
+    const api = {
+        deleteReview,
+        createReview,
+        updateUser,
+        findAllReviews,
+        findReviewsByRecipe,
+        findReviewsByUserId,
+        findAvgReview
+    }
 
-export default api
-
-
+    export default api
 
 // export default {
 //     findReviewsByUserId
