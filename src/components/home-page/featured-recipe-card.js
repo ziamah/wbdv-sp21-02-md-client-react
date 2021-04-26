@@ -63,16 +63,16 @@ const FeaturedRecipeCard = () => {
     return (
         <div className="wbdv-widget-container wbdv-widget-interior">
             <h1 className="h1 wbdv-center-in-div">
-                Today's Featured Recipes:
+                Today's Featured Recipe:
             </h1>
             <div className="carousel slide wbdv-padded-img" data-ride="carousel">
                 {/*TODO: Fill in these values programmatically*/}
-                <ol className="carousel-indicators">
-                    {/*TODO: Indicators float over nav bar, need to fix*/}
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
+                {/*<ol className="carousel-indicators">*/}
+                {/*    /!*TODO: Indicators float over nav bar, need to fix*!/*/}
+                {/*    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>*/}
+                {/*    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>*/}
+                {/*    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>*/}
+                {/*</ol>*/}
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img className="d-block w-100"
@@ -80,14 +80,14 @@ const FeaturedRecipeCard = () => {
                              alt="fennel-img.jpg"/>
                     </div>
                 </div>
-                <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Previous</span>
-                </a>
-                <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Next</span>
-                </a>
+                {/*<a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">*/}
+                {/*    <span className="carousel-control-prev-icon" aria-hidden="true"></span>*/}
+                {/*    <span className="sr-only">Previous</span>*/}
+                {/*</a>*/}
+                {/*<a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">*/}
+                {/*    <span className="carousel-control-next-icon" aria-hidden="true"></span>*/}
+                {/*    <span className="sr-only">Next</span>*/}
+                {/*</a>*/}
             </div>
             <div className="wbdv-widget-interior">
                 <h3 className="h3">
