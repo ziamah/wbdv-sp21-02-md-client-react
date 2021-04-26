@@ -18,14 +18,6 @@ const ReviewsWidget = ({user}) => {
         console.log(reviews)
     }, [])
 
-    // useEffect(() => {
-    //     reviewService.findAllReviews()
-    //         .then((reviews) => {
-    //             setReviews(reviews)
-    //         })
-    //     console.log(reviews)
-    // }, [])
-
     return (
         <div className="col-12 wbdv-widget-container wbdv-widget-interior">
             <div className="col-12">
@@ -65,10 +57,6 @@ const ReviewsWidget = ({user}) => {
                             This recipe doesn't have any reviews yet. Be the first to review!
                         </div>
                     }
-                    {/*TODO: Map reviews to reviewCards*/}
-                    {/*<ReviewCard/>*/}
-                    {/*<ReviewCard/>*/}
-                    {/*<ReviewCard/>*/}
                 </div>
             </div>
         </div>
