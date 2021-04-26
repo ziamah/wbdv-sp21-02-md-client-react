@@ -196,20 +196,20 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                         <div class="card-body profile-image-size col-6">
 
-                            <div><h3 className="card-title color-green profile-bold">{userName}</h3></div>
-                            <div className="color-black review-numbers-font-size">{totalReviews} reviews!</div>
+                            <div><h2 className="card-title h2 profile-bold">{userName}</h2></div>
+                            <div className="color-black review-numbers-font-size">{totalReviews} reviews</div>
                             <div className="card-text color-brown">{userBio}</div>
                             <br/>
                             <div>
                                 {!alreadyFollowing && curUser!=userId && curUser!=undefined &&
                                 <i type="button" className="btn btn-success" onClick={() => addFollower()}>
-                                    Follow Me
+                                    Follow
                                 </i>
                                 }
                                 {alreadyFollowing && curUser!=userId && curUser!=undefined &&
 
                                 <i type="button" className="btn btn-success" onClick={() => removeFollower()}>
-                                    UnFollow Me
+                                    Unfollow
                                 </i>
                                 }
                             </div>
@@ -230,7 +230,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
 
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div className="add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 
 
@@ -244,7 +244,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
 
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                         {folllowedUsers.length != undefined &&
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
@@ -254,7 +254,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
 
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 
                         {favoriteRecipeId.length != 0 &&
@@ -264,7 +264,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                         }
 
                         {favoriteRecipeId.length == 0 &&
-                            <h3 className="fill-background">No Liked Recipe</h3>
+                            <h3 className="wbdv-section-header">No Favorited Recipes</h3>
 
                         }
 
@@ -272,7 +272,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
 
 
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                         {userRecipes.length != 0 &&
                         <UserRecipeList recipes={["recipe1 description link", "recipe2 description link",
@@ -282,7 +282,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                     </div>
 
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                         {reviewRecipeId.length != 0 &&
                         <RecipeListReview recipes={["recipe1 description link", "recipe2 description link",
@@ -291,13 +291,13 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
                         }
 
                         {reviewRecipeId.length == 0 &&
-                            <h3 className="fill-background">No Recipe Reviewed</h3>
+                            <h3 className="wbdv-section-header">No Reviewed Recipes</h3>
                         }
 
                     </div>
 
                     { curUser == userId &&
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <PrivateData userName = {userName}
                                      setUserName = {setUserName}
                                      updateUser = {profileUserService.updateUser}
@@ -321,6 +321,12 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
 
                 </div>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
     )
 }
