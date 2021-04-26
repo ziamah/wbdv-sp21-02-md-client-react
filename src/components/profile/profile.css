@@ -157,7 +157,8 @@ hr {
 }
 
 .profile-bold {
-    font-weight: bold;
+    font-weight: bolder;
+    color: var(--secondary)
 }
 
 .color-me-tomato {
@@ -204,4 +205,15 @@ hr {
 
 .text-color-following {
     color: #d07d62;
+}
+
+.wbdv-section-header {
+    background-color: var(--primary-dark);
+    color: var(--surface);
+    padding-left: 5px;
+    padding-right: 10px
+}
+
+.section-container {
+    padding: 5px
 }

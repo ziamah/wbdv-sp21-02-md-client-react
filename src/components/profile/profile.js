@@ -13,70 +13,55 @@ import reviewService from "../../services/review-service";
 import userRecipeService from "../../services/userrecipe-service";
 import mainUserService from '../../services/users-service'
 
-const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
-                     likes="recipe1,recipe2", recipes="myrecipe1,myrecipe2"}) => {
+const Profile = () => {
 
-    const [privatemode, setPrivateMode] = useState(true);
-    const [editing, setEditing] = useState(false);
     const [userName, setUserName] = useState("")
-    //const [profileImage, setProfileImage] = useState("https://i.ibb.co/T8hppc1/anna-pelzer-IGf-IGP5-ONV0-unsplash.jpg")
     const [profileImage, setProfileImage] = useState("")
-    //const [userBio, setUserBio] = useState("Food Lover!")
     const [userBio, setUserBio] = useState("")
     const [user, setUser] = useState()
     const [userEmail, setUserEmail] = useState("")
-    //const [userPassword, setUserPassword] = useState("123")
     const [userPassword, setUserPassword] = useState("")
     const [userFollowing, setUserFollowing] = useState([-1])
     const [userFollowed, setUserFollowed] = useState([-1])
     const {userId} = useParams();
     const [followerObject, setFollowerObject] = useState();
-    const [folllowerUsers, setFollowerUsers] = useState([]);
-    const [folllowedUsers, setFollowedUsers] = useState([]);
+    const [followerUsers, setFollowerUsers] = useState([]);
+    const [followedUsers, setFollowedUsers] = useState([]);
     const [favoriteRecipeId, setFavoriteRecipeId] = useState([]);
     const [reviewRecipeId, setReviewRecipeId] = useState([]);
     const [userRecipes, setUserRecipes] = useState([]);
-    const [favoriteRecipeIdType, setFavoriteRecipeIdType] = useState([]);
-    const [reviewRecipeIdType, setReviewRecipeIdType] = useState([]);
-    const [curUser, setCurUser] = useState(undefined);
+    const [currentUser, setCurrentUser] = useState(undefined);
 
     const [followerObjectLoggedIn, setFollowerObjectLoggedIn] = useState();
     const [alreadyFollowing, setAlreadyFollowing] = useState(false);
     const [totalReviews, setTotalReviews] = useState(0);
-    console.log({userId});
 
     const addFollower = () => {
-
-        followerService.updateFollower(userId,{...followerObject, userFollowed:[...userFollowed || [],curUser]})
-            .then(setUserFollowed([...userFollowed || [],curUser]))
-
-        followerService.updateFollower(curUser,{...followerObjectLoggedIn,
-            userFollowing:[...followerObjectLoggedIn.userFollowing || [],userId]})
+        followerService.updateFollower(userId, {...followerObject, userFollowed: [...userFollowed || [], currentUser]})
+            .then(setUserFollowed([...userFollowed || [], currentUser]))
+        followerService.updateFollower(currentUser, {
+            ...followerObjectLoggedIn,
+            userFollowing: [...followerObjectLoggedIn.userFollowing || [], userId]
+        })
     }
 
     const removeFollower = () => {
-        followerService.updateFollower(userId,{...followerObject, userFollowed:userFollowed
+        followerService.updateFollower(userId, {
+            ...followerObject, userFollowed: userFollowed
                 .filter(eachUser => {
-                    if(eachUser==curUser) {
-                        return false;
-                    }
-                    else {
-                        return true;
-                    }
-                })})
+                    return eachUser !== currentUser;
+                })
+        })
             .then((followers) => setUserFollowed(followers.userFollowed))
             .then(() => setAlreadyFollowing(false))
 
-        followerService.updateFollower(curUser,{...followerObjectLoggedIn,
-            userFollowing:followerObjectLoggedIn.userFollowing
+        followerService.updateFollower(currentUser, {
+            ...followerObjectLoggedIn,
+            userFollowing: followerObjectLoggedIn.userFollowing
                 .filter(eachUser => {
-                    if(eachUser==userId) {
-                        return false;
-                    }
-                    else {
-                        return true;
-                    }
-                })})
+                    return eachUser !== userId;
+                })
+        })
 
 
     }
@@ -84,18 +69,18 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
     useEffect(() => {
 
         mainUserService.getCurrentUser()
-                    .then((user) => {
-                        if (user !== null) {
-                            setCurUser(user.userID)
+            .then((user) => {
+                if (user !== null) {
+                    setCurrentUser(user.userID.toString())
 
-                            followerService.findFollowerById(user.userID)
-                                        .then(user =>  {
-                                            setFollowerObjectLoggedIn(user);
+                    followerService.findFollowerById(user.userID)
+                        .then(user => {
+                            setFollowerObjectLoggedIn(user);
 
-                                        })
+                        })
 
-                        }
-                    })
+                }
+            })
         profileUserService.findUserById(userId)
             .then(user => {
                 setUserName(user.userName);
@@ -108,7 +93,7 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
             })
 
         followerService.findFollowerById(userId)
-            .then(user =>  {
+            .then(user => {
                 setFollowerObject(user);
                 setUserFollowing(user.userFollowing);
                 setUserFollowed(user.userFollowed);
@@ -132,13 +117,6 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
             .then(recipes => {
                 setUserRecipes(recipes)
             })
-
-
-    }, [userId])
-
-
-    useEffect(() => {
-
         profileUserService.findUserListById(userFollowed)
             .then(users => {
                 setFollowerUsers(users)
@@ -147,180 +125,115 @@ const Profile = ({following="ab,cd,ef", followers="ab,cd,ef",
             .then(users => {
                 setFollowedUsers(users)
             })
-        if (userFollowed!= undefined) {
+        if (userFollowed !== undefined) {
             userFollowed.map(eachId => {
-                if (eachId == curUser) {
+                if (eachId === currentUser) {
                     setAlreadyFollowing(true)
                 }
             })
         }
+    }, [currentUser, userFollowed, userFollowing, userId])
 
-    }, [userFollowing, userFollowed])
-
-
-    console.log(userName)
-    console.log(profileImage)
-    console.log(userBio)
-    console.log(userPassword)
-    console.log(followerObject)
-    console.log(userFollowing)
-    console.log(userFollowed)
-    console.log(favoriteRecipeId)
-    console.log(reviewRecipeId)
-    console.log(userRecipes)
-    //console.log(favoriteRecipeId)
-    //console.log(recipeIdRegEx.test(favoriteRecipeId[1]))
-    console.log(favoriteRecipeIdType)
-    console.log(reviewRecipeIdType)
-    console.log(curUser)
-    console.log(userEmail)
-
-
-    return(
+    return (
         <div>
             <div>
             </div>
-
             <div className="background-liked add-margin-top">
-
                 <div className="row container background-liked">
-
                     <div className="col-lg-4 background-liked">
-
                     </div>
                     <div className="card col-lg-8 add-padding-pic profile-card2 background-liked profile-card3">
-
                         <img src={profileImage}
-                             className="card-image-top profile-image-size rounded-circle" alt="..."/>
-
-
-                        <div class="card-body profile-image-size col-6">
-
-                            <div><h3 className="card-title color-green profile-bold">{userName}</h3></div>
-                            <div className="color-black review-numbers-font-size">{totalReviews} reviews!</div>
+                             className="card-image-top profile-image-size rounded-circle" alt=""/>
+                        <div className="card-body profile-image-size col-6">
+                            <div>
+                                <h3 className="card-title h2 profile-bold">{userName}</h3></div>
+                            <div className="color-black review-numbers-font-size">{totalReviews} reviews</div>
                             <div className="card-text color-brown">{userBio}</div>
                             <br/>
                             <div>
-                                {!alreadyFollowing && curUser!=userId && curUser!=undefined &&
-                                <i type="button" className="btn btn-success" onClick={() => addFollower()}>
-                                    Follow Me
+                                {!alreadyFollowing && currentUser !== userId && currentUser !== undefined &&
+                                <i className="btn btn-success" onClick={() => addFollower()}>
+                                    Follow
                                 </i>
                                 }
-                                {alreadyFollowing && curUser!=userId && curUser!=undefined &&
-
-                                <i type="button" className="btn btn-success" onClick={() => removeFollower()}>
-                                    UnFollow Me
+                                {alreadyFollowing && currentUser !== userId && currentUser !== undefined &&
+                                <i className="btn btn-success" onClick={() => removeFollower()}>
+                                    Unfollow
                                 </i>
                                 }
                             </div>
-
                         </div>
-
-
                     </div>
-
                     <div className="background-liked">
-
                     </div>
-
                 </div>
-
-
                 <div className="row container">
-
-
-
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-
-
-                        {folllowerUsers.length != undefined &&
+                        {followerUsers.length !== undefined &&
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
-                                  listOfID={userFollowing} listOfUsers={folllowerUsers}/>
-
-                        }
-
-                    </div>
-
-
-
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-                        {folllowedUsers.length != undefined &&
-                        <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
-                                  heading = "Following" listOfID={userFollowed}  listOfUsers={folllowedUsers}/>
+                                  listOfID={userFollowing} listOfUsers={followerUsers}/>
                         }
                     </div>
-
-
-
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-
-                        {favoriteRecipeId.length != 0 &&
+                        {followedUsers.length !== undefined &&
+                        <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
+                                  heading="Following" listOfID={userFollowed} listOfUsers={followedUsers}/>
+                        }
+                    </div>
+                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        {favoriteRecipeId.length !== 0 &&
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link",
                             "recipe3 description link"]} favId={favoriteRecipeId}
-                                    heading="My Favorite Recipes"/>
+                                    heading="Favorite Recipes"/>
                         }
-
-                        {favoriteRecipeId.length == 0 &&
-                            <h3 className="fill-background">No Liked Recipe</h3>
+                        {favoriteRecipeId.length === 0 &&
+                        <h3 className="wbdv-section-header">No Favorites Recipes</h3>
 
                         }
-
                     </div>
-
-
-
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-                        {userRecipes.length != 0 &&
+                        {userRecipes.length !== 0 &&
                         <UserRecipeList recipes={["recipe1 description link", "recipe2 description link",
                             "recipe3 description link"]} myRecipes={userRecipes}/>
-
                         }
-
                     </div>
-
                     <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-                        {reviewRecipeId.length != 0 &&
+                        {reviewRecipeId.length !== 0 &&
                         <RecipeListReview recipes={["recipe1 description link", "recipe2 description link",
-                            "recipe3 description link"]}  favId={reviewRecipeId}
+                            "recipe3 description link"]} favId={reviewRecipeId}
                                           heading="My Reviewed Recipes"/>
                         }
-
-                        {reviewRecipeId.length == 0 &&
-                            <h3 className="fill-background">No Recipe Reviewed</h3>
+                        {reviewRecipeId.length === 0 &&
+                        <h3 className="wbdv-section-header">No Reviewed Recipes</h3>
                         }
-
                     </div>
-
-                    { curUser == userId &&
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <PrivateData userName = {userName}
-                                     setUserName = {setUserName}
-                                     updateUser = {profileUserService.updateUser}
-                                     userId = {userId}
-                                     userBio = {userBio}
-                                     setUserBio = {setUserBio}
-                                     userPassword = {userPassword}
-                                     setUserPassword = {setUserPassword}
-                                     profileImage = {profileImage}
-                                     setProfileImage = {setProfileImage}
-                                     userEmail = {userEmail}
-                                     setUserEmail = {setUserEmail}
-                                     user = {user}
+                    {currentUser === userId &&
+                    <div className="add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <PrivateData userName={userName}
+                                     setUserName={setUserName}
+                                     updateUser={profileUserService.updateUser}
+                                     userId={userId}
+                                     userBio={userBio}
+                                     setUserBio={setUserBio}
+                                     userPassword={userPassword}
+                                     setUserPassword={setUserPassword}
+                                     profileImage={profileImage}
+                                     setProfileImage={setProfileImage}
+                                     userEmail={userEmail}
+                                     setUserEmail={setUserEmail}
+                                     user={user}
                         />
                     </div>
                     }
-
-
-
-
-
                 </div>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
     )
 }
