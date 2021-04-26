@@ -69,7 +69,7 @@ const RecipeCard = ({user}) => {
 
     const getUserDetails = async () => {
         const response = await fetch(
-            `https://recipehero2021-backend3.herokuapp.com/api/userrecipes`);
+            `http://recipehero2021-backend3.herokuapp.com/api/userrecipes`);
             // 'http://localhost:8080/api/userrecipes');
         const data = await response.json();
 
