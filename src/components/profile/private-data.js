@@ -14,9 +14,7 @@ const PrivateData = ({
         <div className="background-followers container">
             <div className="row wbdv-section-header">
                 <div>
-                    <h1 className="h3 wbdv-section-header">
-                        Private Section
-                    </h1>
+                    <h2 className="h3 section-container wbdv-section-header"> Private Section </h2>
                 </div>
                 <div >
                     {!editing &&

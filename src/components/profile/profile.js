@@ -144,21 +144,27 @@ const Profile = () => {
                     </div>
                     <div className="card col-lg-8 add-padding-pic profile-card2 background-liked profile-card3">
                         <img src={profileImage}
-                             className="card-image-top profile-image-size rounded-circle" alt=""/>
-                        <div className="card-body profile-image-size col-6">
-                            <div>
-                                <h3 className="card-title h2 profile-bold">{userName}</h3></div>
+
+                             className="card-image-top profile-image-size rounded-circle" alt="..."/>
+
+
+                        <div class="card-body profile-image-size col-6">
+
+                            <div><h2 className="card-title h2 profile-bold">{userName}</h2></div>
+
                             <div className="color-black review-numbers-font-size">{totalReviews} reviews</div>
                             <div className="card-text color-brown">{userBio}</div>
                             <br/>
                             <div>
-                                {!alreadyFollowing && currentUser !== userId && currentUser !== undefined &&
-                                <i className="btn btn-success" onClick={() => addFollower()}>
+
+                                {!alreadyFollowing && currentUser!=userId && currentUser!=undefined &&
+                                <i type="button" className="btn btn-success" onClick={() => addFollower()}>
                                     Follow
                                 </i>
                                 }
-                                {alreadyFollowing && currentUser !== userId && currentUser !== undefined &&
-                                <i className="btn btn-success" onClick={() => removeFollower()}>
+                                {alreadyFollowing && currentUser!=userId && currentUser!=undefined &&
+
+                                <i type="button" className="btn btn-success" onClick={() => removeFollower()}>
                                     Unfollow
                                 </i>
                                 }
@@ -169,60 +175,94 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="row container">
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        {followerUsers.length !== undefined &&
+
+
+
+
+                    <div className="add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+
+
+                        {followerUsers.length != undefined &&
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
                                   listOfID={userFollowing} listOfUsers={followerUsers}/>
                         }
                     </div>
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        {followedUsers.length !== undefined &&
+
+
+
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                        {followedUsers.length != undefined &&
+
                         <UserList users={["user1 profile link", "user2 profile link", "user3 profile link"]}
                                   heading="Following" listOfID={userFollowed} listOfUsers={followedUsers}/>
                         }
                     </div>
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        {favoriteRecipeId.length !== 0 &&
+
+
+
+
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+
+                        {favoriteRecipeId.length != 0 &&
+
                         <RecipeList recipes={["recipe1 description link", "recipe2 description link",
                             "recipe3 description link"]} favId={favoriteRecipeId}
                                     heading="Favorite Recipes"/>
                         }
-                        {favoriteRecipeId.length === 0 &&
-                        <h3 className="wbdv-section-header">No Favorites Recipes</h3>
+
+
+                        {favoriteRecipeId.length == 0 &&
+                            <h3 className="wbdv-section-header">No Favorited Recipes</h3>
+
 
                         }
                     </div>
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        {userRecipes.length !== 0 &&
+
+
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                        {userRecipes.length != 0 &&
+
                         <UserRecipeList recipes={["recipe1 description link", "recipe2 description link",
                             "recipe3 description link"]} myRecipes={userRecipes}/>
                         }
                     </div>
-                    <div className="h3 add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        {reviewRecipeId.length !== 0 &&
+
+
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                        {reviewRecipeId.length != 0 &&
+
                         <RecipeListReview recipes={["recipe1 description link", "recipe2 description link",
                             "recipe3 description link"]} favId={reviewRecipeId}
                                           heading="My Reviewed Recipes"/>
                         }
-                        {reviewRecipeId.length === 0 &&
-                        <h3 className="wbdv-section-header">No Reviewed Recipes</h3>
+
+                        {reviewRecipeId.length == 0 &&
+                            <h3 className="wbdv-section-header">No Reviewed Recipes</h3>
+
                         }
                     </div>
-                    {currentUser === userId &&
-                    <div className="add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <PrivateData userName={userName}
-                                     setUserName={setUserName}
-                                     updateUser={profileUserService.updateUser}
-                                     userId={userId}
-                                     userBio={userBio}
-                                     setUserBio={setUserBio}
-                                     userPassword={userPassword}
-                                     setUserPassword={setUserPassword}
-                                     profileImage={profileImage}
-                                     setProfileImage={setProfileImage}
-                                     userEmail={userEmail}
-                                     setUserEmail={setUserEmail}
-                                     user={user}
+
+
+                    { currentUser == userId &&
+                    <div className=" add-padding col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <PrivateData userName = {userName}
+                                     setUserName = {setUserName}
+                                     updateUser = {profileUserService.updateUser}
+                                     userId = {userId}
+                                     userBio = {userBio}
+                                     setUserBio = {setUserBio}
+                                     userPassword = {userPassword}
+                                     setUserPassword = {setUserPassword}
+                                     profileImage = {profileImage}
+                                     setProfileImage = {setProfileImage}
+                                     userEmail = {userEmail}
+                                     setUserEmail = {setUserEmail}
+                                     user = {user}
                         />
                     </div>
                     }

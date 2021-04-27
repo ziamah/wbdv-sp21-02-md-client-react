@@ -12,7 +12,10 @@ const UserList = ({
         <div className="background-followers">
 
             <div className="" onClick={() => setOpenCollapse(!openCollapse)}>
-                <h2 className="wbdv-section-header"> {heading}
+
+                <h2 className="h3 section-container wbdv-section-header">
+                    {heading}
+
                     {
                         openCollapse &&
                         <i className="fas fa-caret-down float-right"></i>

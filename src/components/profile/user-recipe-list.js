@@ -11,10 +11,24 @@ const UserRecipeList = ({
 
     return (
         <div className="background-followers">
-            <div className="" onClick={() => setOpenCollapse(!openCollapse)}>
-                <h1 className="wbdv-section-header"> {heading} </h1>
-            </div>
-            <Collapse in={openCollapse}>
+
+
+        <div className="" onClick={() => setOpenCollapse(!openCollapse)}>
+              <h2 className="h3 section-container wbdv-section-header">
+                  {heading}
+                  {
+                      openCollapse &&
+                      <i className="fas fa-caret-down float-right"></i>
+                  }
+                  {
+                      !openCollapse &&
+                      <i className="fas fa-caret-up float-right"></i>
+                  }
+              </h2>
+        </div>
+
+            <Collapse  in={openCollapse}>
+
 
                 <ul>
                     {

@@ -85,6 +85,7 @@ const NewRecipe = () => {
                             <br/>
                         </div>
                         <div className="col-8">
+
                             <p className="row">
                                 <div className="col-12 col-lg-2">
                                     <label htmlFor="title-field" className="wbdv-label">Recipe Title: </label>

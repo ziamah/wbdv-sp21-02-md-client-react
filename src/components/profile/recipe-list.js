@@ -10,7 +10,8 @@ const RecipeList = ({
     return (
         <div className="background-followers">
             <div className="" onClick={() => setOpenCollapse(!openCollapse)}>
-                <h2 className="wbdv-section-header">
+
+                <h2 className="h3 section-container wbdv-section-header">
                     {heading}
                     {
                         openCollapse &&
