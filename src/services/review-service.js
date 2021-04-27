@@ -56,8 +56,18 @@ export const findReviewsByUserId = (UserId) =>
 
     /* Returns the average user rating for a recipe */
     export const findAvgReview = async (recipeId) => {
-        fetch(`${baseUrl}/recipe/${recipeId}/reviews/rating`)
-            .then(response => response.json())
+        const allReviews  = await findReviewsByRecipe(recipeId)
+        let ratings = []
+        allReviews.map((review) => ratings.push(parseInt(review.rating)))
+
+        let sum = ratings.reduce((a, b) => a + b, 0);
+
+        let avg = 0
+        if(allReviews.length > 0) {  avg = sum/allReviews.length }
+        console.log("average:", avg)
+        return Math.round(avg)
+        // fetch(`${baseUrl}/recipe/${recipeId}/reviews/rating`)
+        //     .then(response => response.json())
     }
 
     const api = {

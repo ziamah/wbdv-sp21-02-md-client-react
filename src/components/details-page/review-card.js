@@ -35,7 +35,9 @@ const ReviewCard = ({
                     <div className="row">
                         <h3 className="h3 wbdv-padded-img">
                             {/*TODO: Fill in content programmatically*/}
-                            Review Title {recipeName}
+                            <Link to={`/profile/${userID}`}>
+                                 {reviewer}
+                            </Link>
                             <div className="wbdv-padded-icon float-right">
                                 {stars.map((star, idx) => <i className="fas fa-star" key = {idx}></i>)}
                                 {/*<i className="fas fa-star"></i>*/}
@@ -49,9 +51,9 @@ const ReviewCard = ({
                     {/*TODO: Link to profile page*/}
                     <div className="wbdv-link-text">
                         {/*    TODO: Fill username programmatically*/}
-                        <Link to={`/profile/${userID}`}>
-                            username: {reviewer}
-                        </Link>
+                        {/*<Link to={`/profile/${userID}`}>*/}
+                        {/*    username: {reviewer}*/}
+                        {/*</Link>*/}
                     </div>
                     <div className="row wbdv-widget-interior">
                         {reviewText}

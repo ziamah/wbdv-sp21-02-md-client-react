@@ -17,6 +17,21 @@ const WriteAReview = (user) => {
     const [recipeDetails, setRecipeDetails] = useState({});
 
     useEffect(() => {
+        const getDetails = async () => {
+            const response = await fetch(
+                `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
+                {
+                    "method": "GET",
+                    "headers": {
+                        "x-rapidapi-key": `${RAPID_API_KEY}`,
+                        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+                    }
+                });
+            const data = await response.json();
+            setRecipeDetails(data);
+        };
+        getDetails()
+
         userService.getCurrentUser()
             .then((user) => {
                 if (user !== null) {
@@ -25,26 +40,8 @@ const WriteAReview = (user) => {
             })
     }, [])
 
-    // recipeService.findRecipesByID(id).then((recipe) => {
-    //     setRecipeDetails(recipe)
-    // })
-
-    // const getDetails = async () => {
-    //         const response = await fetch(
-    //             `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
-    //             {
-    //                 "method": "GET",
-    //                 "headers": {
-    //                     "x-rapidapi-key": `${RAPID_API_KEY}`,
-    //                     "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-    //                 }
-    //             });
-    //         const data = await response.json();
-    //         setRecipeDetails(data);
-    // };
 
     const handleSubmit = async () => {
-        //getDetails()
         console.log("user id", user.userID)
         console.log("recipe name is", recipeDetails.title)
         const newReview = {
