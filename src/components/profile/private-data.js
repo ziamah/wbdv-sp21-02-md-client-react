@@ -13,9 +13,9 @@ const PrivateData = ({userName, setUserName, userPassword, setUserPassword, upda
 
     return (
         <div className="background-followers container">
-            <div className="row fill-background">
+            <div className="row wbdv-section-header">
                 <div>
-                    <h1 className="fill-background"> Private Section </h1>
+                    <h2 className="h3 section-container wbdv-section-header"> Private Section </h2>
                 </div>
 
                 <div className="add-margin-left-45px">

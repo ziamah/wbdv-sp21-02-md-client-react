@@ -87,7 +87,7 @@ const NewRecipe = () => {
                         <div className="col-8">
                             {/*    TODO: Connect form to server*/}
 
-                            <div className="row">
+                            <p className="row">
                                 <div className="col-12 col-lg-2">
                                     <label htmlFor="title-field" className="wbdv-label">Recipe Title: </label>
                                 </div>
@@ -96,6 +96,7 @@ const NewRecipe = () => {
                                        placeholder="Abuela's Famous Birria Tacos"
                                        onChange={(event) => setTitle(event.target.value)}
                                        value={title}/>
+                            </p>
                                 <p className="row">
                                     <div className="col-12 col-lg-2">
                                         <label htmlFor="title-field" className="wbdv-label">Servings: </label>
@@ -177,7 +178,6 @@ const NewRecipe = () => {
                             </div>
                         </div>
                     </div>
-                </div>
             }
         </>
 

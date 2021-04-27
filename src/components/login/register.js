@@ -159,12 +159,14 @@ const Register = (
                 </form>
 
                 <div className="row wbdv-center-in-div">
+                    <div>
                     <button className="btn wbdv-affirmative-btn"
                             onClick={async () => {
                                 await handleSubmit()
                             }}>
                         REGISTER ACCOUNT
                     </button>
+                    </div>
                 </div>
                 <div className="wbdv-center-in-div wbdv-widget-interior">
                     or

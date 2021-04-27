@@ -20,7 +20,17 @@ const UserList = ({users = [], users2 = ["user4 profile link", "user5 profile li
         <div className="background-followers">
 
             <div className="" onClick={() => setOpenCollapse(!openCollapse)}>
-                <h1 className="fill-background"> {heading} </h1>
+                <h2 className="h3 section-container wbdv-section-header">
+                    {heading}
+                    {
+                        openCollapse &&
+                        <i className="fas fa-caret-down float-right"></i>
+                    }
+                    {
+                        !openCollapse &&
+                        <i className="fas fa-caret-up float-right"></i>
+                    }
+                </h2>
             </div>
 
             <Collapse in={openCollapse}>
