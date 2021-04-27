@@ -65,7 +65,7 @@ export const findReviewsByUserId = (UserId) =>
         let avg = 0
         if(allReviews.length > 0) {  avg = sum/allReviews.length }
         console.log("average:", avg)
-        return avg
+        return Math.round(avg)
         // fetch(`${baseUrl}/recipe/${recipeId}/reviews/rating`)
         //     .then(response => response.json())
     }

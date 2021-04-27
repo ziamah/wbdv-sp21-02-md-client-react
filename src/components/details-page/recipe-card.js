@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import RAPID_API_KEY_const from "../../api";
 import favoritesService, {findFavoritesByRecipe} from "../../services/favorites-service";
+import reviewService, {findAvgReview} from "../../services/review-service"
 
 const RecipeCard = ({user}) => {
     const {id} = useParams()
@@ -32,18 +33,21 @@ const RecipeCard = ({user}) => {
 
         const getDetails = async () => {
             if (!id.toString().includes("hero_")) {
-                const response = await fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`, {
-                    "method": "GET",
-                    "headers": {
-                        "x-rapidapi-key": `${RAPID_API_KEY}`,
-                        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-                    }
-                });
+                const response = await fetch(
+                    `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
+                    {
+                        "method": "GET",
+                        "headers": {
+                            "x-rapidapi-key": `${RAPID_API_KEY}`,
+                            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+                        }
+                    });
                 const data = await response.json();
                 setRecipeDetails(data);
             }
             //    TODO: add "else" statement that gets recipe details from recipe service
         };
+
         getDetails();
         getFavoritesInfo();
         getUserDetails();
@@ -83,19 +87,21 @@ const RecipeCard = ({user}) => {
     };
 
     const removeTags = (str) => {
-        if ((str === null) || (str === '') || (str === undefined))
+        if ((str === null) || (str === '') || (str === undefined)) {
             return false;
-        else
+        } else {
             str = str.toString();
-        // Regular expression to identify HTML tags in the input string. Replacing the identified HTML tag with a null
-        // string. Source: https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
+        }
+        // Regular expression to identify HTML tags in the input string. Replacing the identified
+        // HTML tag with a null string. Source:
+        // https://www.geeksforgeeks.org/how-to-strip-out-html-tags-from-a-string-using-javascript
         return str.replace(/(<([^>]+)>)/ig, '');
     }
 
     function truncate(str, num_sentences) {
-        if ((str === null) || (str === '') || (str === undefined))
+        if ((str === null) || (str === '') || (str === undefined)) {
             return false;
-        else {
+        } else {
             str = str.toString();
             return str.split(".").splice(0, num_sentences).join(".").concat(
                 ".");
@@ -168,7 +174,7 @@ const RecipeCard = ({user}) => {
                                                .then((favorites) => {
                                                    const favorite = favorites.find(
                                                        favorite => favorite.userId
-                                                           === user.userID)
+                                                                   === user.userID)
                                                    if (favorite !== undefined) {
                                                        setFavoriteId(
                                                            favorite.favoriteId)
@@ -189,12 +195,7 @@ const RecipeCard = ({user}) => {
                             </div>
                             {/* TODO: use reviews service to display correct number of stars */}
                             <div
-                                className="wbdv-padded-icon wbdv-body-text wbdv-verticalLine">
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star-half"></i>
+                                className="wbdv-padded-icon wbdv-body-text">
                             </div>
                         </p>
                         <div className="row">
@@ -323,7 +324,7 @@ const RecipeCard = ({user}) => {
                                                .then((favorites) => {
                                                    const favorite = favorites.find(
                                                        favorite => favorite.userId
-                                                           === user.userID)
+                                                                   === user.userID)
                                                    if (favorite !== undefined) {
                                                        setFavoriteId(
                                                            favorite.favoriteId)
@@ -344,12 +345,7 @@ const RecipeCard = ({user}) => {
                             </div>
                             {/* TODO: use reviews service to display correct number of stars */}
                             <div
-                                className="wbdv-padded-icon wbdv-body-text wbdv-verticalLine">
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star-half"></i>
+                                className="wbdv-padded-icon wbdv-body-text">
                             </div>
                         </p>
                         <div className="row">
@@ -441,7 +437,7 @@ const RecipeCard = ({user}) => {
                         <h3 className="h3">Ingredients:</h3>
                         <ul>
                             {recipeDetails.extendedIngredients
-                            && recipeDetails.extendedIngredients.map(
+                             && recipeDetails.extendedIngredients.map(
                                 (ingredient) => {
                                     return (
                                         <li>{ingredient.original}</li>
