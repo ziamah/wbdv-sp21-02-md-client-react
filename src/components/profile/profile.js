@@ -132,7 +132,8 @@ const Profile = () => {
                 }
             })
         }
-    }, [currentUser, userFollowed, userFollowing, userId])
+    }, [])
+    // currentUser, userFollowed, userFollowing, userId
 
     return (
         <div>
